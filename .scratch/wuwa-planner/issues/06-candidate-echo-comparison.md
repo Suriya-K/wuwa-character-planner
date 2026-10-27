@@ -4,9 +4,9 @@
 
 **Blocked by:** 05
 
-**Status:** ready-for-agent
+**Status:** done
 
-- [ ] Only Equipped Echoes of the Candidate's cost are offered
-- [ ] Score difference and what-if values match `compareEchoes` for the same inputs
-- [ ] A what-if stat that falls below its Stat Target shows Low
-- [ ] Optionally replacing the Equipped Echo with the Candidate updates the Loadout
+- [x] Only Equipped Echoes of the Candidate's cost are offered
+- [x] Score difference and what-if values match `compareEchoes` for the same inputs
+- [x] A what-if stat that falls below its Stat Target shows Low
+- [x] Optionally replacing the Equipped Echo with the Candidate updates the Loadout
