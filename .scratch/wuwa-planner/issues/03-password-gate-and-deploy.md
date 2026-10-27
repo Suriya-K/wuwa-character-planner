@@ -4,9 +4,9 @@
 
 **Blocked by:** 02
 
-**Status:** ready-for-agent
+**Status:** blocked on user (gate done and verified locally; needs Vercel project + env vars to deploy)
 
-- [ ] Opening any page without the cookie lands on the login form
-- [ ] Calling the OCR API without the cookie is rejected without reaching Gemini
-- [ ] A wrong password does not set the cookie
+- [x] Opening any page without the cookie lands on the login form
+- [x] Calling the OCR API without the cookie is rejected without reaching Gemini
+- [x] A wrong password does not set the cookie
 - [ ] After login, the stat check works on the deployed URL from a phone
