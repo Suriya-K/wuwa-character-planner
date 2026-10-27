@@ -21,6 +21,7 @@ const SHEET =
 // Every Character block in the sheet starts with this heading
 const BLOCK_MARKER = "Ascension / Forte Material Breakdown";
 const DIR = "data/characters";
+const YOUTUBE = "data/youtube.json";
 const PARALLEL = 4;
 
 const STATS = [...STAT_NAMES];
@@ -106,6 +107,21 @@ const GUIDE_PROMPT = `Below is text copied from a Wuthering Waves character buil
 - mainStats: recommended echo main stats for cost 4, cost 3 and cost 1. "ATK" on a 3- or 1-cost means ATK%.
 - quotes: the exact sentences you took numbers and priorities from.`;
 
+const VIDEO_PROMPT = `${GUIDE_PROMPT}
+This is a video guide, possibly in Thai. Only use numbers the creator recommends as targets (said aloud or shown as a recommendation card).
+Never use the creator's own character stat screen or showcase numbers as targets. Always answer with the English names above.
+Energy Regen said as a bonus (e.g. "22% ER") is fine as is; it is converted to the stat-screen total later.`;
+
+// watch?v=ID or youtu.be/ID; undefined for anything that isn't a URL
+const videoId = (url: string) => {
+  try {
+    const u = new URL(url);
+    return u.searchParams.get("v") ?? (u.pathname.split("/").pop() || undefined);
+  } catch {
+    return undefined;
+  }
+};
+
 async function inBatches<T>(items: T[], run: (item: T) => Promise<void>) {
   for (let i = 0; i < items.length; i += PARALLEL) await Promise.all(items.slice(i, i + PARALLEL).map(run));
 }
@@ -116,7 +132,8 @@ const slug = (name: string) => name.toLowerCase().replace(/[^a-z0-9]+/g, "-").re
 function toGuideSource(x: Extracted): GuideSource {
   const targets = (list: Extracted["statTargets"]) =>
     Object.fromEntries(
-      list.map((t) => [t.stat, { ...(t.min !== null && { min: t.min }), ...(t.max !== null && { max: t.max }) } satisfies StatTarget]),
+      // A stat with neither bound says nothing; keeping it would vote "no ceiling" for no reason
+      list.filter((t) => t.min !== null || t.max !== null).map((t) => [t.stat, { ...(t.min !== null && { min: t.min }), ...(t.max !== null && { max: t.max }) } satisfies StatTarget]),
     );
   const substatWeights: GuideSource["substatWeights"] = {};
   // ponytail: tiers spread evenly from 1 down to 1/n; refine if Echo Scores feel off
@@ -213,6 +230,43 @@ async function main() {
     }
     f.sources.prydwen = { source: "prydwen", error };
     console.log(`  FAIL ${f.id}: ${error.slice(0, 120)}`);
+  });
+
+  // YouTube: hand-picked guide videos per character in data/youtube.json (guides only, not showcases)
+  // Missing file means no videos; a malformed one should stop the run, not silently drop every video
+  const youtube: Record<string, string[]> = (await Bun.file(YOUTUBE).exists()) ? await Bun.file(YOUTUBE).json() : {};
+  const videoJobs: { f: CharacterFile; url: string; key: string }[] = [];
+  for (const [id, urls] of Object.entries(youtube)) {
+    const f = files.get(id);
+    if (!f) {
+      console.log(`  youtube.json: no character "${id}"`);
+      continue;
+    }
+    const valid = urls.filter((url) => {
+      if (videoId(url)) return true;
+      console.log(`  youtube.json: skipping bad URL "${url}" for ${id}`);
+      return false;
+    });
+    const keys = new Set(valid.map((url) => `youtube:${videoId(url)}`));
+    // A video removed from the list stops counting
+    for (const key of Object.keys(f.sources)) if (key.startsWith("youtube:") && !keys.has(key)) delete f.sources[key];
+    for (const url of valid) {
+      const key = `youtube:${videoId(url)}`;
+      const prev = f.sources[key];
+      if (f.id === force || !prev || "error" in prev) videoJobs.push({ f, url, key });
+    }
+  }
+  console.log(`YouTube: scraping ${videoJobs.length} videos`);
+  await inBatches(videoJobs, async ({ f, url, key }) => {
+    try {
+      const x = await generateJson<Extracted>([{ file_data: { file_uri: url } }, { text: VIDEO_PROMPT }], SCHEMA);
+      if (!x.name) throw new Error("not a character build guide");
+      f.sources[key] = { ...toGuideSource(x), source: key };
+      console.log(`  ok   ${f.id} ${key}`);
+    } catch (e) {
+      f.sources[key] = { source: key, error: (e as Error).message.slice(0, 300) };
+      console.log(`  FAIL ${f.id} ${key}: ${(e as Error).message.slice(0, 120)}`);
+    }
   });
 
   // Re-merge every file so hand edits to `override` apply on each run

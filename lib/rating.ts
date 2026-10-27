@@ -114,6 +114,15 @@ function mergeTargets(perSource: Partial<Record<StatName, StatTarget>>[]) {
   return merged;
 }
 
+// Main Stats at least half the sources recommend for a cost, so one misread source can't add one alone
+function endorsedByHalf(sources: GuideSource[], cost: EchoCost) {
+  // Only sources that say something about this cost get a vote
+  const voters = sources.filter((s) => s.mainStats[cost].length > 0);
+  const votes = new Map<string, number>();
+  for (const s of voters) for (const name of new Set(s.mainStats[cost])) votes.set(name, (votes.get(name) ?? 0) + 1);
+  return [...votes].filter(([, n]) => n * 2 >= voters.length).map(([name]) => name);
+}
+
 // Hand-written corrections; each named stat, substat or cost replaces the scraped one whole
 export type BuildOverride = {
   statTargets?: Partial<Record<StatName, StatTarget>>;
@@ -140,9 +149,9 @@ export function mergeGuides(
     nonCritWeaponTargets,
     substatWeights: { ...substatWeights, ...override.substatWeights },
     recommendedMainStats: {
-      1: [...new Set(sources.flatMap((s) => s.mainStats[1]))],
-      3: [...new Set(sources.flatMap((s) => s.mainStats[3]))],
-      4: [...new Set(sources.flatMap((s) => s.mainStats[4]))],
+      1: endorsedByHalf(sources, 1),
+      3: endorsedByHalf(sources, 3),
+      4: endorsedByHalf(sources, 4),
       ...override.recommendedMainStats,
     },
   };

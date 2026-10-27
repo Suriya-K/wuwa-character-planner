@@ -125,6 +125,26 @@ describe("mergeGuides", () => {
     expect(merged.substatWeights).toEqual({ "Crit. Rate": 0.75, "ATK%": 0.25 });
   });
 
+  test("a Main Stat endorsed by fewer than half the sources is dropped", () => {
+    const mains = (cost3: string[]) => ({ ...guide({}), mainStats: { 1: ["ATK%"], 3: cost3, 4: ["Crit. Rate"] } });
+    const merged = mergeGuides([
+      mains(["Havoc DMG Bonus", "Havoc DMG Bonus", "ATK%"]),
+      mains(["Havoc DMG Bonus", "ATK%"]),
+      mains(["Havoc DMG Bonus"]),
+      mains(["Aero DMG Bonus"]),
+    ]);
+    expect(merged.recommendedMainStats[3]).toEqual(["Havoc DMG Bonus", "ATK%"]);
+  });
+
+  test("a source silent about a cost doesn't vote on that cost", () => {
+    const merged = mergeGuides([
+      { ...guide({}), mainStats: { 1: ["ATK%"], 3: ["Havoc DMG Bonus"], 4: ["Crit. Rate"] } },
+      { ...guide({}), mainStats: { 1: [], 3: [], 4: [] } },
+      { ...guide({}), mainStats: { 1: [], 3: [], 4: [] } },
+    ]);
+    expect(merged.recommendedMainStats).toEqual({ 1: ["ATK%"], 3: ["Havoc DMG Bonus"], 4: ["Crit. Rate"] });
+  });
+
   test("a hand-written override replaces that stat's scraped target and leaves the rest", () => {
     const merged = mergeGuides(
       [guide({ "Crit. Rate": { min: 60, max: 70 }, "Energy Regen": { min: 120 } }, { "Crit. Rate": 1 })],
@@ -139,7 +159,7 @@ describe("mergeGuides", () => {
     expect(merged.substatWeights).toEqual({ "Crit. Rate": 1 });
   });
 
-  test("Recommended Main Stats are every Main Stat any source endorses, once each", () => {
+  test("with two sources, a Main Stat either one endorses counts, once each", () => {
     const merged = mergeGuides([
       { ...guide({}), mainStats: { 1: ["ATK%"], 3: ["Havoc DMG Bonus", "Havoc DMG Bonus"], 4: ["Crit. DMG"] } },
       { ...guide({}), mainStats: { 1: ["ATK%"], 3: ["ATK%"], 4: ["Crit. Rate"] } },

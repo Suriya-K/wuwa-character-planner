@@ -77,7 +77,8 @@
           "min": 65
         },
         "Crit. DMG": {
-          "min": 255
+          "min": 255,
+          "max": 300
         }
       },
       "nonCritWeaponTargets": {},
@@ -110,12 +111,52 @@
         "CRIT Rate: 65%+ (Before set bonuses)",
         "CRIT DMG: 255-300%+",
         "Energy Regen: 107%-119%",
+        "Havoc DMG Bonus: 30-60%+",
         "Energy Regen (Until Satisfied) > CRIT Rate = CRIT DMG > ATK% = Heavy DMG% ATK",
         "4 cost: CRIT Rate / CRIT DMG",
         "3 cost: Havoc DMG",
         "3 cost: ATK% = Havoc DMG",
         "1 cost: ATK%",
         "1 cost: ATK%"
+      ]
+    },
+    "youtube:YIxhsfhw_ic": {
+      "source": "youtube:YIxhsfhw_ic",
+      "statTargets": {
+        "Crit. Rate": {
+          "max": 80
+        },
+        "Energy Regen": {
+          "min": 22
+        }
+      },
+      "nonCritWeaponTargets": {},
+      "substatWeights": {
+        "Crit. Rate": 1,
+        "Crit. DMG": 0.8333333333333334,
+        "ATK%": 0.6666666666666666,
+        "Heavy Attack DMG Bonus": 0.5,
+        "ATK": 0.3333333333333333,
+        "Energy Regen": 0.16666666666666666
+      },
+      "mainStats": {
+        "1": [
+          "ATK%"
+        ],
+        "3": [
+          "Havoc DMG Bonus"
+        ],
+        "4": [
+          "Crit. DMG",
+          "Crit. Rate",
+          "ATK%"
+        ]
+      },
+      "quotes": [
+        "So, yeah, make sure your crit rate doesn't go over 80% on your stat page to avoid going over 100% crit rate with the set.",
+        "Target 22% Energy Regen to be future proof for additional team options.",
+        "For the substats, you'll want to actually prioritize crit rate... then crit damage and ATK% and heavy attack damage are all good on her, followed by flat attack of course, not being useless either.",
+        "For the main stats it's the usual crit damage for the four cost echo, havoc havoc for the three cost echoes, and attack percent for the one cost echo. However, crit rate for the main stat for the four cost echo can be considered if you're using a weapon that doesn't provide crit rate. ATK% as the main stat is also a surprisingly viable option for the four cost echo because she's super saturated on crit damage from her kit. Finally, one ATK% three cost echo is generally okay, but two ATK% is not recommended."
       ]
     }
   },
@@ -129,7 +170,7 @@
         "min": 2050
       },
       "Energy Regen": {
-        "min": 113.5
+        "min": 120
       },
       "Crit. Rate": {
         "min": 67.5
@@ -153,12 +194,12 @@
       }
     },
     "substatWeights": {
-      "Crit. Rate": 0.8333333333333333,
-      "Crit. DMG": 0.8333333333333333,
-      "Energy Regen": 0.9,
-      "Heavy Attack DMG Bonus": 0.4666666666666667,
-      "ATK%": 0.3666666666666667,
-      "ATK": 0.26666666666666666
+      "Crit. Rate": 0.8888888888888888,
+      "Crit. DMG": 0.8333333333333334,
+      "Energy Regen": 0.6555555555555556,
+      "Heavy Attack DMG Bonus": 0.4777777777777778,
+      "ATK%": 0.4666666666666666,
+      "ATK": 0.2888888888888889
     },
     "recommendedMainStats": {
       "1": [

@@ -4,8 +4,8 @@
 
 **Blocked by:** 01
 
-**Status:** ready-for-agent
+**Status:** done
 
-- [ ] A listed video for Yangyang: Xuanling adds a GuideSource with Energy Regen around 122 and Crit. Rate max 80
-- [ ] A Thai-language video produces English stat names only
-- [ ] Characters with no listed videos are unaffected
+- [x] A listed video for Yangyang: Xuanling adds a GuideSource with Energy Regen around 122 and Crit. Rate max 80
+- [x] A Thai-language video produces English stat names only
+- [x] Characters with no listed videos are unaffected

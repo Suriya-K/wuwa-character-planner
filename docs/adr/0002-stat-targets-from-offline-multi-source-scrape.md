@@ -1,12 +1,12 @@
 # Stat Targets come from an offline, multi-source scrape
 
-Build Guides disagree and are written as prose, so a local Bun script gathers each character's guides, has Gemini extract targets/weights/main stats per source against a fixed English stat list, and commits the merged result to `data/characters/*.json`. Stat Target = median of source minimums to median of source maximums; Substat Weight = mean across sources. Nothing is scraped at runtime.
+Build Guides disagree and are written as prose, so a local Bun script gathers each character's guides, has Gemini extract targets/weights/main stats per source against a fixed English stat list, and commits the merged result to `data/characters/*.json`. Stat Target = median of source minimums to median of source maximums, where a source that names the stat without a ceiling votes "no ceiling"; Substat Weight = mean across sources; Recommended Main Stats = those at least half the sources that cover that cost endorse (one misread source, e.g. a Thai video heard as "Aero", can't add a Main Stat alone). Nothing is scraped at runtime.
 
 ## Sources (validated 2026-10-27)
 
 - **Community build sheet** (published Google Sheet, one CSV per element tab): primary. Current to game version 3.7, covers every character, gives numeric targets, Crit targets for both weapon types, ordered substat priority and main stats. Each character's block of text goes to Gemini rather than a position-based parser, so a layout change in the sheet doesn't break the script.
 - **Prydwen**: Cloudflare blocks curl and headless Chrome, but Gemini's `url_context` tool retrieves it. Numeric endgame ranges.
-- **YouTube guide videos**: optional, hand-picked per character, passed to Gemini as video. ~60–95k tokens each.
+- **YouTube guide videos**: optional, hand-picked per character in `data/youtube.json`, passed to Gemini as video. ~60–95k tokens each. The prompt must forbid reading the creator's own stat screen, or showcase numbers come back as targets.
 - **Game8**: dropped; priorities only, which the sheet already gives in more detail.
 - **Mobalytics**: dropped; unreachable by every method tried.
 
