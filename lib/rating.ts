@@ -25,8 +25,16 @@ export const MAX_ROLL = {
 } as const;
 
 export type SubstatName = keyof typeof MAX_ROLL;
-export type EchoCost = 1 | 3 | 4;
+export const SUBSTAT_NAMES = Object.keys(MAX_ROLL) as SubstatName[];
+export const ECHO_COSTS = [4, 3, 1] as const;
+export type EchoCost = (typeof ECHO_COSTS)[number];
+export const ELEMENTS = ["Aero", "Electro", "Fusion", "Glacio", "Havoc", "Spectro"] as const;
+export const MAIN_STAT_NAMES = [
+  "Crit. Rate", "Crit. DMG", "ATK%", "HP%", "DEF%", "Energy Regen", "Healing Bonus",
+  ...ELEMENTS.map((e) => `${e} DMG Bonus`),
+];
 export type Echo = {
+  name?: string;
   cost: EchoCost;
   level: number;
   mainStat: { name: string; value: number };

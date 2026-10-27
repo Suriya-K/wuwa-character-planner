@@ -6,6 +6,8 @@ import {
   type BuildOverride,
   type FailedSource,
   type GuideSource,
+  ELEMENTS,
+  MAIN_STAT_NAMES,
   MAX_ROLL,
   STAT_NAMES,
   type StatName,
@@ -16,7 +18,6 @@ import {
 
 const SHEET =
   "https://docs.google.com/spreadsheets/d/e/2PACX-1vR2iscTAIfIzg6JHhakvlrY_E3au2pFk0HDajhxSnkFZcosauLIvYCaSVP9_iN_hG11lJCVeI9u1DUZ";
-const ELEMENTS = ["Aero", "Electro", "Fusion", "Glacio", "Havoc", "Spectro"];
 // Every Character block in the sheet starts with this heading
 const BLOCK_MARKER = "Ascension / Forte Material Breakdown";
 const DIR = "data/characters";
@@ -24,10 +25,7 @@ const PARALLEL = 4;
 
 const STATS = [...STAT_NAMES];
 const SUBSTATS = Object.keys(MAX_ROLL) as SubstatName[];
-const MAIN_STATS = [
-  "Crit. Rate", "Crit. DMG", "ATK%", "HP%", "DEF%", "Energy Regen", "Healing Bonus",
-  ...ELEMENTS.map((e) => `${e} DMG Bonus`),
-];
+const MAIN_STATS = MAIN_STAT_NAMES;
 
 type CharacterFile = {
   id: string;
@@ -145,7 +143,7 @@ async function sheetTabs() {
   const html = await fetchText(`${SHEET}/pubhtml`);
   return [...html.matchAll(/name: "([^"]*)", pageUrl: "[^"]*gid=(\d+)/g)]
     .map(([, name, gid]) => ({ name, gid }))
-    .filter((t) => ELEMENTS.includes(t.name));
+    .filter((t) => (ELEMENTS as readonly string[]).includes(t.name));
 }
 
 async function main() {

@@ -13,6 +13,11 @@ input[type=number] { width: 5.5em; }
 td:nth-child(2) { white-space: nowrap; }
 fieldset { margin: 8px 0; }
 .Low { background: #f99; } .OK { background: #9e9; } .High { background: #9cf; }
+.Replace { background: #f99; } .Usable { background: #fe8; } .Keep { background: #9e9; }
+h2 { font-size: 16px; margin: 16px 0 4px; }
+.scroll { overflow-x: auto; }
+fieldset.plain { border: 0; padding: 0; margin: 0; min-width: 0; }
+.loadout td { vertical-align: top; }
 .error { color: #c00; }
 .paste { border: 2px dashed #888; padding: 16px; text-align: center; }
 `;

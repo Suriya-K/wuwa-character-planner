@@ -13,6 +13,8 @@ async function loadCharacters(): Promise<CharacterOption[]> {
       element,
       statTargets: build.statTargets,
       nonCritWeaponTargets: build.nonCritWeaponTargets,
+      substatWeights: build.substatWeights,
+      recommendedMainStats: build.recommendedMainStats,
       // Raw per-source targets so the page can show where Build Guides disagree
       sources: Object.values(sources)
         .filter((s: any) => !s.error)

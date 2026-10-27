@@ -4,10 +4,10 @@
 
 **Blocked by:** 04
 
-**Status:** ready-for-agent
+**Status:** done
 
-- [ ] The prototype's two Echo Screenshots read correctly, Secondary Main Stat kept out of Substats
-- [ ] A +20 Echo is rejected and not added to the table
-- [ ] An Echo whose Main Stat is not in Recommended Main Stats shows Replace
-- [ ] With ER 164 saved, an Energy Regen Substat adds nothing to the Echo Score
-- [ ] The Loadout reloads on another device
+- [x] The prototype's two Echo Screenshots read correctly, Secondary Main Stat kept out of Substats
+- [x] A +20 Echo is rejected and not added to the table
+- [x] An Echo whose Main Stat is not in Recommended Main Stats shows Replace
+- [x] With ER 164 saved, an Energy Regen Substat adds nothing to the Echo Score
+- [x] The Loadout reloads on another device
