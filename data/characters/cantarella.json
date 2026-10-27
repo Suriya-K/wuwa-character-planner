@@ -130,8 +130,7 @@
   "build": {
     "statTargets": {
       "ATK": {
-        "min": 1975,
-        "max": 2400
+        "min": 1975
       },
       "Energy Regen": {
         "min": 120,

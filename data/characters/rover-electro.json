@@ -128,20 +128,16 @@
   "build": {
     "statTargets": {
       "ATK": {
-        "min": 2050,
-        "max": 2400
+        "min": 2050
       },
       "Energy Regen": {
-        "min": 123.5,
-        "max": 120
+        "min": 123.5
       },
       "Crit. Rate": {
-        "min": 67.5,
-        "max": 80
+        "min": 67.5
       },
       "Crit. DMG": {
-        "min": 237.5,
-        "max": 260
+        "min": 237.5
       },
       "HP": {
         "min": 15000

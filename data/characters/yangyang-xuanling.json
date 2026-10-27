@@ -129,8 +129,7 @@
         "min": 2050
       },
       "Energy Regen": {
-        "min": 113.5,
-        "max": 119
+        "min": 113.5
       },
       "Crit. Rate": {
         "min": 67.5

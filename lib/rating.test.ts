@@ -92,13 +92,18 @@ const guide = (statTargets: GuideSource["statTargets"], substatWeights: GuideSou
 });
 
 describe("mergeGuides", () => {
-  test("Stat Target is the median of source mins to the median of stated source maxes", () => {
+  test("Stat Target is the median of source mins to the median of source maxes, no max counting as no ceiling", () => {
     const merged = mergeGuides([
       guide({ "Crit. Rate": { min: 60, max: 70 } }),
       guide({ "Crit. Rate": { min: 65 } }),
       guide({ "Crit. Rate": { min: 70, max: 80 } }),
     ]);
-    expect(merged.statTargets["Crit. Rate"]).toEqual({ min: 65, max: 75 });
+    expect(merged.statTargets["Crit. Rate"]).toEqual({ min: 65, max: 80 });
+  });
+
+  test("one source's ceiling is outvoted by one source with none", () => {
+    const merged = mergeGuides([guide({ "Energy Regen": { min: 120 } }), guide({ "Energy Regen": { min: 107, max: 119 } })]);
+    expect(merged.statTargets["Energy Regen"]).toEqual({ min: 113.5 });
   });
 
   test("non-Crit weapon Crit targets merge separately from the Crit weapon ones", () => {

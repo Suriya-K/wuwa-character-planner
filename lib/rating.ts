@@ -98,9 +98,10 @@ function mergeTargets(perSource: Partial<Record<StatName, StatTarget>>[]) {
   const merged: Partial<Record<StatName, StatTarget>> = {};
   for (const name of new Set(perSource.flatMap((t) => Object.keys(t) as StatName[]))) {
     const targets = perSource.map((t) => t[name]).filter((t) => t !== undefined);
-    const pick = (key: keyof StatTarget) =>
-      median(targets.flatMap((t) => (t[key] === undefined ? [] : [toScreenTotal(name, t[key])])));
-    merged[name] = { min: pick("min"), max: pick("max") };
+    const min = median(targets.flatMap((t) => (t.min === undefined ? [] : [toScreenTotal(name, t.min)])));
+    // A source that names this stat but gives no ceiling votes "no ceiling" (Infinity), so one guide's cap can't win alone
+    const max = median(targets.map((t) => (t.max === undefined ? Infinity : toScreenTotal(name, t.max))));
+    merged[name] = { min, max: max === Infinity ? undefined : max };
   }
   return merged;
 }

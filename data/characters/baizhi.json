@@ -112,8 +112,7 @@
         "min": 19500
       },
       "Energy Regen": {
-        "min": 210,
-        "max": 230
+        "min": 210
       },
       "ATK": {},
       "DEF": {

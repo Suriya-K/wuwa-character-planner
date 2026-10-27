@@ -125,12 +125,10 @@
         "min": 100
       },
       "Crit. Rate": {
-        "min": 65,
-        "max": 85
+        "min": 65
       },
       "Crit. DMG": {
-        "min": 240,
-        "max": 295
+        "min": 240
       },
       "HP": {
         "min": 15000

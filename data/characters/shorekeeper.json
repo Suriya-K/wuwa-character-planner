@@ -113,12 +113,10 @@
   "build": {
     "statTargets": {
       "HP": {
-        "min": 25000,
-        "max": 35000
+        "min": 25000
       },
       "Energy Regen": {
-        "min": 230,
-        "max": 240
+        "min": 230
       },
       "ATK": {},
       "DEF": {

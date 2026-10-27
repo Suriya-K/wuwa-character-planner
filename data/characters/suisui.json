@@ -113,8 +113,7 @@
   "build": {
     "statTargets": {
       "HP": {
-        "min": 36500,
-        "max": 40000
+        "min": 36500
       },
       "Energy Regen": {
         "min": 260
