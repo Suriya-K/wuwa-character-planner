@@ -1,0 +1,116 @@
+{
+  "id": "phoebe",
+  "name": "Phoebe",
+  "element": "Spectro",
+  "sources": {
+    "sheet": {
+      "source": "sheet",
+      "statTargets": {
+        "ATK": {
+          "min": 1800
+        },
+        "Energy Regen": {
+          "min": 110,
+          "max": 120
+        },
+        "Crit. Rate": {
+          "min": 60,
+          "max": 75
+        },
+        "Crit. DMG": {
+          "min": 285,
+          "max": 310
+        }
+      },
+      "nonCritWeaponTargets": {
+        "Crit. Rate": {
+          "min": 60
+        },
+        "Crit. DMG": {
+          "min": 240
+        }
+      },
+      "substatWeights": {
+        "Crit. Rate": 1,
+        "Crit. DMG": 1,
+        "Energy Regen": 0.8,
+        "ATK%": 0.6,
+        "Heavy Attack DMG Bonus": 0.4,
+        "ATK": 0.2
+      },
+      "mainStats": {
+        "1": [
+          "ATK%"
+        ],
+        "3": [
+          "Spectro DMG Bonus",
+          "Spectro DMG Bonus",
+          "ATK%"
+        ],
+        "4": [
+          "Crit. Rate",
+          "Crit. DMG"
+        ]
+      },
+      "quotes": [
+        "ATK,1800+",
+        "Energy Regen,110-120%",
+        "Crit. Ratio (Crit. Weapon),60-75% : 285-310%",
+        "Crit. Ratio (Non-Crit.),60% : 240%",
+        "Substat Priority\nCrit. Rate / Crit. DMG > Energy Regen (120%) > ATK% > Heavy% > Flat ATK"
+      ]
+    }
+  },
+  "sourceHashes": {
+    "sheet": "2qelrvi35sm6k"
+  },
+  "override": {},
+  "build": {
+    "statTargets": {
+      "ATK": {
+        "min": 1800
+      },
+      "Energy Regen": {
+        "min": 110,
+        "max": 120
+      },
+      "Crit. Rate": {
+        "min": 60,
+        "max": 75
+      },
+      "Crit. DMG": {
+        "min": 285,
+        "max": 310
+      }
+    },
+    "nonCritWeaponTargets": {
+      "Crit. Rate": {
+        "min": 60
+      },
+      "Crit. DMG": {
+        "min": 240
+      }
+    },
+    "substatWeights": {
+      "Crit. Rate": 1,
+      "Crit. DMG": 1,
+      "Energy Regen": 0.8,
+      "ATK%": 0.6,
+      "Heavy Attack DMG Bonus": 0.4,
+      "ATK": 0.2
+    },
+    "recommendedMainStats": {
+      "1": [
+        "ATK%"
+      ],
+      "3": [
+        "Spectro DMG Bonus",
+        "ATK%"
+      ],
+      "4": [
+        "Crit. Rate",
+        "Crit. DMG"
+      ]
+    }
+  }
+}

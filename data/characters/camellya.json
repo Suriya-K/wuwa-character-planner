@@ -1,0 +1,112 @@
+{
+  "id": "camellya",
+  "name": "Camellya",
+  "element": "Havoc",
+  "sources": {
+    "sheet": {
+      "source": "sheet",
+      "statTargets": {
+        "ATK": {
+          "min": 2100
+        },
+        "Energy Regen": {
+          "min": 110,
+          "max": 120
+        },
+        "Crit. Rate": {
+          "min": 65
+        },
+        "Crit. DMG": {
+          "min": 285
+        }
+      },
+      "nonCritWeaponTargets": {
+        "Crit. Rate": {
+          "min": 60
+        },
+        "Crit. DMG": {
+          "min": 240
+        }
+      },
+      "substatWeights": {
+        "Crit. Rate": 1,
+        "Crit. DMG": 1,
+        "ATK%": 0.8,
+        "Basic Attack DMG Bonus": 0.6,
+        "ATK": 0.4,
+        "Energy Regen": 0.2
+      },
+      "mainStats": {
+        "1": [
+          "ATK%"
+        ],
+        "3": [
+          "Havoc DMG Bonus",
+          "Havoc DMG Bonus",
+          "ATK%"
+        ],
+        "4": [
+          "Crit. Rate",
+          "Crit. DMG"
+        ]
+      },
+      "quotes": [
+        "ATK,2100+",
+        "Energy Regen,110-120%",
+        "Crit. Ratio (Crit. Weapon),65% : 285%",
+        "Crit. Ratio (Non-Crit.),60% : 240%",
+        "Substat Priority\nCrit. Rate / Crit. DMG > ATK% > Basic% > Flat ATK > Energy Regen (until 110-120%)"
+      ]
+    }
+  },
+  "sourceHashes": {
+    "sheet": "19tv9b127albv"
+  },
+  "override": {},
+  "build": {
+    "statTargets": {
+      "ATK": {
+        "min": 2100
+      },
+      "Energy Regen": {
+        "min": 110,
+        "max": 120
+      },
+      "Crit. Rate": {
+        "min": 65
+      },
+      "Crit. DMG": {
+        "min": 285
+      }
+    },
+    "nonCritWeaponTargets": {
+      "Crit. Rate": {
+        "min": 60
+      },
+      "Crit. DMG": {
+        "min": 240
+      }
+    },
+    "substatWeights": {
+      "Crit. Rate": 1,
+      "Crit. DMG": 1,
+      "ATK%": 0.8,
+      "Basic Attack DMG Bonus": 0.6,
+      "ATK": 0.4,
+      "Energy Regen": 0.2
+    },
+    "recommendedMainStats": {
+      "1": [
+        "ATK%"
+      ],
+      "3": [
+        "Havoc DMG Bonus",
+        "ATK%"
+      ],
+      "4": [
+        "Crit. Rate",
+        "Crit. DMG"
+      ]
+    }
+  }
+}

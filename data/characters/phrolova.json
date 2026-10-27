@@ -1,0 +1,112 @@
+{
+  "id": "phrolova",
+  "name": "Phrolova",
+  "element": "Havoc",
+  "sources": {
+    "sheet": {
+      "source": "sheet",
+      "statTargets": {
+        "ATK": {
+          "min": 1900
+        },
+        "Energy Regen": {
+          "min": 0
+        },
+        "Crit. Rate": {
+          "min": 70,
+          "max": 85
+        },
+        "Crit. DMG": {
+          "min": 265,
+          "max": 295
+        }
+      },
+      "nonCritWeaponTargets": {
+        "Crit. Rate": {
+          "min": 70
+        },
+        "Crit. DMG": {
+          "min": 225
+        }
+      },
+      "substatWeights": {
+        "Crit. DMG": 1,
+        "Crit. Rate": 1,
+        "ATK%": 0.75,
+        "Resonance Skill DMG Bonus": 0.5,
+        "ATK": 0.25
+      },
+      "mainStats": {
+        "1": [
+          "ATK%"
+        ],
+        "3": [
+          "Havoc DMG Bonus",
+          "Havoc DMG Bonus",
+          "ATK%"
+        ],
+        "4": [
+          "Crit. Rate",
+          "Crit. DMG"
+        ]
+      },
+      "quotes": [
+        "ATK,1900-2100+",
+        "Energy Regen,0%",
+        "Crit. Ratio (Crit. Weapon),70-85% : 265-295%",
+        "Crit. Ratio (Non-Crit.),70% : 225%",
+        "Substat Priority\nCrit. DMG / Crit. Rate > ATK% > Skill% > Flat ATK"
+      ]
+    }
+  },
+  "sourceHashes": {
+    "sheet": "6rdd0bknrsuf"
+  },
+  "override": {},
+  "build": {
+    "statTargets": {
+      "ATK": {
+        "min": 1900
+      },
+      "Energy Regen": {
+        "min": 100
+      },
+      "Crit. Rate": {
+        "min": 70,
+        "max": 85
+      },
+      "Crit. DMG": {
+        "min": 265,
+        "max": 295
+      }
+    },
+    "nonCritWeaponTargets": {
+      "Crit. Rate": {
+        "min": 70
+      },
+      "Crit. DMG": {
+        "min": 225
+      }
+    },
+    "substatWeights": {
+      "Crit. DMG": 1,
+      "Crit. Rate": 1,
+      "ATK%": 0.75,
+      "Resonance Skill DMG Bonus": 0.5,
+      "ATK": 0.25
+    },
+    "recommendedMainStats": {
+      "1": [
+        "ATK%"
+      ],
+      "3": [
+        "Havoc DMG Bonus",
+        "ATK%"
+      ],
+      "4": [
+        "Crit. Rate",
+        "Crit. DMG"
+      ]
+    }
+  }
+}

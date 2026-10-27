@@ -1,0 +1,111 @@
+{
+  "id": "yangyang",
+  "name": "Yangyang",
+  "element": "Aero",
+  "sources": {
+    "sheet": {
+      "source": "sheet",
+      "statTargets": {
+        "ATK": {
+          "min": 1700
+        },
+        "Energy Regen": {
+          "min": 100
+        },
+        "Crit. Rate": {
+          "min": 60
+        },
+        "Crit. DMG": {
+          "min": 270
+        }
+      },
+      "nonCritWeaponTargets": {
+        "Crit. Rate": {
+          "min": 60
+        },
+        "Crit. DMG": {
+          "min": 220
+        }
+      },
+      "substatWeights": {
+        "Crit. Rate": 1,
+        "Crit. DMG": 1,
+        "Energy Regen": 0.8,
+        "ATK%": 0.6,
+        "Basic Attack DMG Bonus": 0.4,
+        "ATK": 0.2
+      },
+      "mainStats": {
+        "1": [
+          "ATK%",
+          "ATK%"
+        ],
+        "3": [
+          "Aero DMG Bonus",
+          "Aero DMG Bonus",
+          "ATK%"
+        ],
+        "4": [
+          "Crit. Rate",
+          "Crit. DMG"
+        ]
+      },
+      "quotes": [
+        "ATK,1700+",
+        "Energy Regen,100%",
+        "Crit. Ratio (Crit. Weapon),60% : 270%",
+        "Crit. Ratio (Non-Crit.),60% : 220%",
+        "Substat Priority\nCrit. Rate / Crit. DMG > Energy Regen > ATK% > Basic% > Flat ATK "
+      ]
+    }
+  },
+  "sourceHashes": {
+    "sheet": "2yiinrrb8hae3"
+  },
+  "override": {},
+  "build": {
+    "statTargets": {
+      "ATK": {
+        "min": 1700
+      },
+      "Energy Regen": {
+        "min": 100
+      },
+      "Crit. Rate": {
+        "min": 60
+      },
+      "Crit. DMG": {
+        "min": 270
+      }
+    },
+    "nonCritWeaponTargets": {
+      "Crit. Rate": {
+        "min": 60
+      },
+      "Crit. DMG": {
+        "min": 220
+      }
+    },
+    "substatWeights": {
+      "Crit. Rate": 1,
+      "Crit. DMG": 1,
+      "Energy Regen": 0.8,
+      "ATK%": 0.6,
+      "Basic Attack DMG Bonus": 0.4,
+      "ATK": 0.2
+    },
+    "recommendedMainStats": {
+      "1": [
+        "ATK%"
+      ],
+      "3": [
+        "Aero DMG Bonus",
+        "ATK%"
+      ],
+      "4": [
+        "Crit. Rate",
+        "Crit. DMG"
+      ]
+    }
+  }
+}

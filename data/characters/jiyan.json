@@ -1,0 +1,113 @@
+{
+  "id": "jiyan",
+  "name": "Jiyan",
+  "element": "Aero",
+  "sources": {
+    "sheet": {
+      "source": "sheet",
+      "statTargets": {
+        "ATK": {
+          "min": 2000
+        },
+        "Energy Regen": {
+          "min": 115,
+          "max": 130
+        },
+        "Crit. Rate": {
+          "min": 70
+        },
+        "Crit. DMG": {
+          "min": 265
+        }
+      },
+      "nonCritWeaponTargets": {
+        "Crit. Rate": {
+          "min": 70
+        },
+        "Crit. DMG": {
+          "min": 220
+        }
+      },
+      "substatWeights": {
+        "Crit. Rate": 1,
+        "Crit. DMG": 1,
+        "Energy Regen": 0.8,
+        "ATK%": 0.6,
+        "Heavy Attack DMG Bonus": 0.4,
+        "ATK": 0.2
+      },
+      "mainStats": {
+        "1": [
+          "ATK%",
+          "ATK%"
+        ],
+        "3": [
+          "Aero DMG Bonus",
+          "Aero DMG Bonus",
+          "ATK%"
+        ],
+        "4": [
+          "Crit. Rate",
+          "Crit. DMG"
+        ]
+      },
+      "quotes": [
+        "ATK,2000+",
+        "Energy Regen,115-130% ¹",
+        "Crit. Ratio (Crit. Weapon),70% : 265%",
+        "Crit. Ratio (Non-Crit.),70% : 220%",
+        "Substat Priority\nCrit. Rate / Crit. DMG > Energy Regen (until 120-130%) > ATK% > Heavy% > Flat ATK"
+      ]
+    }
+  },
+  "sourceHashes": {
+    "sheet": "7quiklerrwmm"
+  },
+  "override": {},
+  "build": {
+    "statTargets": {
+      "ATK": {
+        "min": 2000
+      },
+      "Energy Regen": {
+        "min": 115,
+        "max": 130
+      },
+      "Crit. Rate": {
+        "min": 70
+      },
+      "Crit. DMG": {
+        "min": 265
+      }
+    },
+    "nonCritWeaponTargets": {
+      "Crit. Rate": {
+        "min": 70
+      },
+      "Crit. DMG": {
+        "min": 220
+      }
+    },
+    "substatWeights": {
+      "Crit. Rate": 1,
+      "Crit. DMG": 1,
+      "Energy Regen": 0.8,
+      "ATK%": 0.6,
+      "Heavy Attack DMG Bonus": 0.4,
+      "ATK": 0.2
+    },
+    "recommendedMainStats": {
+      "1": [
+        "ATK%"
+      ],
+      "3": [
+        "Aero DMG Bonus",
+        "ATK%"
+      ],
+      "4": [
+        "Crit. Rate",
+        "Crit. DMG"
+      ]
+    }
+  }
+}

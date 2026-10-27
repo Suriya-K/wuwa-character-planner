@@ -1,0 +1,113 @@
+{
+  "id": "zhezhi",
+  "name": "Zhezhi",
+  "element": "Glacio",
+  "sources": {
+    "sheet": {
+      "source": "sheet",
+      "statTargets": {
+        "ATK": {
+          "min": 2000
+        },
+        "Energy Regen": {
+          "min": 110,
+          "max": 125
+        },
+        "Crit. Rate": {
+          "min": 65
+        },
+        "Crit. DMG": {
+          "min": 265
+        }
+      },
+      "nonCritWeaponTargets": {
+        "Crit. Rate": {
+          "min": 60
+        },
+        "Crit. DMG": {
+          "min": 225
+        }
+      },
+      "substatWeights": {
+        "Crit. Rate": 1,
+        "Crit. DMG": 1,
+        "Energy Regen": 0.8,
+        "ATK%": 0.6,
+        "Basic Attack DMG Bonus": 0.4,
+        "ATK": 0.2
+      },
+      "mainStats": {
+        "1": [
+          "ATK%"
+        ],
+        "3": [
+          "Glacio DMG Bonus",
+          "Glacio DMG Bonus",
+          "ATK%"
+        ],
+        "4": [
+          "Crit. Rate",
+          "Crit. DMG"
+        ]
+      },
+      "quotes": [
+        "RECOMMENDED STATS @ LV.90",
+        "ATK,2000+",
+        "Energy Regen,110-125%",
+        "Crit. Ratio (Crit. Weapon),65% : 265%",
+        "Crit. Ratio (Non-Crit.),60% : 225%",
+        "Substat Priority\nCrit. Rate / Crit. DMG > Energy Regen (until 110-125%) > ATK% > Basic% > Flat ATK"
+      ]
+    }
+  },
+  "sourceHashes": {
+    "sheet": "3c9eltp58srh2"
+  },
+  "override": {},
+  "build": {
+    "statTargets": {
+      "ATK": {
+        "min": 2000
+      },
+      "Energy Regen": {
+        "min": 110,
+        "max": 125
+      },
+      "Crit. Rate": {
+        "min": 65
+      },
+      "Crit. DMG": {
+        "min": 265
+      }
+    },
+    "nonCritWeaponTargets": {
+      "Crit. Rate": {
+        "min": 60
+      },
+      "Crit. DMG": {
+        "min": 225
+      }
+    },
+    "substatWeights": {
+      "Crit. Rate": 1,
+      "Crit. DMG": 1,
+      "Energy Regen": 0.8,
+      "ATK%": 0.6,
+      "Basic Attack DMG Bonus": 0.4,
+      "ATK": 0.2
+    },
+    "recommendedMainStats": {
+      "1": [
+        "ATK%"
+      ],
+      "3": [
+        "Glacio DMG Bonus",
+        "ATK%"
+      ],
+      "4": [
+        "Crit. Rate",
+        "Crit. DMG"
+      ]
+    }
+  }
+}

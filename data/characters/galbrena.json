@@ -1,0 +1,112 @@
+{
+  "id": "galbrena",
+  "name": "Galbrena",
+  "element": "Fusion",
+  "sources": {
+    "sheet": {
+      "source": "sheet",
+      "statTargets": {
+        "ATK": {
+          "min": 2100
+        },
+        "Energy Regen": {
+          "min": 110,
+          "max": 120
+        },
+        "Crit. Rate": {
+          "min": 65
+        },
+        "Crit. DMG": {
+          "min": 285
+        }
+      },
+      "nonCritWeaponTargets": {
+        "Crit. Rate": {
+          "min": 60
+        },
+        "Crit. DMG": {
+          "min": 240
+        }
+      },
+      "substatWeights": {
+        "Crit. Rate": 1,
+        "Crit. DMG": 1,
+        "Energy Regen": 0.8,
+        "ATK%": 0.6,
+        "ATK": 0.4,
+        "Heavy Attack DMG Bonus": 0.2
+      },
+      "mainStats": {
+        "1": [
+          "ATK%"
+        ],
+        "3": [
+          "Fusion DMG Bonus",
+          "ATK%"
+        ],
+        "4": [
+          "Crit. Rate",
+          "Crit. DMG"
+        ]
+      },
+      "quotes": [
+        "RECOMMENDED STATS @ LV.90",
+        "ATK,2100+",
+        "Energy Regen,110-120%",
+        "Crit. Ratio (Crit. Weapon),65% : 285%",
+        "Crit. Ratio (Non-Crit.),60% : 240%",
+        "Substat Priority\nCrit. Rate / Crit. DMG > Energy Regen (120%) > ATK% > Flat ATK > Heavy%"
+      ]
+    }
+  },
+  "sourceHashes": {
+    "sheet": "3jt1fbhdl24c4"
+  },
+  "override": {},
+  "build": {
+    "statTargets": {
+      "ATK": {
+        "min": 2100
+      },
+      "Energy Regen": {
+        "min": 110,
+        "max": 120
+      },
+      "Crit. Rate": {
+        "min": 65
+      },
+      "Crit. DMG": {
+        "min": 285
+      }
+    },
+    "nonCritWeaponTargets": {
+      "Crit. Rate": {
+        "min": 60
+      },
+      "Crit. DMG": {
+        "min": 240
+      }
+    },
+    "substatWeights": {
+      "Crit. Rate": 1,
+      "Crit. DMG": 1,
+      "Energy Regen": 0.8,
+      "ATK%": 0.6,
+      "ATK": 0.4,
+      "Heavy Attack DMG Bonus": 0.2
+    },
+    "recommendedMainStats": {
+      "1": [
+        "ATK%"
+      ],
+      "3": [
+        "Fusion DMG Bonus",
+        "ATK%"
+      ],
+      "4": [
+        "Crit. Rate",
+        "Crit. DMG"
+      ]
+    }
+  }
+}

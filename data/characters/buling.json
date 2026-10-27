@@ -1,0 +1,72 @@
+{
+  "id": "buling",
+  "name": "Buling",
+  "element": "Electro",
+  "sources": {
+    "sheet": {
+      "source": "sheet",
+      "statTargets": {
+        "ATK": {
+          "min": 1600
+        },
+        "Energy Regen": {
+          "min": 200
+        }
+      },
+      "nonCritWeaponTargets": {},
+      "substatWeights": {
+        "Energy Regen": 1,
+        "ATK%": 0.6666666666666666,
+        "ATK": 0.3333333333333333
+      },
+      "mainStats": {
+        "1": [
+          "ATK%"
+        ],
+        "3": [
+          "Energy Regen",
+          "ATK%"
+        ],
+        "4": [
+          "Healing Bonus"
+        ]
+      },
+      "quotes": [
+        "RECOMMENDED STATS @ LV.90",
+        "Substat Priority\nEnergy Regen > ATK% > Flat ATK"
+      ]
+    }
+  },
+  "sourceHashes": {
+    "sheet": "2oopwkb0sdz6y"
+  },
+  "override": {},
+  "build": {
+    "statTargets": {
+      "ATK": {
+        "min": 1600
+      },
+      "Energy Regen": {
+        "min": 200
+      }
+    },
+    "nonCritWeaponTargets": {},
+    "substatWeights": {
+      "Energy Regen": 1,
+      "ATK%": 0.6666666666666666,
+      "ATK": 0.3333333333333333
+    },
+    "recommendedMainStats": {
+      "1": [
+        "ATK%"
+      ],
+      "3": [
+        "Energy Regen",
+        "ATK%"
+      ],
+      "4": [
+        "Healing Bonus"
+      ]
+    }
+  }
+}

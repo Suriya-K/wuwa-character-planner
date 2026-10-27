@@ -1,0 +1,120 @@
+{
+  "id": "jingran",
+  "name": "Jingran",
+  "element": "Fusion",
+  "sources": {
+    "sheet": {
+      "source": "sheet",
+      "statTargets": {
+        "HP": {
+          "min": 43000,
+          "max": 47000
+        },
+        "Energy Regen": {
+          "min": 120
+        },
+        "Crit. Rate": {
+          "min": 70,
+          "max": 85
+        },
+        "Crit. DMG": {
+          "min": 270
+        }
+      },
+      "nonCritWeaponTargets": {
+        "Crit. Rate": {
+          "min": 50
+        },
+        "Crit. DMG": {
+          "min": 310
+        }
+      },
+      "substatWeights": {
+        "Crit. Rate": 1,
+        "Crit. DMG": 1,
+        "Energy Regen": 0.8571428571428571,
+        "HP%": 0.7142857142857143,
+        "Heavy Attack DMG Bonus": 0.5714285714285714,
+        "ATK%": 0.42857142857142855,
+        "ATK": 0.2857142857142857,
+        "HP": 0.14285714285714285
+      },
+      "mainStats": {
+        "1": [
+          "HP%",
+          "HP%"
+        ],
+        "3": [
+          "HP%",
+          "HP%"
+        ],
+        "4": [
+          "Crit. Rate",
+          "Crit. DMG",
+          "HP%"
+        ]
+      },
+      "quotes": [
+        "RECOMMENDED STATS @ LV.90",
+        "HP,\"43,000-47,000+ ¹\"",
+        "Energy Regen,120%",
+        "Crit. Ratio (Crit. Weapon),70-85% : 270%",
+        "Crit. Ratio (Non-Crit.),50% : 310%",
+        "Substat Priority\nCrit. Rate / Crit. DMG > Energy Regen (120%) > HP% (close to 50k) > Heavy% > ATK% > Flat ATK > Flat HP"
+      ]
+    }
+  },
+  "sourceHashes": {
+    "sheet": "208j4wov6zrcd"
+  },
+  "override": {},
+  "build": {
+    "statTargets": {
+      "HP": {
+        "min": 43000,
+        "max": 47000
+      },
+      "Energy Regen": {
+        "min": 120
+      },
+      "Crit. Rate": {
+        "min": 70,
+        "max": 85
+      },
+      "Crit. DMG": {
+        "min": 270
+      }
+    },
+    "nonCritWeaponTargets": {
+      "Crit. Rate": {
+        "min": 50
+      },
+      "Crit. DMG": {
+        "min": 310
+      }
+    },
+    "substatWeights": {
+      "Crit. Rate": 1,
+      "Crit. DMG": 1,
+      "Energy Regen": 0.8571428571428571,
+      "HP%": 0.7142857142857143,
+      "Heavy Attack DMG Bonus": 0.5714285714285714,
+      "ATK%": 0.42857142857142855,
+      "ATK": 0.2857142857142857,
+      "HP": 0.14285714285714285
+    },
+    "recommendedMainStats": {
+      "1": [
+        "HP%"
+      ],
+      "3": [
+        "HP%"
+      ],
+      "4": [
+        "Crit. Rate",
+        "Crit. DMG",
+        "HP%"
+      ]
+    }
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "id": "taoqi",
+  "name": "Taoqi",
+  "element": "Havoc",
+  "sources": {
+    "sheet": {
+      "source": "sheet",
+      "statTargets": {
+        "DEF": {
+          "min": 2800
+        },
+        "Energy Regen": {
+          "min": 130,
+          "max": 160
+        }
+      },
+      "nonCritWeaponTargets": {},
+      "substatWeights": {
+        "Crit. Rate": 1,
+        "Crit. DMG": 1,
+        "Energy Regen": 0.75,
+        "DEF%": 0.5,
+        "DEF": 0.25
+      },
+      "mainStats": {
+        "1": [
+          "DEF%"
+        ],
+        "3": [
+          "Havoc DMG Bonus"
+        ],
+        "4": [
+          "Crit. Rate",
+          "Crit. DMG"
+        ]
+      },
+      "quotes": [
+        "DEF,2800+",
+        "Energy Regen,130-160%",
+        "Crit. Ratio (Crit. Weapon),N/A",
+        "Crit. Ratio (Non-Crit.),N/A",
+        "Crit. Rate / Crit. DMG > Energy Regen (until 130-160%) > DEF% > DEF"
+      ]
+    }
+  },
+  "sourceHashes": {
+    "sheet": "353gk0urj9hvw"
+  },
+  "override": {},
+  "build": {
+    "statTargets": {
+      "DEF": {
+        "min": 2800
+      },
+      "Energy Regen": {
+        "min": 130,
+        "max": 160
+      }
+    },
+    "nonCritWeaponTargets": {},
+    "substatWeights": {
+      "Crit. Rate": 1,
+      "Crit. DMG": 1,
+      "Energy Regen": 0.75,
+      "DEF%": 0.5,
+      "DEF": 0.25
+    },
+    "recommendedMainStats": {
+      "1": [
+        "DEF%"
+      ],
+      "3": [
+        "Havoc DMG Bonus"
+      ],
+      "4": [
+        "Crit. Rate",
+        "Crit. DMG"
+      ]
+    }
+  }
+}

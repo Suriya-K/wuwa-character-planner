@@ -1,0 +1,84 @@
+{
+  "id": "suisui",
+  "name": "Suisui",
+  "element": "Glacio",
+  "sources": {
+    "sheet": {
+      "source": "sheet",
+      "statTargets": {
+        "HP": {
+          "min": 38000
+        },
+        "Energy Regen": {
+          "min": 260
+        }
+      },
+      "nonCritWeaponTargets": {
+        "Energy Regen": {
+          "min": 260
+        }
+      },
+      "substatWeights": {
+        "Energy Regen": 1,
+        "HP%": 0.6666666666666666,
+        "HP": 0.3333333333333333
+      },
+      "mainStats": {
+        "1": [
+          "HP%",
+          "HP%"
+        ],
+        "3": [
+          "Energy Regen",
+          "HP%"
+        ],
+        "4": [
+          "HP%"
+        ]
+      },
+      "quotes": [
+        "HP,38000+",
+        "Energy Regen,260%",
+        "Crit. Ratio (Crit. Weapon),N/A",
+        "Crit. Ratio (Non-Crit.),N/A",
+        "Substat Priority\nEnergy Regen > HP% > Flat HP"
+      ]
+    }
+  },
+  "sourceHashes": {
+    "sheet": "2sdocpot3zk09"
+  },
+  "override": {},
+  "build": {
+    "statTargets": {
+      "HP": {
+        "min": 38000
+      },
+      "Energy Regen": {
+        "min": 260
+      }
+    },
+    "nonCritWeaponTargets": {
+      "Energy Regen": {
+        "min": 260
+      }
+    },
+    "substatWeights": {
+      "Energy Regen": 1,
+      "HP%": 0.6666666666666666,
+      "HP": 0.3333333333333333
+    },
+    "recommendedMainStats": {
+      "1": [
+        "HP%"
+      ],
+      "3": [
+        "Energy Regen",
+        "HP%"
+      ],
+      "4": [
+        "HP%"
+      ]
+    }
+  }
+}

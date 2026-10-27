@@ -1,0 +1,117 @@
+{
+  "id": "encore",
+  "name": "Encore",
+  "element": "Fusion",
+  "sources": {
+    "sheet": {
+      "source": "sheet",
+      "statTargets": {
+        "ATK": {
+          "min": 1900
+        },
+        "Energy Regen": {
+          "min": 110,
+          "max": 125
+        },
+        "Crit. Rate": {
+          "min": 60,
+          "max": 75
+        },
+        "Crit. DMG": {
+          "min": 265,
+          "max": 295
+        }
+      },
+      "nonCritWeaponTargets": {
+        "Crit. Rate": {
+          "min": 60
+        },
+        "Crit. DMG": {
+          "min": 225
+        }
+      },
+      "substatWeights": {
+        "Crit. Rate": 1,
+        "Crit. DMG": 1,
+        "Energy Regen": 0.8,
+        "ATK%": 0.6,
+        "Basic Attack DMG Bonus": 0.4,
+        "ATK": 0.2
+      },
+      "mainStats": {
+        "1": [
+          "ATK%"
+        ],
+        "3": [
+          "Fusion DMG Bonus",
+          "Fusion DMG Bonus",
+          "ATK%"
+        ],
+        "4": [
+          "Crit. Rate",
+          "Crit. DMG"
+        ]
+      },
+      "quotes": [
+        "RECOMMENDED STATS @ LV.90",
+        "ATK,1900+",
+        "Energy Regen,110-125%",
+        "Crit. Ratio (Crit. Weapon),60-75% : 265-295%",
+        "Crit. Ratio (Non-Crit.),60% : 225%",
+        "Substat Priority\nCrit. Rate / Crit. DMG > Energy Regen (until 110-125%) > ATK% > Basic% > Flat ATK"
+      ]
+    }
+  },
+  "sourceHashes": {
+    "sheet": "2yp0kzv3d1emw"
+  },
+  "override": {},
+  "build": {
+    "statTargets": {
+      "ATK": {
+        "min": 1900
+      },
+      "Energy Regen": {
+        "min": 110,
+        "max": 125
+      },
+      "Crit. Rate": {
+        "min": 60,
+        "max": 75
+      },
+      "Crit. DMG": {
+        "min": 265,
+        "max": 295
+      }
+    },
+    "nonCritWeaponTargets": {
+      "Crit. Rate": {
+        "min": 60
+      },
+      "Crit. DMG": {
+        "min": 225
+      }
+    },
+    "substatWeights": {
+      "Crit. Rate": 1,
+      "Crit. DMG": 1,
+      "Energy Regen": 0.8,
+      "ATK%": 0.6,
+      "Basic Attack DMG Bonus": 0.4,
+      "ATK": 0.2
+    },
+    "recommendedMainStats": {
+      "1": [
+        "ATK%"
+      ],
+      "3": [
+        "Fusion DMG Bonus",
+        "ATK%"
+      ],
+      "4": [
+        "Crit. Rate",
+        "Crit. DMG"
+      ]
+    }
+  }
+}

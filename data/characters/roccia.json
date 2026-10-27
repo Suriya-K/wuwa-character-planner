@@ -1,0 +1,110 @@
+{
+  "id": "roccia",
+  "name": "Roccia",
+  "element": "Havoc",
+  "sources": {
+    "sheet": {
+      "source": "sheet",
+      "statTargets": {
+        "ATK": {
+          "min": 1900
+        },
+        "Energy Regen": {
+          "min": 110
+        },
+        "Crit. Rate": {
+          "min": 70
+        },
+        "Crit. DMG": {
+          "min": 285
+        }
+      },
+      "nonCritWeaponTargets": {
+        "Crit. Rate": {
+          "min": 70
+        },
+        "Crit. DMG": {
+          "min": 240
+        }
+      },
+      "substatWeights": {
+        "Crit. Rate": 1,
+        "Crit. DMG": 1,
+        "ATK%": 0.8,
+        "Heavy Attack DMG Bonus": 0.6,
+        "ATK": 0.4,
+        "Energy Regen": 0.2
+      },
+      "mainStats": {
+        "1": [
+          "ATK%"
+        ],
+        "3": [
+          "Havoc DMG Bonus",
+          "Havoc DMG Bonus",
+          "ATK%"
+        ],
+        "4": [
+          "Crit. Rate",
+          "Crit. DMG"
+        ]
+      },
+      "quotes": [
+        "ATK,1900+",
+        "Energy Regen,110%",
+        "Crit. Ratio (Crit. Weapon),70% ¹  : 285%",
+        "Crit. Ratio (Non-Crit.),70% ¹  : 240%",
+        "Substat Priority\nCrit. Rate / Crit. DMG > ATK% > Heavy% > Flat ATK > Energy Regen (110%)"
+      ]
+    }
+  },
+  "sourceHashes": {
+    "sheet": "o92meqjw4tz0"
+  },
+  "override": {},
+  "build": {
+    "statTargets": {
+      "ATK": {
+        "min": 1900
+      },
+      "Energy Regen": {
+        "min": 110
+      },
+      "Crit. Rate": {
+        "min": 70
+      },
+      "Crit. DMG": {
+        "min": 285
+      }
+    },
+    "nonCritWeaponTargets": {
+      "Crit. Rate": {
+        "min": 70
+      },
+      "Crit. DMG": {
+        "min": 240
+      }
+    },
+    "substatWeights": {
+      "Crit. Rate": 1,
+      "Crit. DMG": 1,
+      "ATK%": 0.8,
+      "Heavy Attack DMG Bonus": 0.6,
+      "ATK": 0.4,
+      "Energy Regen": 0.2
+    },
+    "recommendedMainStats": {
+      "1": [
+        "ATK%"
+      ],
+      "3": [
+        "Havoc DMG Bonus",
+        "ATK%"
+      ],
+      "4": [
+        "Crit. Rate",
+        "Crit. DMG"
+      ]
+    }
+  }
+}

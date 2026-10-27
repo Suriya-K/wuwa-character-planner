@@ -1,0 +1,111 @@
+{
+  "id": "brant",
+  "name": "Brant",
+  "element": "Fusion",
+  "sources": {
+    "sheet": {
+      "source": "sheet",
+      "statTargets": {
+        "ATK": {
+          "min": 2000
+        },
+        "Energy Regen": {
+          "min": 250,
+          "max": 280
+        },
+        "Crit. Rate": {
+          "min": 70
+        },
+        "Crit. DMG": {
+          "min": 265
+        }
+      },
+      "nonCritWeaponTargets": {
+        "Crit. Rate": {
+          "min": 70
+        },
+        "Crit. DMG": {
+          "min": 225
+        }
+      },
+      "substatWeights": {
+        "Crit. Rate": 1,
+        "Crit. DMG": 1,
+        "Energy Regen": 1,
+        "ATK%": 0.75,
+        "Basic Attack DMG Bonus": 0.5,
+        "ATK": 0.25
+      },
+      "mainStats": {
+        "1": [
+          "ATK%"
+        ],
+        "3": [
+          "Energy Regen",
+          "Fusion DMG Bonus"
+        ],
+        "4": [
+          "Crit. Rate",
+          "Crit. DMG"
+        ]
+      },
+      "quotes": [
+        "ATK,2000+ (w/o buff)",
+        "Energy Regen,250-280% ¹",
+        "Crit. Ratio (Crit. Weapon),70% : 265%",
+        "Crit. Ratio (Non-Crit.),70% : 225%",
+        "Substat Priority\nCrit. Rate / Crit. DMG = Energy Regen > ATK% > Basic% > Flat ATK"
+      ]
+    }
+  },
+  "sourceHashes": {
+    "sheet": "z2g2ehd2qd17"
+  },
+  "override": {},
+  "build": {
+    "statTargets": {
+      "ATK": {
+        "min": 2000
+      },
+      "Energy Regen": {
+        "min": 250,
+        "max": 280
+      },
+      "Crit. Rate": {
+        "min": 70
+      },
+      "Crit. DMG": {
+        "min": 265
+      }
+    },
+    "nonCritWeaponTargets": {
+      "Crit. Rate": {
+        "min": 70
+      },
+      "Crit. DMG": {
+        "min": 225
+      }
+    },
+    "substatWeights": {
+      "Crit. Rate": 1,
+      "Crit. DMG": 1,
+      "Energy Regen": 1,
+      "ATK%": 0.75,
+      "Basic Attack DMG Bonus": 0.5,
+      "ATK": 0.25
+    },
+    "recommendedMainStats": {
+      "1": [
+        "ATK%"
+      ],
+      "3": [
+        "Energy Regen",
+        "Fusion DMG Bonus"
+      ],
+      "4": [
+        "Crit. Rate",
+        "Crit. DMG"
+      ]
+    }
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "id": "lynae",
+  "name": "Lynae",
+  "element": "Spectro",
+  "sources": {
+    "sheet": {
+      "source": "sheet",
+      "statTargets": {
+        "ATK": {
+          "min": 2000
+        },
+        "Energy Regen": {
+          "min": 125
+        },
+        "Crit. Rate": {
+          "min": 70
+        },
+        "Crit. DMG": {
+          "min": 265,
+          "max": 295
+        }
+      },
+      "nonCritWeaponTargets": {
+        "Crit. Rate": {
+          "min": 65
+        },
+        "Crit. DMG": {
+          "min": 225
+        }
+      },
+      "substatWeights": {
+        "Crit. Rate": 1,
+        "Crit. DMG": 1,
+        "Energy Regen": 0.8,
+        "ATK%": 0.6,
+        "ATK": 0.4,
+        "Basic Attack DMG Bonus": 0.2
+      },
+      "mainStats": {
+        "1": [
+          "ATK%"
+        ],
+        "3": [
+          "Spectro DMG Bonus",
+          "Spectro DMG Bonus"
+        ],
+        "4": [
+          "Crit. Rate",
+          "Crit. DMG"
+        ]
+      },
+      "quotes": [
+        "RECOMMENDED STATS @ LV.90",
+        "ATK,2000+",
+        "Energy Regen,125%",
+        "Crit. Ratio (Crit. Weapon),70% : 265-295%",
+        "Crit. Ratio (Non-Crit.),65% : 225%",
+        "Substat Priority\nCrit. Rate / Crit. DMG > Energy Regen (until 125%) > ATK% > Flat ATK > Basic% "
+      ]
+    }
+  },
+  "sourceHashes": {
+    "sheet": "2m4jebqwhia26"
+  },
+  "override": {},
+  "build": {
+    "statTargets": {
+      "ATK": {
+        "min": 2000
+      },
+      "Energy Regen": {
+        "min": 125
+      },
+      "Crit. Rate": {
+        "min": 70
+      },
+      "Crit. DMG": {
+        "min": 265,
+        "max": 295
+      }
+    },
+    "nonCritWeaponTargets": {
+      "Crit. Rate": {
+        "min": 65
+      },
+      "Crit. DMG": {
+        "min": 225
+      }
+    },
+    "substatWeights": {
+      "Crit. Rate": 1,
+      "Crit. DMG": 1,
+      "Energy Regen": 0.8,
+      "ATK%": 0.6,
+      "ATK": 0.4,
+      "Basic Attack DMG Bonus": 0.2
+    },
+    "recommendedMainStats": {
+      "1": [
+        "ATK%"
+      ],
+      "3": [
+        "Spectro DMG Bonus"
+      ],
+      "4": [
+        "Crit. Rate",
+        "Crit. DMG"
+      ]
+    }
+  }
+}

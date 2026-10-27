@@ -1,0 +1,114 @@
+{
+  "id": "hsin",
+  "name": "Hsin",
+  "element": "Electro",
+  "sources": {
+    "sheet": {
+      "source": "sheet",
+      "statTargets": {
+        "ATK": {
+          "min": 1900
+        },
+        "Energy Regen": {
+          "min": 110,
+          "max": 120
+        },
+        "Crit. Rate": {
+          "min": 70,
+          "max": 90
+        },
+        "Crit. DMG": {
+          "min": 265
+        }
+      },
+      "nonCritWeaponTargets": {
+        "Crit. Rate": {
+          "min": 65
+        },
+        "Crit. DMG": {
+          "min": 225
+        }
+      },
+      "substatWeights": {
+        "Crit. Rate": 1,
+        "Crit. DMG": 1,
+        "Energy Regen": 0.8,
+        "ATK%": 0.6,
+        "Resonance Skill DMG Bonus": 0.4,
+        "ATK": 0.2
+      },
+      "mainStats": {
+        "1": [
+          "ATK%"
+        ],
+        "3": [
+          "Electro DMG Bonus",
+          "Electro DMG Bonus",
+          "ATK%"
+        ],
+        "4": [
+          "Crit. Rate",
+          "Crit. DMG"
+        ]
+      },
+      "quotes": [
+        "ATK,1900+",
+        "Energy Regen,110-120%",
+        "Crit. Ratio (Crit. Weapon),70-90% : 265%",
+        "Crit. Ratio (Non-Crit.),65% : 225%",
+        "Substat Priority\nCrit. Rate / Crit. DMG > Energy Regen (110-120%) > ATK% > Skill% > Flat ATK"
+      ]
+    }
+  },
+  "sourceHashes": {
+    "sheet": "11kfpdqpghyis"
+  },
+  "override": {},
+  "build": {
+    "statTargets": {
+      "ATK": {
+        "min": 1900
+      },
+      "Energy Regen": {
+        "min": 110,
+        "max": 120
+      },
+      "Crit. Rate": {
+        "min": 70,
+        "max": 90
+      },
+      "Crit. DMG": {
+        "min": 265
+      }
+    },
+    "nonCritWeaponTargets": {
+      "Crit. Rate": {
+        "min": 65
+      },
+      "Crit. DMG": {
+        "min": 225
+      }
+    },
+    "substatWeights": {
+      "Crit. Rate": 1,
+      "Crit. DMG": 1,
+      "Energy Regen": 0.8,
+      "ATK%": 0.6,
+      "Resonance Skill DMG Bonus": 0.4,
+      "ATK": 0.2
+    },
+    "recommendedMainStats": {
+      "1": [
+        "ATK%"
+      ],
+      "3": [
+        "Electro DMG Bonus",
+        "ATK%"
+      ],
+      "4": [
+        "Crit. Rate",
+        "Crit. DMG"
+      ]
+    }
+  }
+}

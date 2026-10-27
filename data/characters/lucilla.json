@@ -1,0 +1,114 @@
+{
+  "id": "lucilla",
+  "name": "Lucilla",
+  "element": "Glacio",
+  "sources": {
+    "sheet": {
+      "source": "sheet",
+      "statTargets": {
+        "ATK": {
+          "min": 1800,
+          "max": 2000
+        },
+        "Energy Regen": {
+          "min": 0
+        },
+        "Crit. Rate": {
+          "min": 70,
+          "max": 85
+        },
+        "Crit. DMG": {
+          "min": 265,
+          "max": 295
+        }
+      },
+      "nonCritWeaponTargets": {
+        "Crit. Rate": {
+          "min": 65
+        },
+        "Crit. DMG": {
+          "min": 225
+        }
+      },
+      "substatWeights": {
+        "Crit. Rate": 1,
+        "Crit. DMG": 1,
+        "ATK%": 0.75,
+        "Basic Attack DMG Bonus": 0.5,
+        "ATK": 0.25
+      },
+      "mainStats": {
+        "1": [
+          "ATK%"
+        ],
+        "3": [
+          "Glacio DMG Bonus",
+          "Glacio DMG Bonus",
+          "ATK%"
+        ],
+        "4": [
+          "Crit. Rate",
+          "Crit. DMG"
+        ]
+      },
+      "quotes": [
+        "ATK,1800-2000+",
+        "Energy Regen,0%",
+        "Crit. Ratio (Crit. Weapon),70-85% : 265-295%",
+        "Crit. Ratio (Non-Crit.),65% : 225%",
+        "Substat Priority\nCrit. Rate / Crit. DMG > ATK% > Basic% > Flat ATK"
+      ]
+    }
+  },
+  "sourceHashes": {
+    "sheet": "2gy5ukz8exk7f"
+  },
+  "override": {},
+  "build": {
+    "statTargets": {
+      "ATK": {
+        "min": 1800,
+        "max": 2000
+      },
+      "Energy Regen": {
+        "min": 100
+      },
+      "Crit. Rate": {
+        "min": 70,
+        "max": 85
+      },
+      "Crit. DMG": {
+        "min": 265,
+        "max": 295
+      }
+    },
+    "nonCritWeaponTargets": {
+      "Crit. Rate": {
+        "min": 65
+      },
+      "Crit. DMG": {
+        "min": 225
+      }
+    },
+    "substatWeights": {
+      "Crit. Rate": 1,
+      "Crit. DMG": 1,
+      "ATK%": 0.75,
+      "Basic Attack DMG Bonus": 0.5,
+      "ATK": 0.25
+    },
+    "recommendedMainStats": {
+      "1": [
+        "ATK%"
+      ],
+      "3": [
+        "Glacio DMG Bonus",
+        "ATK%"
+      ],
+      "4": [
+        "Crit. Rate",
+        "Crit. DMG"
+      ]
+    }
+  }
+}

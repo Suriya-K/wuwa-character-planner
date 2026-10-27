@@ -1,0 +1,80 @@
+{
+  "id": "mornye",
+  "name": "Mornye",
+  "element": "Fusion",
+  "sources": {
+    "sheet": {
+      "source": "sheet",
+      "statTargets": {
+        "DEF": {
+          "min": 2500
+        },
+        "Energy Regen": {
+          "min": 240
+        }
+      },
+      "nonCritWeaponTargets": {},
+      "substatWeights": {
+        "Energy Regen": 1,
+        "DEF%": 0.75,
+        "Resonance Liberation DMG Bonus": 0.5,
+        "DEF": 0.25
+      },
+      "mainStats": {
+        "1": [
+          "DEF%"
+        ],
+        "3": [
+          "Fusion DMG Bonus",
+          "DEF%",
+          "Energy Regen"
+        ],
+        "4": [
+          "DEF%"
+        ]
+      },
+      "quotes": [
+        "RECOMMENDED STATS @ LV.90",
+        "DEF,2500+",
+        "Energy Regen,240% ",
+        "Crit. Ratio (Crit. Weapon),N/A",
+        "Crit. Ratio (Non-Crit.),N/A",
+        "Substat Priority\nEnergy Regen > DEF% > Liberation% > Flat DEF"
+      ]
+    }
+  },
+  "sourceHashes": {
+    "sheet": "3dmm3rhqw5ps7"
+  },
+  "override": {},
+  "build": {
+    "statTargets": {
+      "DEF": {
+        "min": 2500
+      },
+      "Energy Regen": {
+        "min": 240
+      }
+    },
+    "nonCritWeaponTargets": {},
+    "substatWeights": {
+      "Energy Regen": 1,
+      "DEF%": 0.75,
+      "Resonance Liberation DMG Bonus": 0.5,
+      "DEF": 0.25
+    },
+    "recommendedMainStats": {
+      "1": [
+        "DEF%"
+      ],
+      "3": [
+        "Fusion DMG Bonus",
+        "DEF%",
+        "Energy Regen"
+      ],
+      "4": [
+        "DEF%"
+      ]
+    }
+  }
+}

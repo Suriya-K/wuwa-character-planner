@@ -78,6 +78,8 @@ export type GuideSource = {
   mainStats: Record<EchoCost, string[]>;
   // Crit. Rate/Crit. DMG targets when the character holds a non-Crit Weapon; statTargets assume a Crit Weapon
   nonCritWeaponTargets?: Partial<Record<StatName, StatTarget>>;
+  // The source text the numbers came from, kept so disagreements can be checked by hand
+  quotes?: string[];
 };
 export type FailedSource = { source: string; error: string };
 

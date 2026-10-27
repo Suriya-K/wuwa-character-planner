@@ -1,0 +1,113 @@
+{
+  "id": "sigrika",
+  "name": "Sigrika",
+  "element": "Aero",
+  "sources": {
+    "sheet": {
+      "source": "sheet",
+      "statTargets": {
+        "ATK": {
+          "min": 2100
+        },
+        "Energy Regen": {
+          "min": 125,
+          "max": 150
+        },
+        "Crit. Rate": {
+          "min": 70
+        },
+        "Crit. DMG": {
+          "min": 270
+        }
+      },
+      "nonCritWeaponTargets": {
+        "Crit. Rate": {
+          "min": 65
+        },
+        "Crit. DMG": {
+          "min": 225
+        }
+      },
+      "substatWeights": {
+        "Crit. Rate": 1,
+        "Crit. DMG": 1,
+        "ATK%": 0.75,
+        "Energy Regen": 0.5,
+        "ATK": 0.25
+      },
+      "mainStats": {
+        "1": [
+          "ATK%"
+        ],
+        "3": [
+          "Energy Regen",
+          "ATK%",
+          "Aero DMG Bonus"
+        ],
+        "4": [
+          "Crit. Rate",
+          "Crit. DMG"
+        ]
+      },
+      "quotes": [
+        "RECOMMENDED STATS @ LV.90",
+        "ATK,2100+",
+        "Energy Regen,125-150% ¹ ",
+        "Crit. Ratio (Crit. Weapon),70% : 270%",
+        "Crit. Ratio (Non-Crit.),65% : 225%",
+        "Echo Mainstats (43311)",
+        "Substat Priority\nCrit. Rate / Crit. DMG > ATK% > Energy Regen > Flat ATK"
+      ]
+    }
+  },
+  "sourceHashes": {
+    "sheet": "q20vc2bcmuai"
+  },
+  "override": {},
+  "build": {
+    "statTargets": {
+      "ATK": {
+        "min": 2100
+      },
+      "Energy Regen": {
+        "min": 125,
+        "max": 150
+      },
+      "Crit. Rate": {
+        "min": 70
+      },
+      "Crit. DMG": {
+        "min": 270
+      }
+    },
+    "nonCritWeaponTargets": {
+      "Crit. Rate": {
+        "min": 65
+      },
+      "Crit. DMG": {
+        "min": 225
+      }
+    },
+    "substatWeights": {
+      "Crit. Rate": 1,
+      "Crit. DMG": 1,
+      "ATK%": 0.75,
+      "Energy Regen": 0.5,
+      "ATK": 0.25
+    },
+    "recommendedMainStats": {
+      "1": [
+        "ATK%"
+      ],
+      "3": [
+        "Energy Regen",
+        "ATK%",
+        "Aero DMG Bonus"
+      ],
+      "4": [
+        "Crit. Rate",
+        "Crit. DMG"
+      ]
+    }
+  }
+}

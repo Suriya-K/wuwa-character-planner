@@ -1,0 +1,98 @@
+{
+  "id": "yuanwu",
+  "name": "Yuanwu",
+  "element": "Electro",
+  "sources": {
+    "sheet": {
+      "source": "sheet",
+      "statTargets": {
+        "DEF": {
+          "min": 3900
+        },
+        "Energy Regen": {
+          "min": 130,
+          "max": 140
+        }
+      },
+      "nonCritWeaponTargets": {
+        "Crit. Rate": {
+          "min": 60
+        },
+        "Crit. DMG": {
+          "min": 225
+        }
+      },
+      "substatWeights": {
+        "Crit. Rate": 1,
+        "Crit. DMG": 1,
+        "Energy Regen": 0.75,
+        "DEF%": 0.5,
+        "DEF": 0.25
+      },
+      "mainStats": {
+        "1": [
+          "DEF%"
+        ],
+        "3": [
+          "Electro DMG Bonus",
+          "DEF%"
+        ],
+        "4": [
+          "Crit. Rate",
+          "Crit. DMG"
+        ]
+      },
+      "quotes": [
+        "RECOMMENDED STATS @ LV.90",
+        "DEF,3900+",
+        "Energy Regen,130-140%",
+        "Crit. Ratio (Crit. Weapon),N/A",
+        "Crit. Ratio (Non-Crit.),60% : 225%",
+        "Substat Priority\nCrit. Rate / Crit. DMG > Energy Regen (until 130-140%) > DEF% > Flat DEF"
+      ]
+    }
+  },
+  "sourceHashes": {
+    "sheet": "bmnt041asrpy"
+  },
+  "override": {},
+  "build": {
+    "statTargets": {
+      "DEF": {
+        "min": 3900
+      },
+      "Energy Regen": {
+        "min": 130,
+        "max": 140
+      }
+    },
+    "nonCritWeaponTargets": {
+      "Crit. Rate": {
+        "min": 60
+      },
+      "Crit. DMG": {
+        "min": 225
+      }
+    },
+    "substatWeights": {
+      "Crit. Rate": 1,
+      "Crit. DMG": 1,
+      "Energy Regen": 0.75,
+      "DEF%": 0.5,
+      "DEF": 0.25
+    },
+    "recommendedMainStats": {
+      "1": [
+        "DEF%"
+      ],
+      "3": [
+        "Electro DMG Bonus",
+        "DEF%"
+      ],
+      "4": [
+        "Crit. Rate",
+        "Crit. DMG"
+      ]
+    }
+  }
+}

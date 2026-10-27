@@ -1,0 +1,75 @@
+{
+  "id": "verina",
+  "name": "Verina",
+  "element": "Spectro",
+  "sources": {
+    "sheet": {
+      "source": "sheet",
+      "statTargets": {
+        "ATK": {
+          "min": 1500
+        },
+        "Energy Regen": {
+          "min": 200
+        }
+      },
+      "nonCritWeaponTargets": {},
+      "substatWeights": {
+        "Energy Regen": 1,
+        "ATK%": 0.6666666666666666,
+        "ATK": 0.3333333333333333
+      },
+      "mainStats": {
+        "1": [
+          "ATK%"
+        ],
+        "3": [
+          "Energy Regen",
+          "ATK%"
+        ],
+        "4": [
+          "Healing Bonus"
+        ]
+      },
+      "quotes": [
+        "ATK,1500+",
+        "Energy Regen,200+",
+        "Crit. Ratio (Crit. Weapon),N/A",
+        "Crit. Ratio (Non-Crit.),N/A",
+        "Substat Priority\nEnergy Regen > ATK% > Flat ATK"
+      ]
+    }
+  },
+  "sourceHashes": {
+    "sheet": "3bacize7i7opy"
+  },
+  "override": {},
+  "build": {
+    "statTargets": {
+      "ATK": {
+        "min": 1500
+      },
+      "Energy Regen": {
+        "min": 200
+      }
+    },
+    "nonCritWeaponTargets": {},
+    "substatWeights": {
+      "Energy Regen": 1,
+      "ATK%": 0.6666666666666666,
+      "ATK": 0.3333333333333333
+    },
+    "recommendedMainStats": {
+      "1": [
+        "ATK%"
+      ],
+      "3": [
+        "Energy Regen",
+        "ATK%"
+      ],
+      "4": [
+        "Healing Bonus"
+      ]
+    }
+  }
+}

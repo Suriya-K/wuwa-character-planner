@@ -1,0 +1,114 @@
+{
+  "id": "rover-havoc",
+  "name": "Rover: Havoc",
+  "element": "Havoc",
+  "sources": {
+    "sheet": {
+      "source": "sheet",
+      "statTargets": {
+        "ATK": {
+          "min": 2000
+        },
+        "Energy Regen": {
+          "min": 100,
+          "max": 125
+        },
+        "Crit. Rate": {
+          "min": 65
+        },
+        "Crit. DMG": {
+          "min": 265
+        }
+      },
+      "nonCritWeaponTargets": {
+        "Crit. Rate": {
+          "min": 60
+        },
+        "Crit. DMG": {
+          "min": 225
+        }
+      },
+      "substatWeights": {
+        "Crit. Rate": 1,
+        "Crit. DMG": 1,
+        "ATK%": 0.8333333333333334,
+        "Basic Attack DMG Bonus": 0.6666666666666666,
+        "ATK": 0.5,
+        "Resonance Liberation DMG Bonus": 0.3333333333333333,
+        "Energy Regen": 0.16666666666666666
+      },
+      "mainStats": {
+        "1": [
+          "ATK%"
+        ],
+        "3": [
+          "Havoc DMG Bonus",
+          "Havoc DMG Bonus",
+          "ATK%"
+        ],
+        "4": [
+          "Crit. Rate",
+          "Crit. DMG"
+        ]
+      },
+      "quotes": [
+        "ATK,2000+",
+        "Energy Regen,100-125%",
+        "Crit. Ratio (Crit. Weapon),65% : 265%",
+        "Crit. Ratio (Non-Crit.),60% : 225%",
+        "Substat Priority\nCrit. Rate / Crit. DMG > ATK% > Basic% > Flat ATK > Liberation% > Energy Regen (until 125%)"
+      ]
+    }
+  },
+  "sourceHashes": {
+    "sheet": "19c3baad7n24s"
+  },
+  "override": {},
+  "build": {
+    "statTargets": {
+      "ATK": {
+        "min": 2000
+      },
+      "Energy Regen": {
+        "min": 100,
+        "max": 125
+      },
+      "Crit. Rate": {
+        "min": 65
+      },
+      "Crit. DMG": {
+        "min": 265
+      }
+    },
+    "nonCritWeaponTargets": {
+      "Crit. Rate": {
+        "min": 60
+      },
+      "Crit. DMG": {
+        "min": 225
+      }
+    },
+    "substatWeights": {
+      "Crit. Rate": 1,
+      "Crit. DMG": 1,
+      "ATK%": 0.8333333333333334,
+      "Basic Attack DMG Bonus": 0.6666666666666666,
+      "ATK": 0.5,
+      "Resonance Liberation DMG Bonus": 0.3333333333333333,
+      "Energy Regen": 0.16666666666666666
+    },
+    "recommendedMainStats": {
+      "1": [
+        "ATK%"
+      ],
+      "3": [
+        "Havoc DMG Bonus",
+        "ATK%"
+      ],
+      "4": [
+        "Crit. Rate",
+        "Crit. DMG"
+      ]
+    }
+  }
+}

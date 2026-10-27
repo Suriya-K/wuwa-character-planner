@@ -1,0 +1,83 @@
+{
+  "id": "shorekeeper",
+  "name": "Shorekeeper",
+  "element": "Spectro",
+  "sources": {
+    "sheet": {
+      "source": "sheet",
+      "statTargets": {
+        "HP": {
+          "min": 30000
+        },
+        "Energy Regen": {
+          "min": 230,
+          "max": 240
+        }
+      },
+      "nonCritWeaponTargets": {},
+      "substatWeights": {
+        "Energy Regen": 1,
+        "HP%": 0.75,
+        "HP": 0.5,
+        "Resonance Liberation DMG Bonus": 0.25
+      },
+      "mainStats": {
+        "1": [
+          "HP%"
+        ],
+        "3": [
+          "Energy Regen",
+          "Spectro DMG Bonus",
+          "HP%"
+        ],
+        "4": [
+          "HP%",
+          "Crit. DMG"
+        ]
+      },
+      "quotes": [
+        "HP,30000+",
+        "Energy Regen,230-240% ¹",
+        "Crit. Ratio (Crit. Weapon),N/A",
+        "Crit. Ratio (Non-Crit.),N/A",
+        "Substat Priority\nEnergy Regen > HP% > Flat HP > Liberation%"
+      ]
+    }
+  },
+  "sourceHashes": {
+    "sheet": "2gwrdkjwnq0zi"
+  },
+  "override": {},
+  "build": {
+    "statTargets": {
+      "HP": {
+        "min": 30000
+      },
+      "Energy Regen": {
+        "min": 230,
+        "max": 240
+      }
+    },
+    "nonCritWeaponTargets": {},
+    "substatWeights": {
+      "Energy Regen": 1,
+      "HP%": 0.75,
+      "HP": 0.5,
+      "Resonance Liberation DMG Bonus": 0.25
+    },
+    "recommendedMainStats": {
+      "1": [
+        "HP%"
+      ],
+      "3": [
+        "Energy Regen",
+        "Spectro DMG Bonus",
+        "HP%"
+      ],
+      "4": [
+        "HP%",
+        "Crit. DMG"
+      ]
+    }
+  }
+}

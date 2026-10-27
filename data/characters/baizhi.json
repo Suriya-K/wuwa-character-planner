@@ -1,0 +1,89 @@
+{
+  "id": "baizhi",
+  "name": "Baizhi",
+  "element": "Glacio",
+  "sources": {
+    "sheet": {
+      "source": "sheet",
+      "statTargets": {
+        "HP": {
+          "min": 19000
+        },
+        "Energy Regen": {
+          "min": 200
+        }
+      },
+      "nonCritWeaponTargets": {
+        "HP": {
+          "min": 19000
+        },
+        "Energy Regen": {
+          "min": 200
+        }
+      },
+      "substatWeights": {
+        "Energy Regen": 1,
+        "HP%": 0.6666666666666666,
+        "HP": 0.3333333333333333
+      },
+      "mainStats": {
+        "1": [
+          "HP%"
+        ],
+        "3": [
+          "Energy Regen"
+        ],
+        "4": [
+          "HP%",
+          "Healing Bonus"
+        ]
+      },
+      "quotes": [
+        "HP,19000+",
+        "Energy Regen,200%",
+        "Crit. Ratio (Crit. Weapon),N/A",
+        "Crit. Ratio (Non-Crit.),N/A",
+        "Substat Priority\nEnergy Regen > HP% > Flat HP"
+      ]
+    }
+  },
+  "sourceHashes": {
+    "sheet": "1c92dzqxkyzgm"
+  },
+  "override": {},
+  "build": {
+    "statTargets": {
+      "HP": {
+        "min": 19000
+      },
+      "Energy Regen": {
+        "min": 200
+      }
+    },
+    "nonCritWeaponTargets": {
+      "HP": {
+        "min": 19000
+      },
+      "Energy Regen": {
+        "min": 200
+      }
+    },
+    "substatWeights": {
+      "Energy Regen": 1,
+      "HP%": 0.6666666666666666,
+      "HP": 0.3333333333333333
+    },
+    "recommendedMainStats": {
+      "1": [
+        "HP%"
+      ],
+      "3": [
+        "Energy Regen"
+      ],
+      "4": [
+        "HP%",
+        "Healing Bonus"
+      ]
+    }
+  }
+}

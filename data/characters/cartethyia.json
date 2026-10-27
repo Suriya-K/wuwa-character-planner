@@ -1,0 +1,111 @@
+{
+  "id": "cartethyia",
+  "name": "Cartethyia",
+  "element": "Aero",
+  "sources": {
+    "sheet": {
+      "source": "sheet",
+      "statTargets": {
+        "HP": {
+          "min": 35000
+        },
+        "Energy Regen": {
+          "min": 100,
+          "max": 110
+        },
+        "Crit. Rate": {
+          "min": 75
+        },
+        "Crit. DMG": {
+          "min": 310
+        }
+      },
+      "nonCritWeaponTargets": {
+        "Crit. Rate": {
+          "min": 70
+        },
+        "Crit. DMG": {
+          "min": 270
+        }
+      },
+      "substatWeights": {
+        "Crit. Rate": 1,
+        "Crit. DMG": 1,
+        "HP%": 0.8333333333333334,
+        "Basic Attack DMG Bonus": 0.6666666666666666,
+        "HP": 0.5,
+        "Resonance Liberation DMG Bonus": 0.3333333333333333,
+        "Energy Regen": 0.16666666666666666
+      },
+      "mainStats": {
+        "1": [
+          "HP%"
+        ],
+        "3": [
+          "HP%"
+        ],
+        "4": [
+          "Crit. Rate",
+          "Crit. DMG"
+        ]
+      },
+      "quotes": [
+        "HP,35,000+",
+        "Energy Regen,100-110%",
+        "Crit. Ratio (Crit. Weapon),75% : 310%",
+        "Crit. Ratio (Non-Crit.),70% : 270%",
+        "Substat Priority\nCrit. Rate / Crit. DMG > HP% > Basic% > Flat HP > Liberation% > Energy Regen (110%)"
+      ]
+    }
+  },
+  "sourceHashes": {
+    "sheet": "12j9ik68gixdm"
+  },
+  "override": {},
+  "build": {
+    "statTargets": {
+      "HP": {
+        "min": 35000
+      },
+      "Energy Regen": {
+        "min": 100,
+        "max": 110
+      },
+      "Crit. Rate": {
+        "min": 75
+      },
+      "Crit. DMG": {
+        "min": 310
+      }
+    },
+    "nonCritWeaponTargets": {
+      "Crit. Rate": {
+        "min": 70
+      },
+      "Crit. DMG": {
+        "min": 270
+      }
+    },
+    "substatWeights": {
+      "Crit. Rate": 1,
+      "Crit. DMG": 1,
+      "HP%": 0.8333333333333334,
+      "Basic Attack DMG Bonus": 0.6666666666666666,
+      "HP": 0.5,
+      "Resonance Liberation DMG Bonus": 0.3333333333333333,
+      "Energy Regen": 0.16666666666666666
+    },
+    "recommendedMainStats": {
+      "1": [
+        "HP%"
+      ],
+      "3": [
+        "HP%"
+      ],
+      "4": [
+        "Crit. Rate",
+        "Crit. DMG"
+      ]
+    }
+  }
+}

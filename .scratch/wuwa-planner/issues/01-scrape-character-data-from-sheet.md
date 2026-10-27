@@ -12,10 +12,10 @@ Extraction rules (decided during design, must be in the prompt):
 
 **Blocked by:** None (can start immediately)
 
-**Status:** ready-for-agent
+**Status:** done
 
-- [ ] Running the scrape writes one file per Character in the sheet plus a roster list
-- [ ] Yangyang: Xuanling's file has ATK min 2000, Energy Regen min 120, Crit weapon CR/CD min 70/265, non-Crit CR/CD min 65/225, cost 4 mains Crit. Rate + Crit. DMG
-- [ ] Re-running skips Characters already scraped; a force flag re-scrapes one Character
-- [ ] A hand-written `override` in a Character's file survives a re-scrape
-- [ ] A Character whose block fails to extract is recorded as a FailedSource, not silently dropped
+- [x] Running the scrape writes one file per Character in the sheet plus a roster list
+- [x] Yangyang: Xuanling's file has ATK min 2000, Energy Regen min 120, Crit weapon CR/CD min 70/265, non-Crit CR/CD min 65/225, cost 4 mains Crit. Rate + Crit. DMG
+- [x] Re-running skips Characters already scraped; a force flag re-scrapes one Character
+- [x] A hand-written `override` in a Character's file survives a re-scrape
+- [x] A Character whose block fails to extract is recorded as a FailedSource, not silently dropped

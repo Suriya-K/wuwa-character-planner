@@ -1,0 +1,111 @@
+{
+  "id": "rover-aero",
+  "name": "Rover: Aero",
+  "element": "Aero",
+  "sources": {
+    "sheet": {
+      "source": "sheet",
+      "statTargets": {
+        "ATK": {
+          "min": 2000
+        },
+        "Energy Regen": {
+          "min": 120
+        },
+        "Crit. Rate": {
+          "min": 60
+        },
+        "Crit. DMG": {
+          "min": 270
+        }
+      },
+      "nonCritWeaponTargets": {
+        "Crit. Rate": {
+          "min": 60
+        },
+        "Crit. DMG": {
+          "min": 220
+        }
+      },
+      "substatWeights": {
+        "Crit. Rate": 1,
+        "Crit. DMG": 1,
+        "ATK%": 0.8,
+        "Resonance Skill DMG Bonus": 0.6,
+        "ATK": 0.4,
+        "Energy Regen": 0.2
+      },
+      "mainStats": {
+        "1": [
+          "ATK%"
+        ],
+        "3": [
+          "Aero DMG Bonus",
+          "Aero DMG Bonus",
+          "ATK%"
+        ],
+        "4": [
+          "Crit. Rate",
+          "Crit. DMG"
+        ]
+      },
+      "quotes": [
+        "RECOMMENDED STATS @ LV.90",
+        "ATK,2000+",
+        "Energy Regen,120% ¹",
+        "Crit. Ratio (Crit. Weapon),60% : 270%",
+        "Crit. Ratio (Non-Crit.),60% : 220%",
+        "Substat Priority\nCrit. Rate / Crit. DMG > ATK% > Skill% > Flat ATK > Energy Regen (120%)"
+      ]
+    }
+  },
+  "sourceHashes": {
+    "sheet": "39acmqwd59z8f"
+  },
+  "override": {},
+  "build": {
+    "statTargets": {
+      "ATK": {
+        "min": 2000
+      },
+      "Energy Regen": {
+        "min": 120
+      },
+      "Crit. Rate": {
+        "min": 60
+      },
+      "Crit. DMG": {
+        "min": 270
+      }
+    },
+    "nonCritWeaponTargets": {
+      "Crit. Rate": {
+        "min": 60
+      },
+      "Crit. DMG": {
+        "min": 220
+      }
+    },
+    "substatWeights": {
+      "Crit. Rate": 1,
+      "Crit. DMG": 1,
+      "ATK%": 0.8,
+      "Resonance Skill DMG Bonus": 0.6,
+      "ATK": 0.4,
+      "Energy Regen": 0.2
+    },
+    "recommendedMainStats": {
+      "1": [
+        "ATK%"
+      ],
+      "3": [
+        "Aero DMG Bonus",
+        "ATK%"
+      ],
+      "4": [
+        "Crit. Rate",
+        "Crit. DMG"
+      ]
+    }
+  }
+}

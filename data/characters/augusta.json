@@ -1,0 +1,113 @@
+{
+  "id": "augusta",
+  "name": "Augusta",
+  "element": "Electro",
+  "sources": {
+    "sheet": {
+      "source": "sheet",
+      "statTargets": {
+        "ATK": {
+          "min": 2200
+        },
+        "Energy Regen": {
+          "min": 125
+        },
+        "Crit. Rate": {
+          "min": 75,
+          "max": 80
+        },
+        "Crit. DMG": {
+          "min": 225,
+          "max": 270
+        }
+      },
+      "nonCritWeaponTargets": {
+        "Crit. Rate": {
+          "min": 70
+        },
+        "Crit. DMG": {
+          "min": 225
+        }
+      },
+      "substatWeights": {
+        "Crit. Rate": 1,
+        "Crit. DMG": 1,
+        "Energy Regen": 0.8,
+        "ATK%": 0.6,
+        "Heavy Attack DMG Bonus": 0.4,
+        "ATK": 0.2
+      },
+      "mainStats": {
+        "1": [
+          "ATK%"
+        ],
+        "3": [
+          "Electro DMG Bonus",
+          "ATK%"
+        ],
+        "4": [
+          "Crit. Rate",
+          "Crit. DMG"
+        ]
+      },
+      "quotes": [
+        "ATK,2200+",
+        "Energy Regen,125%",
+        "Crit. Ratio (Crit. Weapon),75-80% : 225-270%",
+        "Crit. Ratio (Non-Crit.),70% : 225%",
+        "Substat Priority\nCrit. Rate / Crit. DMG > Energy Regen (125%) > ATK% > Heavy% > Flat ATK"
+      ]
+    }
+  },
+  "sourceHashes": {
+    "sheet": "1p451epj6rz7c"
+  },
+  "override": {},
+  "build": {
+    "statTargets": {
+      "ATK": {
+        "min": 2200
+      },
+      "Energy Regen": {
+        "min": 125
+      },
+      "Crit. Rate": {
+        "min": 75,
+        "max": 80
+      },
+      "Crit. DMG": {
+        "min": 225,
+        "max": 270
+      }
+    },
+    "nonCritWeaponTargets": {
+      "Crit. Rate": {
+        "min": 70
+      },
+      "Crit. DMG": {
+        "min": 225
+      }
+    },
+    "substatWeights": {
+      "Crit. Rate": 1,
+      "Crit. DMG": 1,
+      "Energy Regen": 0.8,
+      "ATK%": 0.6,
+      "Heavy Attack DMG Bonus": 0.4,
+      "ATK": 0.2
+    },
+    "recommendedMainStats": {
+      "1": [
+        "ATK%"
+      ],
+      "3": [
+        "Electro DMG Bonus",
+        "ATK%"
+      ],
+      "4": [
+        "Crit. Rate",
+        "Crit. DMG"
+      ]
+    }
+  }
+}

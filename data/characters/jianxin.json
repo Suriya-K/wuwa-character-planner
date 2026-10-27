@@ -1,0 +1,115 @@
+{
+  "id": "jianxin",
+  "name": "Jianxin",
+  "element": "Aero",
+  "sources": {
+    "sheet": {
+      "source": "sheet",
+      "statTargets": {
+        "ATK": {
+          "min": 1900
+        },
+        "Energy Regen": {
+          "min": 130,
+          "max": 150
+        },
+        "Crit. Rate": {
+          "min": 70
+        },
+        "Crit. DMG": {
+          "min": 265
+        }
+      },
+      "nonCritWeaponTargets": {
+        "Crit. Rate": {
+          "min": 70
+        },
+        "Crit. DMG": {
+          "min": 220
+        }
+      },
+      "substatWeights": {
+        "Crit. Rate": 1,
+        "Crit. DMG": 1,
+        "Energy Regen": 0.8333333333333334,
+        "ATK%": 0.6666666666666666,
+        "Resonance Liberation DMG Bonus": 0.5,
+        "Heavy Attack DMG Bonus": 0.3333333333333333,
+        "ATK": 0.16666666666666666
+      },
+      "mainStats": {
+        "1": [
+          "ATK%"
+        ],
+        "3": [
+          "Aero DMG Bonus",
+          "Aero DMG Bonus",
+          "ATK%"
+        ],
+        "4": [
+          "Crit. Rate",
+          "Crit. DMG"
+        ]
+      },
+      "quotes": [
+        "RECOMMENDED STATS @ LV.90",
+        "ATK,1900+",
+        "Energy Regen,130-150%",
+        "Crit. Ratio (Crit. Weapon),70% : 265%",
+        "Crit. Ratio (Non-Crit.),70% : 220%",
+        "Substat Priority\nCrit. Rate / Crit. DMG > Energy Regen (140%) > ATK% > Liberation% >= Heavy% > Flat ATK"
+      ]
+    }
+  },
+  "sourceHashes": {
+    "sheet": "veq3qc3x3fj3"
+  },
+  "override": {},
+  "build": {
+    "statTargets": {
+      "ATK": {
+        "min": 1900
+      },
+      "Energy Regen": {
+        "min": 130,
+        "max": 150
+      },
+      "Crit. Rate": {
+        "min": 70
+      },
+      "Crit. DMG": {
+        "min": 265
+      }
+    },
+    "nonCritWeaponTargets": {
+      "Crit. Rate": {
+        "min": 70
+      },
+      "Crit. DMG": {
+        "min": 220
+      }
+    },
+    "substatWeights": {
+      "Crit. Rate": 1,
+      "Crit. DMG": 1,
+      "Energy Regen": 0.8333333333333334,
+      "ATK%": 0.6666666666666666,
+      "Resonance Liberation DMG Bonus": 0.5,
+      "Heavy Attack DMG Bonus": 0.3333333333333333,
+      "ATK": 0.16666666666666666
+    },
+    "recommendedMainStats": {
+      "1": [
+        "ATK%"
+      ],
+      "3": [
+        "Aero DMG Bonus",
+        "ATK%"
+      ],
+      "4": [
+        "Crit. Rate",
+        "Crit. DMG"
+      ]
+    }
+  }
+}
