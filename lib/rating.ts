@@ -69,7 +69,8 @@ export function rateEcho(
 }
 
 // Stats shown on the first page of the Attributes Screenshot
-export type StatName = "HP" | "ATK" | "DEF" | "Energy Regen" | "Crit. Rate" | "Crit. DMG";
+export const STAT_NAMES = ["HP", "ATK", "DEF", "Energy Regen", "Crit. Rate", "Crit. DMG"] as const;
+export type StatName = (typeof STAT_NAMES)[number];
 
 export type GuideSource = {
   source: string;

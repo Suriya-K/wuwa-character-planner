@@ -57,6 +57,66 @@
         "Crit. Ratio (Non-Crit.),70% : 225%",
         "Substat Priority\nCrit. Rate / Crit. DMG > Energy Regen (until 110-120%) > ATK% > Skill% > Flat ATK "
       ]
+    },
+    "prydwen": {
+      "source": "prydwen",
+      "statTargets": {
+        "HP": {
+          "min": 15000
+        },
+        "ATK": {
+          "min": 2000
+        },
+        "DEF": {
+          "min": 1250
+        },
+        "Energy Regen": {
+          "min": 100
+        },
+        "Crit. Rate": {
+          "min": 65
+        },
+        "Crit. DMG": {
+          "min": 210
+        }
+      },
+      "nonCritWeaponTargets": {},
+      "substatWeights": {
+        "Energy Regen": 1,
+        "Crit. Rate": 0.8,
+        "Crit. DMG": 0.8,
+        "ATK%": 0.6,
+        "Resonance Skill DMG Bonus": 0.4,
+        "ATK": 0.2
+      },
+      "mainStats": {
+        "1": [
+          "ATK%"
+        ],
+        "3": [
+          "Spectro DMG Bonus",
+          "ATK%"
+        ],
+        "4": [
+          "Crit. Rate",
+          "Crit. DMG"
+        ]
+      },
+      "quotes": [
+        "HP: 15000+",
+        "DEF: 1250+",
+        "ATK: 2000-2400+",
+        "CRIT Rate: 65-80%+",
+        "CRIT DMG: 210-280%+",
+        "Energy Regen: 100-125%+",
+        "Spectro DMG Bonus: 60-90%+",
+        "Energy Regen (Until Satisfied) > CRIT Rate = CRIT DMG > ATK% > Resonance Skill DMG% > ATK",
+        "4 cost: CRIT Rate / CRIT DMG",
+        "3 cost: Spectro DMG",
+        "3 cost: Spectro DMG ≥ ATK%",
+        "1 cost: ATK%",
+        "1 cost: ATK%"
+      ]
     }
   },
   "sourceHashes": {
@@ -73,10 +133,16 @@
         "max": 120
       },
       "Crit. Rate": {
-        "min": 70
+        "min": 67.5
       },
       "Crit. DMG": {
-        "min": 265
+        "min": 237.5
+      },
+      "HP": {
+        "min": 15000
+      },
+      "DEF": {
+        "min": 1250
       }
     },
     "nonCritWeaponTargets": {
@@ -88,9 +154,9 @@
       }
     },
     "substatWeights": {
-      "Crit. Rate": 1,
-      "Crit. DMG": 1,
-      "Energy Regen": 0.8,
+      "Crit. Rate": 0.9,
+      "Crit. DMG": 0.9,
+      "Energy Regen": 0.9,
       "ATK%": 0.6,
       "Resonance Skill DMG Bonus": 0.4,
       "ATK": 0.2

@@ -1,7 +1,7 @@
 import { generateJson } from "@/lib/gemini";
-import type { StatName } from "@/lib/rating";
+import { STAT_NAMES, type StatName } from "@/lib/rating";
 
-const STATS: StatName[] = ["HP", "ATK", "DEF", "Energy Regen", "Crit. Rate", "Crit. DMG"];
+const STATS = [...STAT_NAMES];
 
 // Prompt validated against Thai-client screenshots in the prototype (ADR 0001)
 const PROMPT = `This is the character Attributes screen of Wuthering Waves, possibly from a Thai-language client.

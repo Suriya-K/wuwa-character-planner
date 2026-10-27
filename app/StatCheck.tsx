@@ -1,18 +1,21 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { type StatName, type StatTarget, statVerdict } from "@/lib/rating";
+import { STAT_NAMES, type StatName, type StatTarget, statVerdict } from "@/lib/rating";
+
+type Targets = Partial<Record<StatName, StatTarget>>;
 
 export type CharacterOption = {
   id: string;
   name: string;
   element: string;
-  statTargets: Partial<Record<StatName, StatTarget>>;
-  nonCritWeaponTargets: Partial<Record<StatName, StatTarget>>;
+  statTargets: Targets;
+  nonCritWeaponTargets: Targets;
+  sources: { source: string; statTargets: Targets; nonCritWeaponTargets: Targets }[];
 };
 
-const STATS: StatName[] = ["HP", "ATK", "DEF", "Energy Regen", "Crit. Rate", "Crit. DMG"];
 const PERCENT = new Set<StatName>(["Energy Regen", "Crit. Rate", "Crit. DMG"]);
+const CRIT = new Set<StatName>(["Crit. Rate", "Crit. DMG"]);
 
 const describe = (t: StatTarget | undefined) =>
   !t || (t.min === undefined && t.max === undefined)
@@ -26,6 +29,52 @@ export default function StatCheck({ characters }: { characters: CharacterOption[
   const [critWeapon, setCritWeapon] = useState(true);
   const [stats, setStats] = useState<Partial<Record<StatName, number>>>({});
   const [status, setStatus] = useState<{ reading?: boolean; error?: string }>({});
+  const [savedAt, setSavedAt] = useState<string | null>(null);
+  // Save stays off until the stored snapshot has loaded, so an early click can't overwrite it with blanks
+  const [loaded, setLoaded] = useState(false);
+  // Values typed or read before the snapshot arrives win over the stored ones
+  const edited = useRef(false);
+  const shownId = useRef(characterId);
+
+  // Load the character's Build Snapshot so any device picks up where the last one left off
+  useEffect(() => {
+    let current = true;
+    shownId.current = characterId;
+    setStats({});
+    setCritWeapon(true);
+    setSavedAt(null);
+    setLoaded(false);
+    edited.current = false;
+    fetch(`/api/snapshot/${characterId}`)
+      .then((res) => (res.ok ? res.json() : Promise.reject(new Error(`Loading snapshot: ${res.status}`))))
+      .then((snapshot) => {
+        if (!current) return;
+        setLoaded(true);
+        if (!snapshot || edited.current) return;
+        setStats(snapshot.stats);
+        setCritWeapon(snapshot.critWeapon);
+        setSavedAt(snapshot.savedAt);
+      })
+      .catch((e: Error) => current && setStatus({ error: e.message }));
+    return () => {
+      current = false;
+    };
+  }, [characterId]);
+
+  async function save() {
+    const id = characterId;
+    const res = await fetch(`/api/snapshot/${id}`, {
+      method: "PUT",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ stats, critWeapon }),
+    }).catch((e: Error) => e);
+    if (shownId.current !== id) return; // user switched character mid-save
+    if (res instanceof Error) return setStatus({ error: res.message });
+    const body = await res.json().catch(() => ({ error: `Server answered ${res.status}` }));
+    if (!res.ok) return setStatus({ error: body.error });
+    setSavedAt(body.savedAt);
+    setStatus({});
+  }
 
   const character = characters.find((c) => c.id === characterId);
   const targets = { ...character?.statTargets, ...(critWeapon ? {} : character?.nonCritWeaponTargets) };
@@ -43,6 +92,7 @@ export default function StatCheck({ characters }: { characters: CharacterOption[
       const body = await res.json().catch(() => ({ error: `Server answered ${res.status}` }));
       if (id !== latestRead.current) return;
       if (!res.ok) return setStatus({ error: body.error });
+      edited.current = true;
       setStats(body);
       setStatus({});
     } catch (e) {
@@ -95,7 +145,7 @@ export default function StatCheck({ characters }: { characters: CharacterOption[
           </tr>
         </thead>
         <tbody>
-          {STATS.map((name) => {
+          {STAT_NAMES.map((name) => {
             const value = stats[name];
             const target = targets[name];
             const verdict = value !== undefined && target ? statVerdict(value, target) : undefined;
@@ -107,19 +157,40 @@ export default function StatCheck({ characters }: { characters: CharacterOption[
                     type="number"
                     step="0.1"
                     value={value ?? ""}
-                    onChange={(e) =>
-                      setStats({ ...stats, [name]: e.target.value === "" ? undefined : Number(e.target.value) })
-                    }
+                    onChange={(e) => {
+                      edited.current = true;
+                      setStats({ ...stats, [name]: e.target.value === "" ? undefined : Number(e.target.value) });
+                    }}
                   />
                   {PERCENT.has(name) && "%"}
                 </td>
-                <td>{describe(target)}</td>
+                <td>
+                  {describe(target)}
+                  <br />
+                  <small>
+                    {character?.sources
+                      .map((src) => {
+                        // A source with no non-Crit targets has nothing to say about Crit stats then
+                        const t =
+                          !critWeapon && CRIT.has(name) ? src.nonCritWeaponTargets[name] : src.statTargets[name];
+                        return t && `${src.source}: ${describe(t)}`;
+                      })
+                      .filter(Boolean)
+                      .join(" · ")}
+                  </small>
+                </td>
                 <td className={verdict}>{verdict ?? "—"}</td>
               </tr>
             );
           })}
         </tbody>
       </table>
+      <p>
+        <button type="button" onClick={save} disabled={!loaded}>
+          Save Build Snapshot
+        </button>{" "}
+        {savedAt ? `Last saved ${new Date(savedAt).toLocaleString()}` : "Not saved yet"}
+      </p>
     </>
   );
 }

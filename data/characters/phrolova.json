@@ -57,6 +57,59 @@
         "Crit. Ratio (Non-Crit.),70% : 225%",
         "Substat Priority\nCrit. DMG / Crit. Rate > ATK% > Skill% > Flat ATK"
       ]
+    },
+    "prydwen": {
+      "source": "prydwen",
+      "statTargets": {
+        "HP": {
+          "min": 15000
+        },
+        "ATK": {
+          "min": 2000
+        },
+        "DEF": {
+          "min": 1100
+        },
+        "Energy Regen": {
+          "min": 100
+        },
+        "Crit. Rate": {
+          "min": 60
+        },
+        "Crit. DMG": {
+          "min": 215
+        }
+      },
+      "nonCritWeaponTargets": {},
+      "substatWeights": {
+        "Crit. Rate": 1,
+        "Crit. DMG": 1,
+        "ATK%": 0.75,
+        "Resonance Skill DMG Bonus": 0.5,
+        "ATK": 0.25
+      },
+      "mainStats": {
+        "1": [
+          "ATK%"
+        ],
+        "3": [
+          "Havoc DMG Bonus",
+          "ATK%"
+        ],
+        "4": [
+          "Crit. Rate",
+          "Crit. DMG"
+        ]
+      },
+      "quotes": [
+        "HP: 15000+",
+        "DEF: 1100+",
+        "ATK: 2000-2500+",
+        "CRIT Rate: 60%+ (before Echo set bonuses)",
+        "CRIT DMG: 215-260%+ (before any Aftersound stacks)",
+        "Energy Regen 100%",
+        "CRIT RATE = CRIT DMG > ATK% > Skill DMG% > ATK"
+      ]
     }
   },
   "sourceHashes": {
@@ -66,18 +119,24 @@
   "build": {
     "statTargets": {
       "ATK": {
-        "min": 1900
+        "min": 1950
       },
       "Energy Regen": {
         "min": 100
       },
       "Crit. Rate": {
-        "min": 70,
+        "min": 65,
         "max": 85
       },
       "Crit. DMG": {
-        "min": 265,
+        "min": 240,
         "max": 295
+      },
+      "HP": {
+        "min": 15000
+      },
+      "DEF": {
+        "min": 1100
       }
     },
     "nonCritWeaponTargets": {

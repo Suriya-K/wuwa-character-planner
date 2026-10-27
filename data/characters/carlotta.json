@@ -58,6 +58,66 @@
         "Crit. Ratio (Non-Crit.),70% : 225%",
         "Substat Priority\nCrit. Rate / Crit. DMG > Energy Regen > ATK% > Skill% > Flat ATK"
       ]
+    },
+    "prydwen": {
+      "source": "prydwen",
+      "statTargets": {
+        "HP": {
+          "min": 17000
+        },
+        "ATK": {
+          "min": 1900
+        },
+        "DEF": {
+          "min": 1150
+        },
+        "Energy Regen": {
+          "min": 108,
+          "max": 125
+        },
+        "Crit. Rate": {
+          "min": 65,
+          "max": 80
+        },
+        "Crit. DMG": {
+          "min": 210,
+          "max": 280
+        }
+      },
+      "nonCritWeaponTargets": {},
+      "substatWeights": {
+        "Energy Regen": 1,
+        "Crit. Rate": 0.8,
+        "Crit. DMG": 0.8,
+        "ATK%": 0.6,
+        "Resonance Skill DMG Bonus": 0.4,
+        "ATK": 0.2
+      },
+      "mainStats": {
+        "1": [
+          "ATK%"
+        ],
+        "3": [
+          "Glacio DMG Bonus",
+          "ATK%"
+        ],
+        "4": [
+          "Crit. Rate",
+          "Crit. DMG"
+        ]
+      },
+      "quotes": [
+        "HP: 17000+",
+        "DEF: 1150+",
+        "ATK: 1900-2100+",
+        "CRIT Rate: 65-80%+",
+        "CRIT DMG: 210-280%+",
+        "Energy Regen: 108-125%+",
+        "Energy Regen (Until Satisfied) > CRIT Rate = CRIT DMG > ATK% > Resonance Skill DMG > ATK",
+        "4 cost: CRIT Rate / CRIT DMG",
+        "3 cost: Glacio DMG ≥ ATK%",
+        "1 cost: ATK%"
+      ]
     }
   },
   "sourceHashes": {
@@ -67,18 +127,25 @@
   "build": {
     "statTargets": {
       "ATK": {
-        "min": 2100
+        "min": 2000
       },
       "Energy Regen": {
-        "min": 100,
-        "max": 130
+        "min": 104,
+        "max": 127.5
       },
       "Crit. Rate": {
-        "min": 70
+        "min": 67.5,
+        "max": 80
       },
       "Crit. DMG": {
-        "min": 265,
-        "max": 295
+        "min": 237.5,
+        "max": 287.5
+      },
+      "HP": {
+        "min": 17000
+      },
+      "DEF": {
+        "min": 1150
       }
     },
     "nonCritWeaponTargets": {
@@ -90,9 +157,9 @@
       }
     },
     "substatWeights": {
-      "Crit. Rate": 1,
-      "Crit. DMG": 1,
-      "Energy Regen": 0.8,
+      "Crit. Rate": 0.9,
+      "Crit. DMG": 0.9,
+      "Energy Regen": 0.9,
       "ATK%": 0.6,
       "Resonance Skill DMG Bonus": 0.4,
       "ATK": 0.2

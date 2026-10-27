@@ -42,6 +42,68 @@
         "Crit. Ratio (Non-Crit.),N/A",
         "Substat Priority\nEnergy Regen > HP% > Flat HP > Liberation%"
       ]
+    },
+    "prydwen": {
+      "source": "prydwen",
+      "statTargets": {
+        "HP": {
+          "min": 20000,
+          "max": 35000
+        },
+        "ATK": {},
+        "DEF": {
+          "min": 1100
+        },
+        "Energy Regen": {
+          "min": 230
+        },
+        "Crit. Rate": {
+          "min": 20,
+          "max": 40
+        },
+        "Crit. DMG": {
+          "min": 220,
+          "max": 280
+        }
+      },
+      "nonCritWeaponTargets": {},
+      "substatWeights": {
+        "Energy Regen": 1,
+        "Crit. DMG": 0.8333333333333334,
+        "Resonance Liberation DMG Bonus": 0.8333333333333334,
+        "HP%": 0.6666666666666666,
+        "Crit. Rate": 0.5,
+        "HP": 0.3333333333333333,
+        "ATK%": 0.16666666666666666,
+        "ATK": 0.16666666666666666
+      },
+      "mainStats": {
+        "1": [
+          "HP%",
+          "HP%"
+        ],
+        "3": [
+          "Energy Regen",
+          "Spectro DMG Bonus"
+        ],
+        "4": [
+          "Crit. DMG",
+          "HP%"
+        ]
+      },
+      "quotes": [
+        "HP: 20000-35000+",
+        "DEF: 1100+",
+        "CRIT Rate: 20%-40%+",
+        "CRIT DMG: 220-280%+",
+        "Energy Regen: 230% (Before Echo/Passive)",
+        "Energy Regen (Until 230%) > CRIT DMG ≥ Liberation DMG% > HP% > CRIT Rate > HP > ATK% = ATK",
+        "4 cost: CRIT DMG > HP%",
+        "3 cost: Energy Regen",
+        "3 cost: Energy Regen / Spectro DMG",
+        "1 cost: HP%",
+        "1 cost: HP%"
+      ]
     }
   },
   "sourceHashes": {
@@ -51,19 +113,36 @@
   "build": {
     "statTargets": {
       "HP": {
-        "min": 30000
+        "min": 25000,
+        "max": 35000
       },
       "Energy Regen": {
         "min": 230,
         "max": 240
+      },
+      "ATK": {},
+      "DEF": {
+        "min": 1100
+      },
+      "Crit. Rate": {
+        "min": 20,
+        "max": 40
+      },
+      "Crit. DMG": {
+        "min": 220,
+        "max": 280
       }
     },
     "nonCritWeaponTargets": {},
     "substatWeights": {
       "Energy Regen": 1,
-      "HP%": 0.75,
-      "HP": 0.5,
-      "Resonance Liberation DMG Bonus": 0.25
+      "HP%": 0.7083333333333333,
+      "HP": 0.41666666666666663,
+      "Resonance Liberation DMG Bonus": 0.5416666666666667,
+      "Crit. DMG": 0.4166666666666667,
+      "Crit. Rate": 0.25,
+      "ATK%": 0.08333333333333333,
+      "ATK": 0.08333333333333333
     },
     "recommendedMainStats": {
       "1": [
@@ -79,5 +158,6 @@
         "Crit. DMG"
       ]
     }
-  }
+  },
+  "prydwenSlug": "the-shorekeeper"
 }

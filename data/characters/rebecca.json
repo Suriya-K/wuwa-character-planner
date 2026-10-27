@@ -59,6 +59,64 @@
         "Crit. Ratio (Non-Crit.),65% : 225%",
         "Substat Priority\nCrit. Rate / Crit. DMG > Energy Regen (120%) > ATK% > Basic% > Flat ATK"
       ]
+    },
+    "prydwen": {
+      "source": "prydwen",
+      "statTargets": {
+        "HP": {
+          "min": 16000
+        },
+        "ATK": {
+          "min": 2000,
+          "max": 2300
+        },
+        "DEF": {
+          "min": 1150
+        },
+        "Energy Regen": {
+          "min": 117,
+          "max": 118
+        },
+        "Crit. Rate": {
+          "min": 65,
+          "max": 80
+        },
+        "Crit. DMG": {
+          "min": 210,
+          "max": 280
+        }
+      },
+      "nonCritWeaponTargets": {},
+      "substatWeights": {
+        "Energy Regen": 1,
+        "Crit. Rate": 0.8,
+        "Crit. DMG": 0.8,
+        "Basic Attack DMG Bonus": 0.6,
+        "ATK%": 0.4,
+        "ATK": 0.2
+      },
+      "mainStats": {
+        "1": [
+          "ATK%"
+        ],
+        "3": [
+          "Electro DMG Bonus",
+          "ATK%"
+        ],
+        "4": [
+          "Crit. Rate",
+          "Crit. DMG"
+        ]
+      },
+      "quotes": [
+        "HP: 16000+",
+        "DEF: 1150+",
+        "ATK: 2000-2300+",
+        "CRIT Rate: 65-80%+",
+        "CRIT DMG: 210-280%+",
+        "Energy Regen: 117-118%+",
+        "Energy Regen (Until Satisfied) > CRIT Rate = CRIT DMG > Basic DMG% > ATK% > ATK"
+      ]
     }
   },
   "sourceHashes": {
@@ -68,18 +126,26 @@
   "build": {
     "statTargets": {
       "ATK": {
-        "min": 1900,
-        "max": 2000
+        "min": 1950,
+        "max": 2150
       },
       "Energy Regen": {
-        "min": 120
+        "min": 118.5,
+        "max": 118
       },
       "Crit. Rate": {
-        "min": 70
+        "min": 67.5,
+        "max": 80
       },
       "Crit. DMG": {
-        "min": 265,
-        "max": 295
+        "min": 237.5,
+        "max": 287.5
+      },
+      "HP": {
+        "min": 16000
+      },
+      "DEF": {
+        "min": 1150
       }
     },
     "nonCritWeaponTargets": {
@@ -91,11 +157,11 @@
       }
     },
     "substatWeights": {
-      "Crit. Rate": 1,
-      "Crit. DMG": 1,
-      "Energy Regen": 0.8,
-      "ATK%": 0.6,
-      "Basic Attack DMG Bonus": 0.4,
+      "Crit. Rate": 0.9,
+      "Crit. DMG": 0.9,
+      "Energy Regen": 0.9,
+      "ATK%": 0.5,
+      "Basic Attack DMG Bonus": 0.5,
       "ATK": 0.2
     },
     "recommendedMainStats": {

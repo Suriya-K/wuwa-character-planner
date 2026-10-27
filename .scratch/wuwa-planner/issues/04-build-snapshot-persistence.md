@@ -4,8 +4,8 @@
 
 **Blocked by:** 02
 
-**Status:** ready-for-agent
+**Status:** done
 
-- [ ] Saving then reloading on another browser shows the same stats and Crit Weapon choice
-- [ ] Saving again replaces the previous Build Snapshot
-- [ ] Works against a local/dev Redis before ticket 03 deploys
+- [x] Saving then reloading on another browser shows the same stats and Crit Weapon choice
+- [x] Saving again replaces the previous Build Snapshot
+- [x] Works against a local/dev Redis before ticket 03 deploys

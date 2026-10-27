@@ -41,6 +41,61 @@
         "Crit. Ratio (Non-Crit.),N/A",
         "Crit. Rate / Crit. DMG > Energy Regen (until 130-160%) > DEF% > DEF"
       ]
+    },
+    "prydwen": {
+      "source": "prydwen",
+      "statTargets": {
+        "HP": {
+          "min": 15000
+        },
+        "ATK": {
+          "min": 1800
+        },
+        "DEF": {
+          "min": 1150
+        },
+        "Energy Regen": {
+          "min": 100
+        },
+        "Crit. Rate": {
+          "min": 60
+        },
+        "Crit. DMG": {
+          "min": 210
+        }
+      },
+      "nonCritWeaponTargets": {},
+      "substatWeights": {
+        "Energy Regen": 1,
+        "Crit. Rate": 0.75,
+        "Crit. DMG": 0.75,
+        "DEF%": 0.5,
+        "DEF": 0.25
+      },
+      "mainStats": {
+        "1": [
+          "DEF%"
+        ],
+        "3": [
+          "Energy Regen",
+          "Havoc DMG Bonus"
+        ],
+        "4": [
+          "DEF%"
+        ]
+      },
+      "quotes": [
+        "HP: 15000+",
+        "DEF: 1150+",
+        "ATK: 1800-2200+",
+        "CRIT Rate: 60-80%+",
+        "CRIT DMG: 210-260%+",
+        "Energy Regen: 100%-126%+",
+        "Substats: Energy Regen (Until Satisfied) > CRIT Rate = CRIT DMG > DEF% > DEF",
+        "4 cost: DEF%",
+        "3 cost: Energy Regen / Havoc DMG%",
+        "1 cost: DEF%"
+      ]
     }
   },
   "sourceHashes": {
@@ -50,18 +105,30 @@
   "build": {
     "statTargets": {
       "DEF": {
-        "min": 2800
+        "min": 1975
       },
       "Energy Regen": {
-        "min": 130,
+        "min": 115,
         "max": 160
+      },
+      "HP": {
+        "min": 15000
+      },
+      "ATK": {
+        "min": 1800
+      },
+      "Crit. Rate": {
+        "min": 60
+      },
+      "Crit. DMG": {
+        "min": 210
       }
     },
     "nonCritWeaponTargets": {},
     "substatWeights": {
-      "Crit. Rate": 1,
-      "Crit. DMG": 1,
-      "Energy Regen": 0.75,
+      "Crit. Rate": 0.875,
+      "Crit. DMG": 0.875,
+      "Energy Regen": 0.875,
       "DEF%": 0.5,
       "DEF": 0.25
     },
@@ -70,11 +137,13 @@
         "DEF%"
       ],
       "3": [
-        "Havoc DMG Bonus"
+        "Havoc DMG Bonus",
+        "Energy Regen"
       ],
       "4": [
         "Crit. Rate",
-        "Crit. DMG"
+        "Crit. DMG",
+        "DEF%"
       ]
     }
   }

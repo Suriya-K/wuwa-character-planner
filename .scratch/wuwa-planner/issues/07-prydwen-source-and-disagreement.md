@@ -4,9 +4,9 @@
 
 **Blocked by:** 01, 02
 
-**Status:** ready-for-agent
+**Status:** done
 
-- [ ] Prydwen values land as a second GuideSource and change the medians
-- [ ] An unreachable Prydwen page is recorded as a FailedSource and the sheet alone still produces targets
-- [ ] Characters with no Prydwen slug match are listed at the end of the run
-- [ ] The stat check page shows per-source values for each Stat Target
+- [x] Prydwen values land as a second GuideSource and change the medians
+- [x] An unreachable Prydwen page is recorded as a FailedSource and the sheet alone still produces targets
+- [x] Characters with no Prydwen slug match are listed at the end of the run
+- [x] The stat check page shows per-source values for each Stat Target

@@ -58,6 +58,10 @@
         "Crit. Ratio (Non-Crit.),65% : 225%",
         "Substat Priority\nCrit. Rate / Crit. DMG > Energy Regen (110-120%) > ATK% > Skill% > Flat ATK"
       ]
+    },
+    "prydwen": {
+      "source": "prydwen",
+      "error": "NOT_FOUND"
     }
   },
   "sourceHashes": {

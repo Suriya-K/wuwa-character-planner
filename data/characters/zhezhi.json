@@ -58,6 +58,60 @@
         "Crit. Ratio (Non-Crit.),60% : 225%",
         "Substat Priority\nCrit. Rate / Crit. DMG > Energy Regen (until 110-125%) > ATK% > Basic% > Flat ATK"
       ]
+    },
+    "prydwen": {
+      "source": "prydwen",
+      "statTargets": {
+        "HP": {
+          "min": 15000
+        },
+        "ATK": {
+          "min": 1900
+        },
+        "DEF": {
+          "min": 1100
+        },
+        "Energy Regen": {
+          "min": 116
+        },
+        "Crit. Rate": {
+          "min": 65
+        },
+        "Crit. DMG": {
+          "min": 215
+        }
+      },
+      "nonCritWeaponTargets": {},
+      "substatWeights": {
+        "Energy Regen": 1,
+        "Crit. Rate": 0.8,
+        "Crit. DMG": 0.8,
+        "ATK%": 0.6,
+        "Basic Attack DMG Bonus": 0.4,
+        "ATK": 0.2
+      },
+      "mainStats": {
+        "1": [
+          "ATK%"
+        ],
+        "3": [
+          "Glacio DMG Bonus",
+          "ATK%"
+        ],
+        "4": [
+          "Crit. Rate",
+          "Crit. DMG"
+        ]
+      },
+      "quotes": [
+        "HP: 15000+",
+        "DEF: 1100+",
+        "ATK: 1900-2400+",
+        "CRIT Rate: 65%-80%+ (before Echo set bonuses)",
+        "CRIT DMG: 215-260%+",
+        "Energy Regen 116%-128%+",
+        "Energy Regen (Until Satisfied) > CRIT Rate = CRIT DMG > ATK% > Basic DMG% > Flat ATK"
+      ]
     }
   },
   "sourceHashes": {
@@ -67,17 +121,23 @@
   "build": {
     "statTargets": {
       "ATK": {
-        "min": 2000
+        "min": 1950
       },
       "Energy Regen": {
-        "min": 110,
+        "min": 113,
         "max": 125
       },
       "Crit. Rate": {
         "min": 65
       },
       "Crit. DMG": {
-        "min": 265
+        "min": 240
+      },
+      "HP": {
+        "min": 15000
+      },
+      "DEF": {
+        "min": 1100
       }
     },
     "nonCritWeaponTargets": {
@@ -89,9 +149,9 @@
       }
     },
     "substatWeights": {
-      "Crit. Rate": 1,
-      "Crit. DMG": 1,
-      "Energy Regen": 0.8,
+      "Crit. Rate": 0.9,
+      "Crit. DMG": 0.9,
+      "Energy Regen": 0.9,
       "ATK%": 0.6,
       "Basic Attack DMG Bonus": 0.4,
       "ATK": 0.2

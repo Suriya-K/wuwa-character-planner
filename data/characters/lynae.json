@@ -57,6 +57,66 @@
         "Crit. Ratio (Non-Crit.),65% : 225%",
         "Substat Priority\nCrit. Rate / Crit. DMG > Energy Regen (until 125%) > ATK% > Flat ATK > Basic% "
       ]
+    },
+    "prydwen": {
+      "source": "prydwen",
+      "statTargets": {
+        "HP": {
+          "min": 12000
+        },
+        "ATK": {
+          "min": 2000
+        },
+        "DEF": {
+          "min": 1150
+        },
+        "Energy Regen": {
+          "min": 115
+        },
+        "Crit. Rate": {
+          "min": 50
+        },
+        "Crit. DMG": {
+          "min": 250
+        }
+      },
+      "nonCritWeaponTargets": {},
+      "substatWeights": {
+        "Energy Regen": 1,
+        "Crit. Rate": 0.75,
+        "Crit. DMG": 0.75,
+        "ATK%": 0.5,
+        "ATK": 0.25,
+        "Basic Attack DMG Bonus": 0.25
+      },
+      "mainStats": {
+        "1": [
+          "ATK%",
+          "ATK%"
+        ],
+        "3": [
+          "Spectro DMG Bonus",
+          "ATK%"
+        ],
+        "4": [
+          "Crit. Rate",
+          "Crit. DMG"
+        ]
+      },
+      "quotes": [
+        "HP: 12000+",
+        "DEF: 1150+",
+        "ATK: 2000-2200+",
+        "CRIT Rate: 50-80%+",
+        "CRIT DMG: 250-280%+",
+        "Energy Regen: 115-130%+",
+        "Energy Regen (Until Satisfied) > CRIT Rate = CRIT DMG > ATK% > ATK = Basic Attack DMG%",
+        "4 cost: CRIT Rate / CRIT DMG",
+        "3 cost: Spectro DMG",
+        "3 cost: Spectro DMG > ATK%",
+        "1 cost: ATK%",
+        "1 cost: ATK%"
+      ]
     }
   },
   "sourceHashes": {
@@ -69,14 +129,20 @@
         "min": 2000
       },
       "Energy Regen": {
-        "min": 125
+        "min": 120
       },
       "Crit. Rate": {
-        "min": 70
+        "min": 60
       },
       "Crit. DMG": {
-        "min": 265,
+        "min": 257.5,
         "max": 295
+      },
+      "HP": {
+        "min": 12000
+      },
+      "DEF": {
+        "min": 1150
       }
     },
     "nonCritWeaponTargets": {
@@ -88,19 +154,20 @@
       }
     },
     "substatWeights": {
-      "Crit. Rate": 1,
-      "Crit. DMG": 1,
-      "Energy Regen": 0.8,
-      "ATK%": 0.6,
-      "ATK": 0.4,
-      "Basic Attack DMG Bonus": 0.2
+      "Crit. Rate": 0.875,
+      "Crit. DMG": 0.875,
+      "Energy Regen": 0.9,
+      "ATK%": 0.55,
+      "ATK": 0.325,
+      "Basic Attack DMG Bonus": 0.225
     },
     "recommendedMainStats": {
       "1": [
         "ATK%"
       ],
       "3": [
-        "Spectro DMG Bonus"
+        "Spectro DMG Bonus",
+        "ATK%"
       ],
       "4": [
         "Crit. Rate",

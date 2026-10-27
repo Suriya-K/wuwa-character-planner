@@ -58,6 +58,62 @@
         "Crit. Ratio (Non-Crit.),60% : 225%",
         "Substat Priority\nCrit. Rate / Crit. DMG > Energy Regen (until 110-125%) > ATK% > Skill% > Flat ATK"
       ]
+    },
+    "prydwen": {
+      "source": "prydwen",
+      "statTargets": {
+        "HP": {
+          "min": 15000
+        },
+        "ATK": {
+          "min": 1300
+        },
+        "DEF": {
+          "min": 1050
+        },
+        "Energy Regen": {
+          "min": 100
+        },
+        "Crit. Rate": {
+          "min": 60,
+          "max": 80
+        },
+        "Crit. DMG": {
+          "min": 210,
+          "max": 260
+        }
+      },
+      "nonCritWeaponTargets": {},
+      "substatWeights": {
+        "Energy Regen": 1,
+        "Crit. Rate": 0.8,
+        "Crit. DMG": 0.8,
+        "ATK%": 0.6,
+        "ATK": 0.4,
+        "Resonance Skill DMG Bonus": 0.2
+      },
+      "mainStats": {
+        "1": [
+          "ATK%"
+        ],
+        "3": [
+          "Energy Regen",
+          "Glacio DMG Bonus"
+        ],
+        "4": [
+          "Crit. Rate",
+          "Crit. DMG"
+        ]
+      },
+      "quotes": [
+        "HP: 15000+",
+        "DEF: 1050+",
+        "ATK: 1300+",
+        "CRIT Rate: 60%-80%+",
+        "CRIT DMG: 210-260%+",
+        "Energy Regen: 100%",
+        "Energy Regen (Until Satisfied) > CRIT Rate = CRIT DMG > ATK% > ATK > Skill DMG%"
+      ]
     }
   },
   "sourceHashes": {
@@ -67,17 +123,25 @@
   "build": {
     "statTargets": {
       "ATK": {
-        "min": 2000
+        "min": 1650
       },
       "Energy Regen": {
-        "min": 110,
+        "min": 105,
         "max": 125
       },
       "Crit. Rate": {
-        "min": 65
+        "min": 62.5,
+        "max": 80
       },
       "Crit. DMG": {
-        "min": 265
+        "min": 237.5,
+        "max": 260
+      },
+      "HP": {
+        "min": 15000
+      },
+      "DEF": {
+        "min": 1050
       }
     },
     "nonCritWeaponTargets": {
@@ -89,12 +153,12 @@
       }
     },
     "substatWeights": {
-      "Crit. Rate": 1,
-      "Crit. DMG": 1,
-      "Energy Regen": 0.8,
+      "Crit. Rate": 0.9,
+      "Crit. DMG": 0.9,
+      "Energy Regen": 0.9,
       "ATK%": 0.6,
-      "Resonance Skill DMG Bonus": 0.4,
-      "ATK": 0.2
+      "Resonance Skill DMG Bonus": 0.30000000000000004,
+      "ATK": 0.30000000000000004
     },
     "recommendedMainStats": {
       "1": [
@@ -102,7 +166,8 @@
       ],
       "3": [
         "Glacio DMG Bonus",
-        "ATK%"
+        "ATK%",
+        "Energy Regen"
       ],
       "4": [
         "Crit. Rate",

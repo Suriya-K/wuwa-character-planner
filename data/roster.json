@@ -296,5 +296,10 @@
       "element": "Glacio"
     }
   ],
-  "failed": []
+  "failed": [],
+  "prydwenMissing": [
+    "aemeath",
+    "chisa",
+    "hsin"
+  ]
 }

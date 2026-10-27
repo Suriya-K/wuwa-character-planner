@@ -1,12 +1,13 @@
 // Scrape Build Guides into data/characters/<id>.json (ADR 0002).
 // Usage: bun run scrape [--force <character-id>]
 import { mkdir, readdir } from "node:fs/promises";
-import { generateJson } from "../lib/gemini";
+import { generateFromUrl, generateJson } from "../lib/gemini";
 import {
   type BuildOverride,
   type FailedSource,
   type GuideSource,
   MAX_ROLL,
+  STAT_NAMES,
   type StatName,
   type StatTarget,
   type SubstatName,
@@ -21,7 +22,7 @@ const BLOCK_MARKER = "Ascension / Forte Material Breakdown";
 const DIR = "data/characters";
 const PARALLEL = 4;
 
-const STATS: StatName[] = ["HP", "ATK", "DEF", "Energy Regen", "Crit. Rate", "Crit. DMG"];
+const STATS = [...STAT_NAMES];
 const SUBSTATS = Object.keys(MAX_ROLL) as SubstatName[];
 const MAIN_STATS = [
   "Crit. Rate", "Crit. DMG", "ATK%", "HP%", "DEF%", "Energy Regen", "Healing Bonus",
@@ -35,6 +36,8 @@ type CharacterFile = {
   sources: Record<string, GuideSource | FailedSource>;
   sourceHashes: Record<string, string>;
   override: BuildOverride;
+  // Hand-set when Prydwen's slug differs from our id (e.g. "the-shorekeeper")
+  prydwenSlug?: string;
   build: ReturnType<typeof mergeGuides>;
 };
 
@@ -86,6 +89,28 @@ Extract:
   Flat ATK = ATK, Flat HP = HP, Flat DEF = DEF, "Energy Regen (until 120%)" = Energy Regen.
 - mainStats: from "Echo Mainstats (43311)". cost4 is the first row's options, cost3 the next two rows (e.g. "Havoc DMG Bonus / ATK" means Havoc DMG Bonus and ATK%), cost1 the last row.
 - quotes: the exact text of the rows you took numbers and priorities from.`;
+
+// Step 1 for Prydwen: url_context fetches the page but can't return schema JSON, so copy the text out first
+const prydwenCopyPrompt = (id: string) => `Open https://www.prydwen.gg/wuthering-waves/characters/${id}
+If it is a Wuthering Waves character build page, copy out verbatim: the character's name, the recommended or endgame stats,
+the substat priority, and the recommended echo main stats for each echo cost. Copy text only, do not summarize.
+If the page could not be opened or is not a single character's build page, answer exactly NOT_FOUND.`;
+
+// Step 2 for Prydwen: the same schema as the sheet, so names are forced onto the fixed English lists
+const GUIDE_PROMPT = `Below is text copied from a Wuthering Waves character build guide. Extract:
+- name: the character's name. Empty string if the text is not a single character's build.
+- statTargets: recommended stats at level 90 for HP, ATK, DEF, Energy Regen, Crit. Rate, Crit. DMG.
+  A single number or "X+" is a minimum only (max null). Set max only for a closed range like "60-70%"; "1900-2100+" has no max.
+  Energy Regen is the stat-screen total (e.g. 120). Numbers without % signs.
+- nonCritWeaponTargets: only if the guide gives separate Crit targets for non-Crit weapons; otherwise empty.
+- substatTiers: substat priority best first; each ">" starts a new tier, "=" or "/" keeps substats in one tier.
+  Map damage-type bonuses to Basic/Heavy Attack, Resonance Skill or Resonance Liberation DMG Bonus; flat ATK/HP/DEF to ATK/HP/DEF.
+- mainStats: recommended echo main stats for cost 4, cost 3 and cost 1. "ATK" on a 3- or 1-cost means ATK%.
+- quotes: the exact sentences you took numbers and priorities from.`;
+
+async function inBatches<T>(items: T[], run: (item: T) => Promise<void>) {
+  for (let i = 0; i < items.length; i += PARALLEL) await Promise.all(items.slice(i, i + PARALLEL).map(run));
+}
 
 // "Yangyang: Xuanling" -> "yangyang-xuanling", matching Prydwen's slug style (verified in ticket 07)
 const slug = (name: string) => name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
@@ -145,31 +170,52 @@ async function main() {
   console.log(`${jobs.length} blocks in sheet, ${jobs.length - todo.length} unchanged, scraping ${todo.length}`);
 
   const failed: { element: string; block: number; error: string }[] = [];
-  for (let i = 0; i < todo.length; i += PARALLEL) {
-    await Promise.all(
-      todo.slice(i, i + PARALLEL).map(async (job) => {
-        try {
-          const x = await generateJson<Extracted>([{ text: `${PROMPT}\n\n${job.text}` }], SCHEMA);
-          if (!x.name) return console.log(`  skip ${job.element} #${job.index}: not a character block`);
-          const id = slug(x.name);
-          const prev = files.get(id);
-          files.set(id, {
-            id,
-            name: x.name,
-            element: job.element,
-            sources: { ...prev?.sources, sheet: toGuideSource(x) },
-            sourceHashes: { ...prev?.sourceHashes, sheet: job.hash },
-            override: prev?.override ?? {},
-            build: prev?.build as CharacterFile["build"],
-          });
-          console.log(`  ok   ${id}`);
-        } catch (e) {
-          failed.push({ element: job.element, block: job.index, error: (e as Error).message.slice(0, 300) });
-          console.log(`  FAIL ${job.element} #${job.index}: ${(e as Error).message.slice(0, 120)}`);
+  await inBatches(todo, async (job) => {
+    try {
+      const x = await generateJson<Extracted>([{ text: `${PROMPT}\n\n${job.text}` }], SCHEMA);
+      if (!x.name) return console.log(`  skip ${job.element} #${job.index}: not a character block`);
+      const id = slug(x.name);
+      const prev = files.get(id);
+      files.set(id, {
+        id,
+        name: x.name,
+        element: job.element,
+        sources: { ...prev?.sources, sheet: toGuideSource(x) },
+        sourceHashes: { ...prev?.sourceHashes, sheet: job.hash },
+        override: prev?.override ?? {},
+      prydwenSlug: prev?.prydwenSlug,
+        build: prev?.build as CharacterFile["build"],
+      });
+      console.log(`  ok   ${id}`);
+    } catch (e) {
+      failed.push({ element: job.element, block: job.index, error: (e as Error).message.slice(0, 300) });
+      console.log(`  FAIL ${job.element} #${job.index}: ${(e as Error).message.slice(0, 120)}`);
+    }
+  });
+
+  // Prydwen: retried every run until it succeeds; --force refreshes one character
+  const prydwenTodo = [...files.values()].filter((f) => f.id === force || !f.sources.prydwen || "error" in f.sources.prydwen);
+  console.log(`Prydwen: scraping ${prydwenTodo.length}`);
+  await inBatches(prydwenTodo, async (f) => {
+    let error: string;
+    try {
+      const page = await generateFromUrl(prydwenCopyPrompt(f.prydwenSlug ?? f.id));
+      if (!page.retrieved || page.text.trim() === "NOT_FOUND") {
+        error = "NOT_FOUND";
+      } else {
+        const x = await generateJson<Extracted>([{ text: `${GUIDE_PROMPT}\n\n${page.text}` }], SCHEMA);
+        if (x.name) {
+          f.sources.prydwen = { ...toGuideSource(x), source: "prydwen" };
+          return console.log(`  ok   ${f.id}`);
         }
-      }),
-    );
-  }
+        error = "NOT_FOUND";
+      }
+    } catch (e) {
+      error = (e as Error).message.slice(0, 300);
+    }
+    f.sources.prydwen = { source: "prydwen", error };
+    console.log(`  FAIL ${f.id}: ${error.slice(0, 120)}`);
+  });
 
   // Re-merge every file so hand edits to `override` apply on each run
   for (const f of files.values()) {
@@ -178,8 +224,12 @@ async function main() {
   }
   const characters = [...files.values()].map(({ id, name, element }) => ({ id, name, element }));
   characters.sort((a, b) => a.name.localeCompare(b.name));
-  await Bun.write("data/roster.json", JSON.stringify({ characters, failed }, null, 2) + "\n");
-  console.log(`${characters.length} characters, ${failed.length} failed blocks (see data/roster.json)`);
+  // Characters whose id isn't a Prydwen slug (or Prydwen has no page for yet): fix by hand in ticket 07's follow-up
+  const prydwenMissing = [...files.values()]
+    .filter((f) => "error" in f.sources.prydwen && (f.sources.prydwen as FailedSource).error === "NOT_FOUND")
+    .map((f) => f.id);
+  await Bun.write("data/roster.json", JSON.stringify({ characters, failed, prydwenMissing }, null, 2) + "\n");
+  console.log(`${characters.length} characters, ${failed.length} failed sheet blocks, no Prydwen page: ${prydwenMissing.join(", ") || "none"}`);
 }
 
 await main();

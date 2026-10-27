@@ -57,6 +57,65 @@
         "Crit. Ratio (Non-Crit.),60% : 220%",
         "Substat Priority\nCrit. Rate / Crit. DMG > ATK% > Skill% > Flat ATK > Energy Regen (120%)"
       ]
+    },
+    "prydwen": {
+      "source": "prydwen",
+      "statTargets": {
+        "HP": {
+          "min": 15000
+        },
+        "ATK": {
+          "min": 2100
+        },
+        "DEF": {
+          "min": 1150
+        },
+        "Energy Regen": {
+          "min": 128,
+          "max": 138
+        },
+        "Crit. Rate": {
+          "min": 65
+        },
+        "Crit. DMG": {
+          "min": 210
+        }
+      },
+      "nonCritWeaponTargets": {},
+      "substatWeights": {
+        "Energy Regen": 1,
+        "Crit. Rate": 0.8,
+        "Crit. DMG": 0.8,
+        "ATK%": 0.6,
+        "Resonance Skill DMG Bonus": 0.4,
+        "ATK": 0.2
+      },
+      "mainStats": {
+        "1": [
+          "ATK%"
+        ],
+        "3": [
+          "Aero DMG Bonus",
+          "ATK%"
+        ],
+        "4": [
+          "Crit. Rate",
+          "Crit. DMG"
+        ]
+      },
+      "quotes": [
+        "HP: 15000+",
+        "DEF: 1150+",
+        "ATK: 2100+",
+        "CRIT Rate: 65%+",
+        "CRIT DMG: 210%+",
+        "Energy Regen: 128%-138%",
+        "Substats: Energy Regen (Until Satisfied) > CRIT Rate = CRIT DMG > ATK% > Skill DMG% > ATK",
+        "4 cost CRIT Rate / CRIT DMG",
+        "3 cost Aero DMG",
+        "3 cost Aero DMG > ATK%",
+        "1 cost ATK%"
+      ]
     }
   },
   "sourceHashes": {
@@ -66,16 +125,23 @@
   "build": {
     "statTargets": {
       "ATK": {
-        "min": 2000
+        "min": 2050
       },
       "Energy Regen": {
-        "min": 120
+        "min": 124,
+        "max": 138
       },
       "Crit. Rate": {
-        "min": 60
+        "min": 62.5
       },
       "Crit. DMG": {
-        "min": 270
+        "min": 240
+      },
+      "HP": {
+        "min": 15000
+      },
+      "DEF": {
+        "min": 1150
       }
     },
     "nonCritWeaponTargets": {
@@ -87,12 +153,12 @@
       }
     },
     "substatWeights": {
-      "Crit. Rate": 1,
-      "Crit. DMG": 1,
-      "ATK%": 0.8,
-      "Resonance Skill DMG Bonus": 0.6,
-      "ATK": 0.4,
-      "Energy Regen": 0.2
+      "Crit. Rate": 0.9,
+      "Crit. DMG": 0.9,
+      "ATK%": 0.7,
+      "Resonance Skill DMG Bonus": 0.5,
+      "ATK": 0.30000000000000004,
+      "Energy Regen": 0.6
     },
     "recommendedMainStats": {
       "1": [

@@ -45,6 +45,61 @@
         "Crit. Ratio (Non-Crit.),N/A",
         "Substat Priority\nEnergy Regen > HP% > Flat HP"
       ]
+    },
+    "prydwen": {
+      "source": "prydwen",
+      "statTargets": {
+        "HP": {
+          "min": 20000
+        },
+        "ATK": {},
+        "DEF": {
+          "min": 1100
+        },
+        "Energy Regen": {
+          "min": 220,
+          "max": 230
+        },
+        "Crit. Rate": {
+          "min": 60
+        },
+        "Crit. DMG": {
+          "min": 210
+        }
+      },
+      "nonCritWeaponTargets": {},
+      "substatWeights": {
+        "Energy Regen": 1,
+        "HP%": 0.6666666666666666,
+        "HP": 0.3333333333333333
+      },
+      "mainStats": {
+        "1": [
+          "HP%",
+          "HP%"
+        ],
+        "3": [
+          "Energy Regen",
+          "Energy Regen"
+        ],
+        "4": [
+          "HP%",
+          "Crit. Rate"
+        ]
+      },
+      "quotes": [
+        "HP: 20000-35000+",
+        "DEF: 1100+",
+        "CRIT Rate: 60%+",
+        "CRIT DMG: 210%+",
+        "Energy Regen: 220%-230%",
+        "Energy Regen (Until Satisfied) > HP% > Flat HP",
+        "4 cost: HP% / CRIT Rate",
+        "3 cost: Energy Regen",
+        "3 cost: Energy Regen",
+        "1 cost: HP%",
+        "1 cost: HP%"
+      ]
     }
   },
   "sourceHashes": {
@@ -54,10 +109,21 @@
   "build": {
     "statTargets": {
       "HP": {
-        "min": 19000
+        "min": 19500
       },
       "Energy Regen": {
-        "min": 200
+        "min": 210,
+        "max": 230
+      },
+      "ATK": {},
+      "DEF": {
+        "min": 1100
+      },
+      "Crit. Rate": {
+        "min": 60
+      },
+      "Crit. DMG": {
+        "min": 210
       }
     },
     "nonCritWeaponTargets": {
@@ -82,7 +148,8 @@
       ],
       "4": [
         "HP%",
-        "Healing Bonus"
+        "Healing Bonus",
+        "Crit. Rate"
       ]
     }
   }

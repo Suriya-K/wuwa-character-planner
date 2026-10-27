@@ -38,6 +38,65 @@
         "Crit. Ratio (Non-Crit.),N/A",
         "Substat Priority\nEnergy Regen > ATK% > Flat ATK"
       ]
+    },
+    "prydwen": {
+      "source": "prydwen",
+      "statTargets": {
+        "HP": {
+          "min": 18000
+        },
+        "ATK": {
+          "min": 1500
+        },
+        "DEF": {
+          "min": 1100
+        },
+        "Energy Regen": {
+          "min": 220,
+          "max": 230
+        },
+        "Crit. Rate": {
+          "min": 60
+        },
+        "Crit. DMG": {
+          "min": 210
+        }
+      },
+      "nonCritWeaponTargets": {},
+      "substatWeights": {
+        "Energy Regen": 1,
+        "Crit. Rate": 0.75,
+        "Crit. DMG": 0.75,
+        "ATK%": 0.5,
+        "ATK": 0.25
+      },
+      "mainStats": {
+        "1": [
+          "ATK%"
+        ],
+        "3": [
+          "Energy Regen",
+          "Spectro DMG Bonus"
+        ],
+        "4": [
+          "Crit. Rate",
+          "ATK%"
+        ]
+      },
+      "quotes": [
+        "HP: 18000+",
+        "DEF: 1100+",
+        "ATK: 1500+",
+        "CRIT Rate: 60%+",
+        "CRIT DMG: 210%+",
+        "Energy Regen: 220%-230%",
+        "Energy Regen (Until Satisfied) > CRIT Rate = CRIT DMG > ATK% > ATK",
+        "4 cost: CRIT Rate > ATK%",
+        "3 cost: Energy Regen",
+        "3 cost: Energy Regen / Spectro DMG",
+        "1 cost: ATK%",
+        "1 cost: ATK%"
+      ]
     }
   },
   "sourceHashes": {
@@ -50,14 +109,29 @@
         "min": 1500
       },
       "Energy Regen": {
-        "min": 200
+        "min": 210,
+        "max": 230
+      },
+      "HP": {
+        "min": 18000
+      },
+      "DEF": {
+        "min": 1100
+      },
+      "Crit. Rate": {
+        "min": 60
+      },
+      "Crit. DMG": {
+        "min": 210
       }
     },
     "nonCritWeaponTargets": {},
     "substatWeights": {
       "Energy Regen": 1,
-      "ATK%": 0.6666666666666666,
-      "ATK": 0.3333333333333333
+      "ATK%": 0.5833333333333333,
+      "ATK": 0.29166666666666663,
+      "Crit. Rate": 0.375,
+      "Crit. DMG": 0.375
     },
     "recommendedMainStats": {
       "1": [
@@ -65,10 +139,13 @@
       ],
       "3": [
         "Energy Regen",
-        "ATK%"
+        "ATK%",
+        "Spectro DMG Bonus"
       ],
       "4": [
-        "Healing Bonus"
+        "Healing Bonus",
+        "Crit. Rate",
+        "ATK%"
       ]
     }
   }
