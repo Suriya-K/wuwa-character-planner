@@ -25,7 +25,10 @@ A community-published recommendation for how to build a specific character, used
 _Avoid_: Guide, meta
 
 **Stat Target**:
-A recommended min–max range for one stat on one character, merged from several Build Guides.
+A recommended floor for one stat on one character, merged from several Build Guides, with a ceiling only when a guide states one.
+
+**Crit Weapon**:
+A weapon whose secondary stat is Crit. Rate or Crit. DMG; whether a character holds one decides which Crit Stat Targets apply.
 _Avoid_: Recommended stat, benchmark
 
 **Stat Verdict**:
