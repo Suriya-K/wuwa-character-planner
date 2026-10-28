@@ -158,6 +158,23 @@
         "For the substats, you'll want to actually prioritize crit rate... then crit damage and ATK% and heavy attack damage are all good on her, followed by flat attack of course, not being useless either.",
         "For the main stats it's the usual crit damage for the four cost echo, havoc havoc for the three cost echoes, and attack percent for the one cost echo. However, crit rate for the main stat for the four cost echo can be considered if you're using a weapon that doesn't provide crit rate. ATK% as the main stat is also a surprisingly viable option for the four cost echo because she's super saturated on crit damage from her kit. Finally, one ATK% three cost echo is generally okay, but two ATK% is not recommended."
       ]
+    },
+    "optimizer": {
+      "source": "optimizer",
+      "statTargets": {},
+      "substatWeights": {
+        "Crit. Rate": 1,
+        "Crit. DMG": 0.75,
+        "Energy Regen": 0.25,
+        "ATK%": 0.5,
+        "Heavy Attack DMG Bonus": 0.5,
+        "ATK": 0.25
+      },
+      "mainStats": {
+        "1": [],
+        "3": [],
+        "4": []
+      }
     }
   },
   "sourceHashes": {
@@ -194,12 +211,12 @@
       }
     },
     "substatWeights": {
-      "Crit. Rate": 0.8888888888888888,
-      "Crit. DMG": 0.8333333333333334,
-      "Energy Regen": 0.6555555555555556,
-      "Heavy Attack DMG Bonus": 0.4777777777777778,
-      "ATK%": 0.4666666666666666,
-      "ATK": 0.2888888888888889
+      "Crit. Rate": 0.9166666666666666,
+      "Crit. DMG": 0.8125,
+      "Energy Regen": 0.5541666666666667,
+      "Heavy Attack DMG Bonus": 0.48333333333333334,
+      "ATK%": 0.475,
+      "ATK": 0.2791666666666667
     },
     "recommendedMainStats": {
       "1": [
@@ -216,6 +233,11 @@
     }
   },
   "profile": {
-    "weaponType": "Sword"
+    "weaponType": "Sword",
+    "base": {
+      "HP": 11025,
+      "ATK": 425,
+      "DEF": 1148.8868
+    }
   }
 }

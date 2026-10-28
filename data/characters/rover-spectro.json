@@ -113,6 +113,23 @@
         "Energy Regen: 120%-123%+",
         "Substats: Energy Regen (Until Satisfied) > CRIT Rate = CRIT DMG > ATK% > ATK > Skill DMG% > Liberation DMG%"
       ]
+    },
+    "optimizer": {
+      "source": "optimizer",
+      "statTargets": {},
+      "substatWeights": {
+        "Energy Regen": 0.5,
+        "Crit. Rate": 1,
+        "Crit. DMG": 1,
+        "Resonance Skill DMG Bonus": 0.75,
+        "ATK%": 0.5,
+        "ATK": 0.25
+      },
+      "mainStats": {
+        "1": [],
+        "3": [],
+        "4": []
+      }
     }
   },
   "sourceHashes": {
@@ -149,13 +166,13 @@
       }
     },
     "substatWeights": {
-      "Crit. Rate": 0.9166666666666667,
-      "Crit. DMG": 0.9166666666666667,
-      "Energy Regen": 0.9,
-      "ATK%": 0.6333333333333333,
-      "ATK": 0.45,
-      "Resonance Skill DMG Bonus": 0.26666666666666666,
-      "Resonance Liberation DMG Bonus": 0.08333333333333333
+      "Crit. Rate": 0.9444444444444445,
+      "Crit. DMG": 0.9444444444444445,
+      "Energy Regen": 0.7666666666666666,
+      "ATK%": 0.5888888888888889,
+      "ATK": 0.3833333333333333,
+      "Resonance Skill DMG Bonus": 0.42777777777777776,
+      "Resonance Liberation DMG Bonus": 0.05555555555555555
     },
     "recommendedMainStats": {
       "1": [

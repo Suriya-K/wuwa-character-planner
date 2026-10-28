@@ -113,6 +113,23 @@
         "Energy Regen: 108%-122%",
         "Substats: Energy Regen (Until Satisfied) > CRIT Rate = CRIT DMG > Liberation DMG% ≥ ATK% > ATK"
       ]
+    },
+    "optimizer": {
+      "source": "optimizer",
+      "statTargets": {},
+      "substatWeights": {
+        "Crit. Rate": 1,
+        "Crit. DMG": 1,
+        "Energy Regen": 0.25,
+        "ATK%": 0.5,
+        "Resonance Liberation DMG Bonus": 0.5,
+        "ATK": 0.25
+      },
+      "mainStats": {
+        "1": [],
+        "3": [],
+        "4": []
+      }
     }
   },
   "sourceHashes": {
@@ -149,12 +166,12 @@
       }
     },
     "substatWeights": {
-      "Crit. Rate": 0.9,
-      "Crit. DMG": 0.9,
-      "Energy Regen": 0.9,
+      "Crit. Rate": 0.9333333333333332,
+      "Crit. DMG": 0.9333333333333332,
+      "Energy Regen": 0.6833333333333332,
       "ATK%": 0.5,
       "Resonance Liberation DMG Bonus": 0.5,
-      "ATK": 0.2
+      "ATK": 0.21666666666666667
     },
     "recommendedMainStats": {
       "1": [
@@ -171,6 +188,11 @@
     }
   },
   "profile": {
-    "weaponType": "Rectifier"
+    "weaponType": "Rectifier",
+    "base": {
+      "HP": 11025,
+      "ATK": 425,
+      "DEF": 1148
+    }
   }
 }

@@ -178,6 +178,11 @@
     }
   },
   "profile": {
-    "weaponType": "Sword"
+    "weaponType": "Sword",
+    "base": {
+      "HP": 10775,
+      "ATK": 437.5,
+      "DEF": 1136.6646
+    }
   }
 }

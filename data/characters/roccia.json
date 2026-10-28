@@ -117,6 +117,23 @@
         "3 cost Havoc DMG > ATK%",
         "1 cost ATK%"
       ]
+    },
+    "optimizer": {
+      "source": "optimizer",
+      "statTargets": {},
+      "substatWeights": {
+        "Energy Regen": 0.5,
+        "Crit. Rate": 1,
+        "Crit. DMG": 1,
+        "ATK%": 0.5,
+        "Heavy Attack DMG Bonus": 0.75,
+        "ATK": 0.25
+      },
+      "mainStats": {
+        "1": [],
+        "3": [],
+        "4": []
+      }
     }
   },
   "sourceHashes": {
@@ -153,12 +170,12 @@
       }
     },
     "substatWeights": {
-      "Crit. Rate": 0.9166666666666667,
-      "Crit. DMG": 0.8333333333333333,
-      "ATK%": 0.65,
-      "Heavy Attack DMG Bonus": 0.4666666666666667,
-      "ATK": 0.2833333333333333,
-      "Energy Regen": 0.6
+      "Crit. Rate": 0.9444444444444445,
+      "Crit. DMG": 0.8888888888888888,
+      "ATK%": 0.6,
+      "Heavy Attack DMG Bonus": 0.5611111111111111,
+      "ATK": 0.2722222222222222,
+      "Energy Regen": 0.5666666666666667
     },
     "recommendedMainStats": {
       "1": [

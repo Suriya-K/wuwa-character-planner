@@ -104,6 +104,22 @@
         "1 cost: HP%",
         "1 cost: HP%"
       ]
+    },
+    "optimizer": {
+      "source": "optimizer",
+      "statTargets": {},
+      "substatWeights": {
+        "Energy Regen": 0.5,
+        "HP%": 0.5,
+        "Crit. DMG": 1,
+        "Resonance Liberation DMG Bonus": 0.75,
+        "HP": 0.25
+      },
+      "mainStats": {
+        "1": [],
+        "3": [],
+        "4": []
+      }
     }
   },
   "sourceHashes": {
@@ -131,14 +147,14 @@
     },
     "nonCritWeaponTargets": {},
     "substatWeights": {
-      "Energy Regen": 1,
-      "HP%": 0.7083333333333333,
-      "HP": 0.41666666666666663,
-      "Resonance Liberation DMG Bonus": 0.5416666666666667,
-      "Crit. DMG": 0.4166666666666667,
-      "Crit. Rate": 0.25,
-      "ATK%": 0.08333333333333333,
-      "ATK": 0.08333333333333333
+      "Energy Regen": 0.8333333333333334,
+      "HP%": 0.6388888888888888,
+      "HP": 0.3611111111111111,
+      "Resonance Liberation DMG Bonus": 0.6111111111111112,
+      "Crit. DMG": 0.6111111111111112,
+      "Crit. Rate": 0.16666666666666666,
+      "ATK%": 0.05555555555555555,
+      "ATK": 0.05555555555555555
     },
     "recommendedMainStats": {
       "1": [

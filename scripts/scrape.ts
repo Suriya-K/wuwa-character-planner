@@ -277,6 +277,18 @@ const SONATA_SCHEMA = {
   required: ["effects"],
 };
 
+// Wuthering Waves Optimizer (GPL-3.0, personal use): DPR-derived Substat Weights and Base Stats as plain TS on GitHub
+const OPTIMIZER = "ryanbenson/wuthering-waves-optimizer";
+const optimizerFile = (path: string) => fetchText(`https://raw.githubusercontent.com/${OPTIMIZER}/master/${path}`);
+// Its keys are PascalCase with Rover split by gender ("LuukHerssen", "Roverelectrofemale"); ours are kebab-case
+const optimizerKey = (name: string) => name.toLowerCase().replace(/(fe)?male$/, "").replace(/-/g, "");
+const OPTIMIZER_SUBSTAT: Record<string, SubstatName> = {
+  CritRate: "Crit. Rate", CritDMG: "Crit. DMG", EnergyRegen: "Energy Regen", ATK: "ATK%", ATK_FLAT: "ATK", HP: "HP%",
+  HP_FLAT: "HP", DEF: "DEF%", DEF_FLAT: "DEF", BasicAttackDMGBonus: "Basic Attack DMG Bonus",
+  HeavyAttackDMGBonus: "Heavy Attack DMG Bonus", ResonanceSkillDMGBonus: "Resonance Skill DMG Bonus",
+  ResonanceLiberationDMGBonus: "Resonance Liberation DMG Bonus",
+};
+
 // "Yangyang: Xuanling" -> "yangyang-xuanling", matching Prydwen's slug style (verified in ticket 07)
 const slug = (name: string) => name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
@@ -388,16 +400,48 @@ async function main() {
     console.log(`  FAIL ${f.id}: ${error.slice(0, 120)}`);
   });
 
-  // Character profiles (weapon type, level 90 base stats) and icons, once per character
+  // Optimizer: weights on a 0-4 scale, re-read every run (one file); a character it doesn't cover gets no vote
+  const priorities = await optimizerFile("src/characters/substatPriorities.ts");
+  const optimizerWeights = new Map<string, GuideSource["substatWeights"]>();
+  for (const [, name, body] of priorities.matchAll(/^\s+(\w+): \{([^}]*)\}/gm)) {
+    const weights: GuideSource["substatWeights"] = {};
+    for (const [, key, value] of body.matchAll(/(\w+): ([\d.]+)/g)) {
+      if (!OPTIMIZER_SUBSTAT[key]) throw new Error(`Optimizer: unknown substat ${key}`);
+      weights[OPTIMIZER_SUBSTAT[key]] = Number(value) / 4;
+    }
+    optimizerWeights.set(optimizerKey(name), weights);
+  }
+  if (optimizerWeights.size < 40) throw new Error(`Optimizer: only ${optimizerWeights.size} weight profiles; has the file changed?`);
+  for (const f of files.values()) {
+    const substatWeights = optimizerWeights.get(optimizerKey(f.id));
+    if (substatWeights) f.sources.optimizer = { source: "optimizer", statTargets: {}, substatWeights, mainStats: { 4: [], 3: [], 1: [] } };
+    else delete f.sources.optimizer;
+  }
+  console.log(`Optimizer: weights for ${[...files.values()].filter((f) => f.sources.optimizer).length} characters`);
+  const tree = await (await fetch(`https://api.github.com/repos/${OPTIMIZER}/git/trees/master?recursive=1`)).json();
+  const optimizerFolders = new Map<string, string>();
+  for (const { path } of tree.tree ?? []) {
+    const folder = path.match(/^src\/characters\/([^/]+)\/character\.ts$/)?.[1];
+    if (folder && !optimizerFolders.has(optimizerKey(folder))) optimizerFolders.set(optimizerKey(folder), folder);
+  }
+
+  // Character profiles (weapon type, level 90 base stats) and icons, once per character.
+  // Base Stats from Prydwen, else the Optimizer's (all 51 both had matched within rounding, 2026-10-28)
   const profileTodo = [...files.values()].filter((f) => f.id === force || !f.profile?.base);
   console.log(`Profiles: scraping ${profileTodo.length}`);
   await inBatches(profileTodo, async (f) => {
     const text = textOf(await renderPrydwen(`characters/${f.prydwenSlug ?? f.id}`));
     const type = text.match(/uses the\s+(\w+)\s+type weapon/)?.[1];
-    const base = text.match(/Lv\.\s+90\s+HP\s+(\d+)\s+ATK\s+(\d+)\s+DEF\s+(\d+)/);
+    const folder = optimizerFolders.get(optimizerKey(f.id));
+    const base =
+      text.match(/Lv\.\s+90\s+HP\s+(\d+)\s+ATK\s+(\d+)\s+DEF\s+(\d+)/) ??
+      (folder &&
+        (await optimizerFile(`src/characters/${folder}/character.ts`)).match(
+          /"90":\s*\{\s*hp:\s*([\d.]+),\s*attack:\s*([\d.]+),\s*defense:\s*([\d.]+)/,
+        ));
     if (!type) return console.log(`  FAIL ${f.id}: no weapon type on the Prydwen page`);
     f.profile = { weaponType: type, ...(base && { base: { HP: +base[1], ATK: +base[2], DEF: +base[3] } }) };
-    console.log(base ? `  ok   ${f.id}` : `  part ${f.id}: ${type}, no level 90 stats yet`);
+    console.log(base ? `  ok   ${f.id}` : `  part ${f.id}: ${type}, no level 90 stats on Prydwen or the Optimizer`);
   });
   await mkdir(ICONS, { recursive: true });
   await inBatches([...files.values()], async (f) => {

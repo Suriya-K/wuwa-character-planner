@@ -112,6 +112,23 @@
         "Energy Regen 116%-128%+",
         "Energy Regen (Until Satisfied) > CRIT Rate = CRIT DMG > ATK% > Basic DMG% > Flat ATK"
       ]
+    },
+    "optimizer": {
+      "source": "optimizer",
+      "statTargets": {},
+      "substatWeights": {
+        "Energy Regen": 0.5,
+        "Crit. Rate": 1,
+        "Crit. DMG": 1,
+        "ATK%": 0.5,
+        "Basic Attack DMG Bonus": 0.75,
+        "ATK": 0.25
+      },
+      "mainStats": {
+        "1": [],
+        "3": [],
+        "4": []
+      }
     }
   },
   "sourceHashes": {
@@ -148,12 +165,12 @@
       }
     },
     "substatWeights": {
-      "Crit. Rate": 0.9,
-      "Crit. DMG": 0.9,
-      "Energy Regen": 0.9,
-      "ATK%": 0.6,
-      "Basic Attack DMG Bonus": 0.4,
-      "ATK": 0.2
+      "Crit. Rate": 0.9333333333333332,
+      "Crit. DMG": 0.9333333333333332,
+      "Energy Regen": 0.7666666666666666,
+      "ATK%": 0.5666666666666667,
+      "Basic Attack DMG Bonus": 0.5166666666666667,
+      "ATK": 0.21666666666666667
     },
     "recommendedMainStats": {
       "1": [
