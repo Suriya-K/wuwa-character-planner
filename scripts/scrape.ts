@@ -126,6 +126,22 @@ async function inBatches<T>(items: T[], run: (item: T) => Promise<void>) {
   for (let i = 0; i < items.length; i += PARALLEL) await Promise.all(items.slice(i, i + PARALLEL).map(run));
 }
 
+// url_context truncates long Prydwen pages (aemeath, chisa, hsin had no stats), so fall back to local Chrome.
+// Echo main stats, substats and endgame stats all sit between these two headings.
+async function renderedPrydwenBuild(slug: string) {
+  const chrome = Bun.spawn(
+    ["google-chrome-stable", "--headless=new", "--disable-gpu", "--virtual-time-budget=15000",
+      "--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36",
+      "--dump-dom", `https://www.prydwen.gg/wuthering-waves/characters/${slug}`],
+    { stderr: "ignore" },
+  );
+  const text = (await new Response(chrome.stdout).text())
+    .replace(/<[^>]*>/g, "\n").replace(/&gt;/g, ">").replace(/&amp;/g, "&").replace(/\n\s*\n+/g, "\n");
+  const start = text.indexOf("Best Echo Stats");
+  const end = text.indexOf("Skill Priority", start);
+  return start < 0 || end < 0 ? undefined : text.slice(start, end);
+}
+
 // "Yangyang: Xuanling" -> "yangyang-xuanling", matching Prydwen's slug style (verified in ticket 07)
 const slug = (name: string) => name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 
@@ -215,10 +231,15 @@ async function main() {
     let error: string;
     try {
       const page = await generateFromUrl(prydwenCopyPrompt(f.prydwenSlug ?? f.id));
-      if (!page.retrieved || page.text.trim() === "NOT_FOUND") {
+      let text = page.retrieved && page.text.trim() !== "NOT_FOUND" ? page.text : undefined;
+      if (!text) {
+        const rendered = await renderedPrydwenBuild(f.prydwenSlug ?? f.id);
+        if (rendered) text = `Character: ${f.name}\n${rendered}`;
+      }
+      if (!text) {
         error = "NOT_FOUND";
       } else {
-        const x = await generateJson<Extracted>([{ text: `${GUIDE_PROMPT}\n\n${page.text}` }], SCHEMA);
+        const x = await generateJson<Extracted>([{ text: `${GUIDE_PROMPT}\n\n${text}` }], SCHEMA);
         if (x.name) {
           f.sources.prydwen = { ...toGuideSource(x), source: "prydwen" };
           return console.log(`  ok   ${f.id}`);

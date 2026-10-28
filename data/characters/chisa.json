@@ -61,7 +61,57 @@
     },
     "prydwen": {
       "source": "prydwen",
-      "error": "NOT_FOUND"
+      "statTargets": {
+        "HP": {
+          "min": 15000
+        },
+        "ATK": {
+          "min": 2000
+        },
+        "DEF": {
+          "min": 1100
+        },
+        "Energy Regen": {
+          "min": 125
+        },
+        "Crit. Rate": {
+          "min": 65
+        },
+        "Crit. DMG": {
+          "min": 210
+        }
+      },
+      "nonCritWeaponTargets": {},
+      "substatWeights": {
+        "Energy Regen": 1,
+        "Crit. Rate": 0.8,
+        "Crit. DMG": 0.8,
+        "ATK%": 0.6,
+        "Resonance Liberation DMG Bonus": 0.4,
+        "ATK": 0.2
+      },
+      "mainStats": {
+        "1": [
+          "ATK%"
+        ],
+        "3": [
+          "Havoc DMG Bonus",
+          "ATK%"
+        ],
+        "4": [
+          "Crit. Rate",
+          "Crit. DMG"
+        ]
+      },
+      "quotes": [
+        "HP: 15000+",
+        "DEF: 1100+",
+        "ATK: 2000-2500+",
+        "CRIT Rate: 65-80%+",
+        "CRIT DMG: 210-255%+",
+        "Energy Regen: 125%+",
+        "Energy Regen (Until Satisfied) > CRIT Rate = CRIT DMG > ATK% > Liberation DMG% > ATK"
+      ]
     }
   },
   "sourceHashes": {
@@ -71,18 +121,22 @@
   "build": {
     "statTargets": {
       "ATK": {
-        "min": 1900,
-        "max": 2100
+        "min": 1950
       },
       "Energy Regen": {
-        "min": 120
+        "min": 122.5
       },
       "Crit. Rate": {
-        "min": 75,
-        "max": 85
+        "min": 70
       },
       "Crit. DMG": {
-        "min": 270
+        "min": 240
+      },
+      "HP": {
+        "min": 15000
+      },
+      "DEF": {
+        "min": 1100
       }
     },
     "nonCritWeaponTargets": {
@@ -94,9 +148,9 @@
       }
     },
     "substatWeights": {
-      "Crit. Rate": 1,
-      "Crit. DMG": 1,
-      "Energy Regen": 0.8,
+      "Crit. Rate": 0.9,
+      "Crit. DMG": 0.9,
+      "Energy Regen": 0.9,
       "ATK%": 0.6,
       "Resonance Liberation DMG Bonus": 0.4,
       "ATK": 0.2
