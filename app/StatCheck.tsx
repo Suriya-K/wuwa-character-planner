@@ -21,12 +21,16 @@ import {
 import CharacterPicker, { Icon } from "./CharacterPicker";
 import EchoRow, { formatScore } from "./EchoRow";
 
-// Fixed Main DPS goals, the same for every character
-const AIMING_STATS = [
+// Fixed Main DPS goals, the same for every character except HP scalers
+const AIMING_STATS: { name: StatName; aim: number }[] = [
   { name: "ATK", aim: 2500 },
   { name: "Crit. Rate", aim: 80 },
   { name: "Crit. DMG", aim: 300 },
-] as const;
+];
+// HP scalers aim for HP instead of ATK; 35000 is Cartethyia's HP Stat Target from the guides
+const HP_SCALERS: Record<string, number> = { cartethyia: 35000 };
+const aimingStats = (id: string) =>
+  id in HP_SCALERS ? [{ name: "HP" as const, aim: HP_SCALERS[id] }, ...AIMING_STATS.slice(1)] : AIMING_STATS;
 
 type Targets = Partial<Record<StatName, StatTarget>>;
 
@@ -473,7 +477,7 @@ export default function StatCheck({
           </tr>
         </thead>
         <tbody>
-          {AIMING_STATS.map(({ name, aim }) => {
+          {aimingStats(characterId).map(({ name, aim }) => {
             const value = stats[name];
             const left = value === undefined ? undefined : aim - value;
             return (
