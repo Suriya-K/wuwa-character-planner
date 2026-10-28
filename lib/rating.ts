@@ -102,6 +102,18 @@ const median = (xs: number[]) => {
   return s.length % 2 ? s[mid] : (s[mid - 1] + s[mid]) / 2;
 };
 
+// Gemini reads "2000-2400+" as a 2000..2400 range though the "+" means no ceiling; the source's own quotes settle it
+function dropOpenCeilings(targets: Partial<Record<StatName, StatTarget>> = {}, quotes: string[] = []) {
+  const num = (v: number) => String(v).replace(".", "\\.");
+  return Object.fromEntries(
+    Object.entries(targets).map(([name, t]) => {
+      const open = t.min !== undefined && t.max !== undefined &&
+        quotes.some((q) => new RegExp(`\\b${num(t.min!)}%?\\s*[-–]\\s*${num(t.max!)}%?\\s*\\+`).test(q));
+      return [name, open ? { min: t.min } : t];
+    }),
+  ) as Partial<Record<StatName, StatTarget>>;
+}
+
 function mergeTargets(perSource: Partial<Record<StatName, StatTarget>>[]) {
   const merged: Partial<Record<StatName, StatTarget>> = {};
   for (const name of new Set(perSource.flatMap((t) => Object.keys(t) as StatName[]))) {
@@ -138,8 +150,8 @@ export function mergeGuides(
   nonCritWeaponTargets: Partial<Record<StatName, StatTarget>>;
 } {
   const sources = all.filter((s): s is GuideSource => !("error" in s));
-  const statTargets = mergeTargets(sources.map((s) => s.statTargets));
-  const nonCritWeaponTargets = mergeTargets(sources.map((s) => s.nonCritWeaponTargets ?? {}));
+  const statTargets = mergeTargets(sources.map((s) => dropOpenCeilings(s.statTargets, s.quotes)));
+  const nonCritWeaponTargets = mergeTargets(sources.map((s) => dropOpenCeilings(s.nonCritWeaponTargets, s.quotes)));
   const substatWeights: Partial<Record<SubstatName, number>> = {};
   for (const name of new Set(sources.flatMap((s) => Object.keys(s.substatWeights) as SubstatName[]))) {
     substatWeights[name] = sources.reduce((sum, s) => sum + (s.substatWeights[name] ?? 0), 0) / sources.length;

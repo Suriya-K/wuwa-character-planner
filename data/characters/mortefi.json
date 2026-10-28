@@ -132,16 +132,14 @@
         "min": 1850
       },
       "Energy Regen": {
-        "min": 117.5,
-        "max": 135
+        "min": 117.5
       },
       "Crit. Rate": {
         "min": 60,
         "max": 72.5
       },
       "Crit. DMG": {
-        "min": 240,
-        "max": 277.5
+        "min": 240
       },
       "HP": {
         "min": 15000

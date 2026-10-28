@@ -123,12 +123,10 @@
         "min": 1100
       },
       "Crit. Rate": {
-        "min": 20,
-        "max": 40
+        "min": 20
       },
       "Crit. DMG": {
-        "min": 220,
-        "max": 280
+        "min": 220
       }
     },
     "nonCritWeaponTargets": {},

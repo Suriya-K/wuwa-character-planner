@@ -235,3 +235,24 @@ describe("rateEcho Energy Regen", () => {
     expect(compareEchoes(thousandPuppetPavilion, erEcho, { "Energy Regen": 164 }, character).scoreDelta).toBeCloseTo(20, 5);
   });
 });
+
+describe("open-ended ranges", () => {
+  const prydwen = (quotes: string[]): GuideSource => ({
+    source: "prydwen",
+    statTargets: { ATK: { min: 2000, max: 2400 }, "Energy Regen": { min: 115, max: 125 }, "Crit. Rate": { min: 60, max: 70 } },
+    substatWeights: {},
+    mainStats: { 4: [], 3: [], 1: [] },
+    quotes,
+  });
+
+  test("a range ending in + quoted by the source has no ceiling", () => {
+    const { statTargets } = mergeGuides([prydwen(["ATK: 2000-2400+", "Energy Regen: 115%-125%+", "CRIT Rate: 60-70%"])]);
+    expect(statTargets.ATK).toEqual({ min: 2000, max: undefined });
+    expect(statTargets["Energy Regen"]).toEqual({ min: 115, max: undefined });
+    expect(statTargets["Crit. Rate"]).toEqual({ min: 60, max: 70 });
+  });
+
+  test("without a quote the ceiling stays", () => {
+    expect(mergeGuides([prydwen([])]).statTargets.ATK).toEqual({ min: 2000, max: 2400 });
+  });
+});
