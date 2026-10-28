@@ -21,6 +21,13 @@ import {
 import CharacterPicker, { Icon } from "./CharacterPicker";
 import EchoRow, { formatScore } from "./EchoRow";
 
+// Fixed Main DPS goals, the same for every character
+const AIMING_STATS = [
+  { name: "ATK", aim: 2500 },
+  { name: "Crit. Rate", aim: 80 },
+  { name: "Crit. DMG", aim: 300 },
+] as const;
+
 type Targets = Partial<Record<StatName, StatTarget>>;
 
 export type CharacterOption = CharacterBuild & {
@@ -454,6 +461,34 @@ export default function StatCheck({
           </small>
         </p>
       )}
+
+      <h2>Aiming Stats (Main DPS)</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Stat</th>
+            <th>Aim</th>
+            <th>Now</th>
+            <th>Still needed</th>
+          </tr>
+        </thead>
+        <tbody>
+          {AIMING_STATS.map(({ name, aim }) => {
+            const value = stats[name];
+            const left = value === undefined ? undefined : aim - value;
+            return (
+              <tr key={name}>
+                <td>{name}</td>
+                <td>{aim}{PERCENT.has(name) && "%"}</td>
+                <td>{value ?? "—"}{value !== undefined && PERCENT.has(name) && "%"}</td>
+                <td className={left === undefined ? undefined : left > 0 ? "Low" : "OK"}>
+                  {left === undefined ? "—" : left > 0 ? `${left.toFixed(1).replace(/\.0$/, "")}${PERCENT.has(name) ? "%" : ""}` : "Reached"}
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
       </div>
 
       <div>
