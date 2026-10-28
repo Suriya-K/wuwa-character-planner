@@ -20,6 +20,11 @@ fieldset.plain { border: 0; padding: 0; margin: 0; min-width: 0; }
 .loadout td { vertical-align: top; }
 .error { color: #c00; }
 .paste { border: 2px dashed #888; padding: 16px; text-align: center; }
+/* Wide screens: Stats left, Loadout + Candidate right; phones keep the single column */
+@media (min-width: 1100px) {
+  body { max-width: 1500px; }
+  .cols { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: 24px; align-items: start; }
+}
 `;
 
 export default function RootLayout({ children }: { children: ReactNode }) {

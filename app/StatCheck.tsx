@@ -251,7 +251,8 @@ export default function StatCheck({ characters }: { characters: CharacterOption[
         ))}
       </fieldset>
 
-      <fieldset className="plain" disabled={!loaded}>
+      <fieldset className="plain cols" disabled={!loaded}>
+      <div>
       <h2>Stats</h2>
       <table>
         <thead>
@@ -302,7 +303,9 @@ export default function StatCheck({ characters }: { characters: CharacterOption[
           })}
         </tbody>
       </table>
+      </div>
 
+      <div>
       <h2>
         Loadout ({loadout.length}/{LOADOUT_SIZE})
       </h2>
@@ -433,6 +436,7 @@ export default function StatCheck({ characters }: { characters: CharacterOption[
           )}
         </>
       )}
+      </div>
 
       </fieldset>
 
