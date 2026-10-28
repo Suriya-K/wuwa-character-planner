@@ -162,5 +162,13 @@
         "Crit. DMG"
       ]
     }
+  },
+  "profile": {
+    "weaponType": "Gauntlets",
+    "base": {
+      "HP": 8525,
+      "ATK": 225,
+      "DEF": 1638
+    }
   }
 }

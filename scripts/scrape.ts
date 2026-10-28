@@ -1,8 +1,13 @@
 // Scrape Build Guides into data/characters/<id>.json (ADR 0002).
-// Usage: bun run scrape [--force <character-id>]
+// Usage: bun run scrape [--force <character-id> | sonata]
 import { mkdir, readdir } from "node:fs/promises";
+import { tmpdir } from "node:os";
 import { generateFromUrl, generateJson } from "../lib/gemini";
 import {
+  type BaseStats,
+  BONUS_STATS,
+  type Bonus,
+  type BonusStat,
   type BuildOverride,
   type FailedSource,
   type GuideSource,
@@ -13,6 +18,7 @@ import {
   type StatName,
   type StatTarget,
   type SubstatName,
+  type Weapon,
   mergeGuides,
 } from "../lib/rating";
 
@@ -22,6 +28,10 @@ const SHEET =
 const BLOCK_MARKER = "Ascension / Forte Material Breakdown";
 const DIR = "data/characters";
 const YOUTUBE = "data/youtube.json";
+const WEAPONS = "data/weapons.json";
+const SONATA = "data/sonata.json";
+const ICONS = "public/icons";
+const SONATA_TAB = "Substat Ranges + Sonata Sets";
 const PARALLEL = 4;
 
 const STATS = [...STAT_NAMES];
@@ -38,6 +48,8 @@ type CharacterFile = {
   // Hand-set when Prydwen's slug differs from our id (e.g. "the-shorekeeper")
   prydwenSlug?: string;
   build: ReturnType<typeof mergeGuides>;
+  // From the Prydwen character page; retried until it has Base Stats (Prydwen lacks them for some new characters)
+  profile?: { weaponType: string; base?: BaseStats };
 };
 
 type Extracted = {
@@ -126,21 +138,144 @@ async function inBatches<T>(items: T[], run: (item: T) => Promise<void>) {
   for (let i = 0; i < items.length; i += PARALLEL) await Promise.all(items.slice(i, i + PARALLEL).map(run));
 }
 
-// url_context truncates long Prydwen pages (aemeath, chisa, hsin had no stats), so fall back to local Chrome.
-// Echo main stats, substats and endgame stats all sit between these two headings.
-async function renderedPrydwenBuild(slug: string) {
+// Prydwen blocks plain fetches (Cloudflare 403) and url_context truncates long pages, so render with local Chrome
+async function renderPrydwen(path: string) {
   const chrome = Bun.spawn(
     ["google-chrome-stable", "--headless=new", "--disable-gpu", "--virtual-time-budget=15000",
       "--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36",
-      "--dump-dom", `https://www.prydwen.gg/wuthering-waves/characters/${slug}`],
-    { stderr: "ignore" },
+      // Own profile per run: parallel Chromes sharing the default one hang
+      `--user-data-dir=${tmpdir()}/scrape-chrome-${crypto.randomUUID()}`,
+      "--dump-dom", `https://www.prydwen.gg/wuthering-waves/${path}`],
+    { stderr: "ignore", timeout: 90_000 },
   );
-  const text = (await new Response(chrome.stdout).text())
-    .replace(/<[^>]*>/g, "\n").replace(/&gt;/g, ">").replace(/&amp;/g, "&").replace(/\n\s*\n+/g, "\n");
+  return new Response(chrome.stdout).text();
+}
+
+const textOf = (html: string) =>
+  html.replace(/<[^>]*>/g, "\n").replace(/&gt;/g, ">").replace(/&amp;/g, "&").replace(/\n\s*\n+/g, "\n");
+
+// Echo main stats, substats and endgame stats all sit between these two headings
+async function renderedPrydwenBuild(slug: string) {
+  const text = textOf(await renderPrydwen(`characters/${slug}`));
   const start = text.indexOf("Best Echo Stats");
   const end = text.indexOf("Skill Priority", start);
   return start < 0 || end < 0 ? undefined : text.slice(start, end);
 }
+
+// The data a Next.js page streams in self.__next_f.push calls, one JSON row per line
+const nextRows = (html: string) =>
+  [...html.matchAll(/self\.__next_f\.push\(\[1,"(.*?)"\]\)/gs)].map(([, c]) => JSON.parse(`"${c}"`)).join("").split("\n");
+
+const findKey = (node: unknown, key: string): unknown => {
+  if (typeof node !== "object" || node === null) return undefined;
+  if (key in node) return (node as Record<string, unknown>)[key];
+  for (const child of Object.values(node)) {
+    const found = findKey(child, key);
+    if (found !== undefined) return found;
+  }
+};
+
+const WEAPON_STAT: Record<string, BonusStat> = {
+  ATK: "ATK%", HP: "HP%", "Max HP": "HP%", "HP%": "HP%", DEF: "DEF%", "CRIT Rate": "Crit. Rate", "Crit. Rate": "Crit. Rate",
+  "CRIT DMG": "Crit. DMG", "CRIT DMG%": "Crit. DMG", "Energy Reg.": "Energy Regen", "Energy Regen": "Energy Regen",
+};
+
+type PrydwenWeapon = {
+  Name: string; Weapon_Type: string; Rarity: number; Effect: string; Array_0: (string | number)[];
+  Stat_primary: number; Stat_secondary: string; Stat_secondary_value: number;
+};
+
+function toWeapon(w: PrydwenWeapon): Weapon | undefined {
+  const secondary = WEAPON_STAT[w.Stat_secondary];
+  if (!secondary) return;
+  // Only an unconditional first sentence ("Increases ATK by {0}." / "ATK is increased by {0}.") shows on the stat screen
+  const m = w.Effect.match(/^(?:Increases? (.+?) by \{0\}|(.+?) (?:is )?increased by \{0\})\./);
+  const passiveStat = m && WEAPON_STAT[m[1] ?? m[2]];
+  return {
+    name: w.Name,
+    type: w.Weapon_Type,
+    rarity: w.Rarity,
+    baseAtk: w.Stat_primary,
+    secondary: { [secondary]: w.Stat_secondary_value },
+    passive: passiveStat ? { [passiveStat]: w.Array_0.map((v) => parseFloat(String(v))) } : {},
+  };
+}
+
+// Minimal RFC 4180 reader: Sonata effect cells hold quoted commas and newlines
+function parseCsv(text: string) {
+  const rows: string[][] = [[]];
+  let cell = "";
+  let quoted = false;
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (quoted) {
+      if (ch !== '"') cell += ch;
+      else if (text[i + 1] === '"') cell += '"', i++;
+      else quoted = false;
+    } else if (ch === '"') quoted = true;
+    else if (ch === ",") rows.at(-1)!.push(cell), (cell = "");
+    else if (ch === "\n") rows.at(-1)!.push(cell), (cell = ""), rows.push([]);
+    else if (ch !== "\r") cell += ch;
+  }
+  rows.at(-1)!.push(cell);
+  return rows;
+}
+
+type SonataSet = { name: string; pieces: { count: number; text: string; bonus: Bonus }[] };
+
+// Sets sit side by side: a row of names, then rows with "[2PC]" two columns left of each effect's text
+function sonataGrid(csv: string): SonataSet[] {
+  const rows = parseCsv(csv);
+  const start = rows.findIndex((r) => r.some((c) => c.includes("SONATA SETS")));
+  const sets: SonataSet[] = [];
+  const byColumn = new Map<number, SonataSet>();
+  for (const row of rows.slice(start + 1)) {
+    const markers = row.flatMap((c, i) => (/^\[\d+PC\]$/.test(c.trim()) ? [i] : []));
+    if (markers.length === 0) {
+      row.forEach((c, i) => {
+        if (!c.trim()) return;
+        // "Havoc Eclipse (Havoc, HE, SSE)\npreviously ..." -> "Havoc Eclipse"
+        const set = { name: c.split("\n")[0].split("(")[0].trim(), pieces: [] };
+        byColumn.set(i, set);
+        sets.push(set);
+      });
+    }
+    for (const i of markers) {
+      byColumn.get(i + 2)?.pieces.push({ count: Number(row[i].match(/\d+/)![0]), text: row[i + 2].trim(), bonus: {} });
+    }
+  }
+  return sets.filter((set) => set.pieces.length > 0);
+}
+
+const SONATA_PROMPT = `Below are Wuthering Waves Sonata Set effects as JSON [{id, text}]. For each, list the stats it gives the wearer, at full stacks:
+only ATK%, HP%, DEF%, Crit. Rate, Crit. DMG or Energy Regen that apply to all of the wearer's damage. "ATK + 10%" means ATK%.
+Leave out: DMG Bonuses, healing, Crit. Rate limited to one attack type (e.g. "Heavy Attack Crit. Rate"),
+and buffs given to the incoming Resonator or other team members. Empty bonus if none.`;
+
+const SONATA_SCHEMA = {
+  type: "object",
+  properties: {
+    effects: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          id: { type: "integer" },
+          bonus: {
+            type: "array",
+            items: {
+              type: "object",
+              properties: { stat: { type: "string", enum: [...BONUS_STATS] }, value: { type: "number" } },
+              required: ["stat", "value"],
+            },
+          },
+        },
+        required: ["id", "bonus"],
+      },
+    },
+  },
+  required: ["effects"],
+};
 
 // "Yangyang: Xuanling" -> "yangyang-xuanling", matching Prydwen's slug style (verified in ticket 07)
 const slug = (name: string) => name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
@@ -174,9 +309,7 @@ async function fetchText(url: string) {
 
 async function sheetTabs() {
   const html = await fetchText(`${SHEET}/pubhtml`);
-  return [...html.matchAll(/name: "([^"]*)", pageUrl: "[^"]*gid=(\d+)/g)]
-    .map(([, name, gid]) => ({ name, gid }))
-    .filter((t) => (ELEMENTS as readonly string[]).includes(t.name));
+  return [...html.matchAll(/name: "([^"]*)", pageUrl: "[^"]*gid=(\d+)/g)].map(([, name, gid]) => ({ name, gid }));
 }
 
 async function main() {
@@ -185,11 +318,12 @@ async function main() {
 
   const files = new Map<string, CharacterFile>();
   for (const f of await readdir(DIR)) files.set(f.replace(/\.json$/, ""), await Bun.file(`${DIR}/${f}`).json());
-  if (force && !files.has(force)) throw new Error(`--force ${force}: no such character in ${DIR}`);
+  if (force && force !== "sonata" && !files.has(force)) throw new Error(`--force ${force}: no such character in ${DIR}`);
   const scrapedHashes = new Set([...files.values()].filter((f) => f.id !== force).map((f) => f.sourceHashes.sheet));
 
   const jobs: { element: string; index: number; text: string; hash: string }[] = [];
-  for (const tab of await sheetTabs()) {
+  const tabs = await sheetTabs();
+  for (const tab of tabs.filter((t) => (ELEMENTS as readonly string[]).includes(t.name))) {
     const csv = await fetchText(`${SHEET}/pub?gid=${tab.gid}&single=true&output=csv`);
     csv.split(BLOCK_MARKER).slice(1).forEach((block, index) => {
       const text = BLOCK_MARKER + block.replace(/,{2,}/g, " | ");
@@ -215,6 +349,7 @@ async function main() {
         sourceHashes: { ...prev?.sourceHashes, sheet: job.hash },
         override: prev?.override ?? {},
       prydwenSlug: prev?.prydwenSlug,
+        profile: prev?.profile,
         build: prev?.build as CharacterFile["build"],
       });
       console.log(`  ok   ${id}`);
@@ -252,6 +387,57 @@ async function main() {
     f.sources.prydwen = { source: "prydwen", error };
     console.log(`  FAIL ${f.id}: ${error.slice(0, 120)}`);
   });
+
+  // Character profiles (weapon type, level 90 base stats) and icons, once per character
+  const profileTodo = [...files.values()].filter((f) => f.id === force || !f.profile?.base);
+  console.log(`Profiles: scraping ${profileTodo.length}`);
+  await inBatches(profileTodo, async (f) => {
+    const text = textOf(await renderPrydwen(`characters/${f.prydwenSlug ?? f.id}`));
+    const type = text.match(/uses the\s+(\w+)\s+type weapon/)?.[1];
+    const base = text.match(/Lv\.\s+90\s+HP\s+(\d+)\s+ATK\s+(\d+)\s+DEF\s+(\d+)/);
+    if (!type) return console.log(`  FAIL ${f.id}: no weapon type on the Prydwen page`);
+    f.profile = { weaponType: type, ...(base && { base: { HP: +base[1], ATK: +base[2], DEF: +base[3] } }) };
+    console.log(base ? `  ok   ${f.id}` : `  part ${f.id}: ${type}, no level 90 stats yet`);
+  });
+  await mkdir(ICONS, { recursive: true });
+  await inBatches([...files.values()], async (f) => {
+    const path = `${ICONS}/${f.id}.webp`;
+    if (f.id !== force && (await Bun.file(path).exists())) return;
+    const res = await fetch(`https://cdn.prydwen.gg/images/wuthering-waves/characters/${f.prydwenSlug ?? f.id}_icon.webp`);
+    if (res.ok) await Bun.write(path, res);
+    else console.log(`  no icon for ${f.id}: ${res.status}`);
+  });
+
+  // Weapons: all of them, from the JSON Prydwen's weapons page embeds; one render, so refreshed every run
+  const weaponRows = nextRows(await renderPrydwen("weapons")).filter((row) => row.includes('"weapons":['));
+  const raw = weaponRows.flatMap((row) => (findKey(JSON.parse(row.slice(row.indexOf(":") + 1)), "weapons") as PrydwenWeapon[]) ?? []);
+  if (raw.length === 0) throw new Error("No weapons found on Prydwen; has the page changed?");
+  const weapons = raw.flatMap((w) => toWeapon(w) ?? (console.log(`  skip weapon ${w.Name}: secondary ${w.Stat_secondary}`), []));
+  weapons.sort((a, b) => a.type.localeCompare(b.type) || b.rarity - a.rarity || a.name.localeCompare(b.name));
+  await Bun.write(WEAPONS, JSON.stringify(weapons, null, 2) + "\n");
+  console.log(`Weapons: ${weapons.length}`);
+
+  // Sonata Sets from the sheet's own tab, re-read only when that tab changes
+  const sonataTab = tabs.find((t) => t.name === SONATA_TAB);
+  if (!sonataTab) throw new Error(`No "${SONATA_TAB}" tab in the sheet`);
+  const sonataCsv = await fetchText(`${SHEET}/pub?gid=${sonataTab.gid}&single=true&output=csv`);
+  const sonataHash = Bun.hash(sonataCsv).toString(36);
+  const prevSonata = (await Bun.file(SONATA).exists()) ? await Bun.file(SONATA).json() : undefined;
+  if (prevSonata?.hash === sonataHash && force !== "sonata") {
+    console.log("Sonata Sets: unchanged");
+  } else {
+    const sets = sonataGrid(sonataCsv);
+    if (sets.length === 0) throw new Error("No Sonata Sets found; has the sheet layout changed?");
+    const pieces = sets.flatMap((set) => set.pieces);
+    const effects = pieces.map((p, id) => ({ id, text: p.text }));
+    const x = await generateJson<{ effects: { id: number; bonus: { stat: BonusStat; value: number }[] }[] }>(
+      [{ text: `${SONATA_PROMPT}\n\n${JSON.stringify(effects)}` }],
+      SONATA_SCHEMA,
+    );
+    for (const e of x.effects) if (pieces[e.id]) pieces[e.id].bonus = Object.fromEntries(e.bonus.map((b) => [b.stat, b.value]));
+    await Bun.write(SONATA, JSON.stringify({ hash: sonataHash, sets }, null, 2) + "\n");
+    console.log(`Sonata Sets: ${sets.length}`);
+  }
 
   // YouTube: hand-picked guide videos per character in data/youtube.json (guides only, not showcases)
   // Missing file means no videos; a malformed one should stop the run, not silently drop every video

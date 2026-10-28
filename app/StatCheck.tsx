@@ -2,15 +2,23 @@
 
 import { useEffect, useRef, useState } from "react";
 import {
+  type BaseStats,
+  type Bonus,
   type CharacterBuild,
   type Echo,
   STAT_NAMES,
   type StatName,
   type StatTarget,
+  type Weapon,
   compareEchoes,
+  flatAtk,
   rateEcho,
+  shiftStats,
   statVerdict,
+  swapWeapon,
+  weaponBonus,
 } from "@/lib/rating";
+import CharacterPicker from "./CharacterPicker";
 import EchoRow, { formatScore } from "./EchoRow";
 
 type Targets = Partial<Record<StatName, StatTarget>>;
@@ -22,7 +30,10 @@ export type CharacterOption = CharacterBuild & {
   statTargets: Targets;
   nonCritWeaponTargets: Targets;
   sources: { source: string; statTargets: Targets; nonCritWeaponTargets: Targets }[];
+  profile?: { weaponType: string; base?: BaseStats };
 };
+
+export type SonataSet = { name: string; pieces: { count: number; text: string; bonus: Bonus }[] };
 
 const PERCENT = new Set<StatName>(["Energy Regen", "Crit. Rate", "Crit. DMG"]);
 const CRIT = new Set<StatName>(["Crit. Rate", "Crit. DMG"]);
@@ -35,10 +46,27 @@ const describe = (t: StatTarget | undefined) =>
       ? `${t.min}+`
       : `${t.min ?? "?"}–${t.max}`;
 
+const BONUS_LABEL: Record<string, string> = { "Crit. Rate": "CR", "Crit. DMG": "CD", "Energy Regen": "ER" };
+const describeBonus = (b: Bonus) =>
+  Object.entries(b).map(([name, v]) => `${BONUS_LABEL[name] ?? name} ${v}%`).join(", ");
+const RANKS = [1, 2, 3, 4, 5];
 
-export default function StatCheck({ characters }: { characters: CharacterOption[] }) {
+
+export default function StatCheck({
+  characters,
+  weapons,
+  sonataSets,
+}: {
+  characters: CharacterOption[];
+  weapons: Weapon[];
+  sonataSets: SonataSet[];
+}) {
   const [characterId, setCharacterId] = useState(characters[0]?.id ?? "");
-  const [critWeapon, setCritWeapon] = useState(true);
+  const [weapon, setWeapon] = useState({ name: "", rank: 1 });
+  // What-if only, never saved
+  const [compare, setCompare] = useState({ name: "", rank: 1 });
+  const [sonata, setSonata] = useState("");
+  const [buffs, setBuffs] = useState<number[]>([]);
   const [stats, setStats] = useState<Partial<Record<StatName, number>>>({});
   const [loadout, setLoadout] = useState<Echo[]>([]);
   const [pending, setPending] = useState(0);
@@ -77,7 +105,10 @@ export default function StatCheck({ characters }: { characters: CharacterOption[
     setStats({});
     setLoadout([]);
     setCandidate(null);
-    setCritWeapon(true);
+    setWeapon({ name: "", rank: 1 });
+    setCompare({ name: "", rank: 1 });
+    setSonata("");
+    setBuffs([]);
     setSavedAt(null);
     setErrors([]);
     setLoaded(false);
@@ -90,7 +121,8 @@ export default function StatCheck({ characters }: { characters: CharacterOption[
         // Defaults guard against records saved before a field existed
         setStats(snapshot?.stats ?? {});
         setLoadout(snapshot?.loadout ?? []);
-        setCritWeapon(snapshot?.critWeapon ?? true);
+        if (snapshot?.weapon) setWeapon(snapshot.weapon);
+        setSonata(snapshot?.sonata ?? "");
         setSavedAt(snapshot?.savedAt ?? null);
         setLoaded(true);
         loadedRef.current = true;
@@ -111,7 +143,7 @@ export default function StatCheck({ characters }: { characters: CharacterOption[
     const res = await fetch(`/api/snapshot/${characterId}`, {
       method: "PUT",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ stats, critWeapon, loadout }),
+      body: JSON.stringify({ stats, ...(weapon.name && { weapon }), ...(sonata && { sonata }), loadout }),
     }).catch((e: Error) => e);
     const body = res instanceof Error ? null : await res.json().catch(() => null);
     setSaving(false);
@@ -178,7 +210,31 @@ export default function StatCheck({ characters }: { characters: CharacterOption[
   useEffect(() => setEquippedChoice(null), [loadout.length, candidate?.cost]);
 
   const character = characters.find((c) => c.id === characterId);
-  const targets = { ...character?.statTargets, ...(critWeapon ? {} : character?.nonCritWeaponTargets) };
+  const profile = character?.profile;
+  const ownWeapons = weapons.filter((w) => w.type === profile?.weaponType);
+  const equipped = ownWeapons.find((w) => w.name === weapon.name);
+  const compared = ownWeapons.find((w) => w.name === compare.name);
+  // No weapon picked yet counts as a Crit Weapon, the usual case
+  const isCrit = (w?: Weapon) => !w || "Crit. Rate" in w.secondary || "Crit. DMG" in w.secondary;
+  const critWeapon = isCrit(equipped);
+  const targetsWith = (crit: boolean): Targets => ({ ...character?.statTargets, ...(crit ? {} : character?.nonCritWeaponTargets) });
+  const set = sonataSets.find((x) => x.name === sonata);
+  const withWeapon =
+    profile && equipped && compared && equipped !== compared
+      ? swapWeapon(stats, profile.base, flatAtk(loadout), { weapon: equipped, rank: weapon.rank }, { weapon: compared, rank: compare.rank })
+      : undefined;
+  // Only the conditional bonuses (3/5-piece) are missing from the stat screen; 2-piece ones are already on it
+  const setBonus: Bonus = {};
+  for (const piece of set?.pieces ?? []) {
+    if (!buffs.includes(piece.count)) continue;
+    for (const [name, v] of Object.entries(piece.bonus) as [keyof Bonus, number][]) setBonus[name] = (setBonus[name] ?? 0) + v;
+  }
+  const withSet =
+    profile && buffs.length > 0
+      ? shiftStats(stats, profile.base && { ...profile.base, ATK: profile.base.ATK + (equipped?.baseAtk ?? 0) }, setBonus)
+      : undefined;
+  const targets = targetsWith(critWeapon);
+  const comparedTargets = targetsWith(isCrit(compared));
   // Every rating uses the targets for the chosen weapon type, so scores and deltas agree
   const build = character && { ...character, statTargets: targets };
 
@@ -202,22 +258,74 @@ export default function StatCheck({ characters }: { characters: CharacterOption[
     <>
       <fieldset>
         <legend>Character</legend>
-        <select value={characterId} onChange={(e) => setCharacterId(e.target.value)}>
-          {characters.map((c) => (
-            <option key={c.id} value={c.id}>
-              {c.name} ({c.element})
-            </option>
-          ))}
-        </select>{" "}
-        <label>
-          <input
-            type="checkbox"
-            checked={critWeapon}
-            disabled={!loaded}
-            onChange={(e) => setCritWeapon(e.target.checked)}
-          />{" "}
-          Crit Weapon
-        </label>
+        <CharacterPicker characters={characters} value={characterId} onChange={setCharacterId} />
+      </fieldset>
+
+      <fieldset disabled={!loaded}>
+        <legend>Weapon &amp; Sonata Set</legend>
+        {!profile ? (
+          <p>No weapon type for this character yet (run the scrape).</p>
+        ) : (
+          <>
+            <p>
+              <WeaponPicker label="Weapon" weapons={ownWeapons} value={weapon} onChange={setWeapon} />{" "}
+              {equipped && <small>{critWeapon ? "Crit Weapon" : "non-Crit Weapon: non-Crit targets apply"}</small>}
+            </p>
+            <p>
+              <WeaponPicker
+                label="Compare with"
+                weapons={ownWeapons}
+                value={compare}
+                onChange={setCompare}
+                disabled={!equipped}
+              />{" "}
+              {!equipped && <small>pick your Weapon first</small>}
+            </p>
+          </>
+        )}
+        <p>
+          <label>
+            Sonata Set{" "}
+            <select
+              value={sonata}
+              onChange={(e) => {
+                setSonata(e.target.value);
+                setBuffs([]);
+              }}
+            >
+              <option value="">—</option>
+              {sonataSets.map((x) => (
+                <option key={x.name}>{x.name}</option>
+              ))}
+            </select>
+          </label>
+        </p>
+        {set && (
+          <ul className="pieces">
+            {set.pieces.map((piece) => (
+              <li key={piece.count}>
+                {piece.count > 2 ? (
+                  <label>
+                    <input
+                      type="checkbox"
+                      checked={buffs.includes(piece.count)}
+                      disabled={!profile}
+                      onChange={(e) =>
+                        setBuffs((list) => (e.target.checked ? [...list, piece.count] : list.filter((n) => n !== piece.count)))
+                      }
+                    />{" "}
+                    <b>{piece.count}pc</b> {piece.text}
+                  </label>
+                ) : (
+                  <>
+                    <b>{piece.count}pc</b> {piece.text} <small>(already on the stat screen)</small>
+                  </>
+                )}
+                {Object.keys(piece.bonus).length > 0 && <small> → {describeBonus(piece.bonus)}</small>}
+              </li>
+            ))}
+          </ul>
+        )}
       </fieldset>
 
       <fieldset>
@@ -254,6 +362,7 @@ export default function StatCheck({ characters }: { characters: CharacterOption[
       <fieldset className="plain cols" disabled={!loaded}>
       <div>
       <h2>Stats</h2>
+      <div className="scroll">
       <table>
         <thead>
           <tr>
@@ -261,6 +370,8 @@ export default function StatCheck({ characters }: { characters: CharacterOption[
             <th>Value</th>
             <th>Stat Target</th>
             <th>Verdict</th>
+            {withWeapon && <th>With {compared?.name}</th>}
+            {withSet && <th>With set buff</th>}
           </tr>
         </thead>
         <tbody>
@@ -298,11 +409,24 @@ export default function StatCheck({ characters }: { characters: CharacterOption[
                   </small>
                 </td>
                 <td className={verdict}>{verdict ?? "—"}</td>
+                {withWeapon && <WhatIf value={withWeapon[name]} before={value} target={comparedTargets[name]} />}
+                {/* No verdict: Build Guides give targets before set bonuses */}
+                {withSet && <WhatIf value={withSet[name]} before={value} />}
               </tr>
             );
           })}
         </tbody>
       </table>
+      </div>
+      {(withWeapon || withSet) && (
+        <p>
+          <small>
+            {profile?.base
+              ? "ATK with another weapon is an estimate: flat ATK comes from the Loadout, so add all five Echoes."
+              : "No Base Stats for this character yet, so HP/ATK/DEF can't be worked out."}
+          </small>
+        </p>
+      )}
       </div>
 
       <div>
@@ -447,5 +571,60 @@ export default function StatCheck({ characters }: { characters: CharacterOption[
         {savedAt ? `Last saved ${new Date(savedAt).toLocaleString()}` : "Not saved yet"}
       </p>
     </>
+  );
+}
+
+function WeaponPicker({
+  label,
+  weapons,
+  value,
+  onChange,
+  disabled,
+}: {
+  label: string;
+  weapons: Weapon[];
+  value: { name: string; rank: number };
+  onChange: (v: { name: string; rank: number }) => void;
+  disabled?: boolean;
+}) {
+  return (
+    <>
+      <label>
+        {label}{" "}
+        <select value={value.name} disabled={disabled} onChange={(e) => onChange({ ...value, name: e.target.value })}>
+          <option value="">—</option>
+          {weapons.map((w) => (
+            <option key={w.name} value={w.name}>
+              {w.name} ({w.rarity}★, {describeBonus(weaponBonus(w, value.rank))})
+            </option>
+          ))}
+        </select>
+      </label>{" "}
+      <select
+        aria-label={`${label} rank`}
+        value={value.rank}
+        disabled={disabled}
+        onChange={(e) => onChange({ ...value, rank: Number(e.target.value) })}
+      >
+        {RANKS.map((r) => (
+          <option key={r} value={r}>
+            R{r}
+          </option>
+        ))}
+      </select>
+    </>
+  );
+}
+
+// A what-if cell: the new value, its change, and a Stat Verdict when a target applies
+function WhatIf({ value, before, target }: { value?: number; before?: number; target?: StatTarget }) {
+  if (value === undefined || before === undefined) return <td>—</td>;
+  const delta = value - before;
+  const verdict = target ? statVerdict(value, target) : undefined;
+  return (
+    <td className={verdict}>
+      {value.toFixed(1)}
+      {Math.abs(delta) >= 0.05 && <small> ({delta > 0 ? "+" : ""}{delta.toFixed(1)})</small>}
+    </td>
   );
 }

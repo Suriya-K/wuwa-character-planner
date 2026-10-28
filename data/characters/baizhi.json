@@ -151,5 +151,13 @@
         "Crit. Rate"
       ]
     }
+  },
+  "profile": {
+    "weaponType": "Rectifier",
+    "base": {
+      "HP": 12813,
+      "ATK": 213,
+      "DEF": 1002
+    }
   }
 }

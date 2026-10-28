@@ -176,5 +176,8 @@
         "HP%"
       ]
     }
+  },
+  "profile": {
+    "weaponType": "Broadblade"
   }
 }

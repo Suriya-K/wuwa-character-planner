@@ -157,5 +157,8 @@
         "Crit. DMG"
       ]
     }
+  },
+  "profile": {
+    "weaponType": "Rectifier"
   }
 }

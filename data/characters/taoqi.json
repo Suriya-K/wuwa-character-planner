@@ -145,5 +145,13 @@
         "DEF%"
       ]
     }
+  },
+  "profile": {
+    "weaponType": "Broadblade",
+    "base": {
+      "HP": 8950,
+      "ATK": 225,
+      "DEF": 1564
+    }
   }
 }

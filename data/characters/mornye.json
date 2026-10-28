@@ -153,5 +153,13 @@
         "Healing Bonus"
       ]
     }
+  },
+  "profile": {
+    "weaponType": "Broadblade",
+    "base": {
+      "HP": 15375,
+      "ATK": 288,
+      "DEF": 1357
+    }
   }
 }

@@ -174,5 +174,13 @@
         "Crit. DMG"
       ]
     }
+  },
+  "profile": {
+    "weaponType": "Pistols",
+    "base": {
+      "HP": 9088,
+      "ATK": 300,
+      "DEF": 953
+    }
   }
 }

@@ -2,7 +2,9 @@ import { ECHO_COSTS, type Echo, MAIN_STAT_NAMES, MAX_ROLL, STAT_NAMES, type Stat
 
 export type BuildSnapshot = {
   stats: Partial<Record<StatName, number>>;
-  critWeapon: boolean;
+  // Equipped weapon by name; whether it is a Crit Weapon comes from its secondary stat
+  weapon?: { name: string; rank: number };
+  sonata?: string;
   loadout: Echo[];
   savedAt: string;
 };
@@ -52,17 +54,25 @@ export async function getSnapshot(id: string): Promise<BuildSnapshot | null> {
 // Validates untrusted input from the browser before it is stored
 export function parseSnapshot(input: unknown): BuildSnapshot | null {
   if (typeof input !== "object" || input === null) return null;
-  const { stats, critWeapon, loadout = [] } = input as Record<string, unknown>;
+  const { stats, weapon, sonata, loadout = [] } = input as Record<string, any>;
   if (!Array.isArray(loadout) || loadout.length > 5) return null;
   const echoes = loadout.map(parseEcho);
   if (echoes.some((e) => e === null)) return null;
-  if (typeof critWeapon !== "boolean" || typeof stats !== "object" || stats === null) return null;
+  if (typeof stats !== "object" || stats === null) return null;
+  if (weapon !== undefined && !(typeof weapon?.name === "string" && [1, 2, 3, 4, 5].includes(weapon?.rank))) return null;
+  if (sonata !== undefined && typeof sonata !== "string") return null;
   const clean: BuildSnapshot["stats"] = {};
   for (const [name, value] of Object.entries(stats)) {
     if (!(STAT_NAMES as readonly string[]).includes(name) || !num(value)) return null;
     clean[name as StatName] = value;
   }
-  return { stats: clean, critWeapon, loadout: echoes as Echo[], savedAt: new Date().toISOString() };
+  return {
+    stats: clean,
+    ...(weapon && { weapon: { name: weapon.name.slice(0, 80), rank: weapon.rank } }),
+    ...(sonata && { sonata: sonata.slice(0, 80) }),
+    loadout: echoes as Echo[],
+    savedAt: new Date().toISOString(),
+  };
 }
 
 export async function saveSnapshot(id: string, snapshot: BuildSnapshot) {

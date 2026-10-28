@@ -189,3 +189,85 @@ export function compareEchoes(
   const scoreDelta = rateEcho(candidate, character, swapped).score - rateEcho(equipped, character, stats).score;
   return { scoreDelta, whatIf };
 }
+
+// Stats a Weapon or Sonata Set can add; ATK%/HP%/DEF% scale base stats, the rest add straight onto the screen total
+export const BONUS_STATS = ["ATK%", "HP%", "DEF%", "Crit. Rate", "Crit. DMG", "Energy Regen"] as const;
+export type BonusStat = (typeof BONUS_STATS)[number];
+export type Bonus = Partial<Record<BonusStat, number>>;
+// Level 90 base stats, before any % bonus
+export type BaseStats = { HP: number; ATK: number; DEF: number };
+export type Weapon = {
+  name: string;
+  type: string;
+  rarity: number;
+  // Level 90
+  baseAtk: number;
+  secondary: Bonus;
+  // Always-on passive stats, one value per rank R1..R5
+  passive: Partial<Record<BonusStat, number[]>>;
+};
+
+const SCALES = { "ATK%": "ATK", "HP%": "HP", "DEF%": "DEF" } as const;
+
+export function weaponBonus(weapon: Weapon, rank: number): Bonus {
+  const bonus: Bonus = { ...weapon.secondary };
+  for (const [name, values] of Object.entries(weapon.passive) as [BonusStat, number[]][]) {
+    bonus[name] = (bonus[name] ?? 0) + values[rank - 1];
+  }
+  return bonus;
+}
+
+// Stat-screen totals after adding `bonus` (negative values take one away). `base` is character + weapon base.
+// Moving the weapon's base ATK by `baseAtkChange` carries the ATK% already on screen; flat ATK (`flat`) doesn't scale.
+// Without Base Stats, HP/ATK/DEF can't be worked out and are left out.
+export function shiftStats(
+  stats: Partial<Record<StatName, number>>,
+  base: BaseStats | undefined,
+  bonus: Bonus,
+  baseAtkChange = 0,
+  flat = 0,
+): Partial<Record<StatName, number>> {
+  const out = { ...stats };
+  if (!base) {
+    delete out.HP;
+    delete out.ATK;
+    delete out.DEF;
+  } else if (out.ATK !== undefined) {
+    out.ATK += (baseAtkChange * (out.ATK - flat)) / base.ATK;
+  }
+  const newBase = base && { ...base, ATK: base.ATK + baseAtkChange };
+  for (const [name, v] of Object.entries(bonus) as [BonusStat, number][]) {
+    const stat: StatName = name in SCALES ? SCALES[name as keyof typeof SCALES] : (name as StatName);
+    // HP/ATK/DEF were dropped above when there is no base, so `newBase` exists for every scaled stat reaching here
+    if (out[stat] === undefined) continue;
+    out[stat] += name in SCALES ? (newBase![stat as keyof BaseStats] * v) / 100 : v;
+  }
+  return out;
+}
+
+type Wielded = { weapon: Weapon; rank: number };
+
+// What the stat screen would show with `to` instead of `from`
+export function swapWeapon(
+  stats: Partial<Record<StatName, number>>,
+  character: BaseStats | undefined,
+  flat: number,
+  from: Wielded,
+  to: Wielded,
+) {
+  const change: Bonus = weaponBonus(to.weapon, to.rank);
+  for (const [name, v] of Object.entries(weaponBonus(from.weapon, from.rank)) as [BonusStat, number][]) {
+    change[name] = (change[name] ?? 0) - v;
+  }
+  const base = character && { ...character, ATK: character.ATK + from.weapon.baseAtk };
+  return shiftStats(stats, base, change, to.weapon.baseAtk - from.weapon.baseAtk, flat);
+}
+
+// Flat ATK the Loadout adds: ATK substats plus the Secondary Main Stat of 4-cost (150) and 3-cost (100) Echoes
+export const flatAtk = (loadout: Echo[]) =>
+  loadout.reduce(
+    (sum, e) =>
+      sum + (e.cost === 4 ? 150 : e.cost === 3 ? 100 : 0) +
+      e.substats.filter((s) => s.name === "ATK").reduce((n, s) => n + s.value, 0),
+    0,
+  );

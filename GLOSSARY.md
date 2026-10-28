@@ -28,7 +28,20 @@ _Avoid_: Guide, meta
 A recommended floor for one stat on one character, merged from several Build Guides, with a ceiling only when a guide states one.
 
 **Crit Weapon**:
-A weapon whose secondary stat is Crit. Rate or Crit. DMG; whether a character holds one decides which Crit Stat Targets apply.
+A weapon whose secondary stat is Crit. Rate or Crit. DMG; whether the Equipped Weapon is one decides which Crit Stat Targets apply.
+
+**Equipped Weapon**:
+The weapon a character holds, with its rank (R1-R5); its base ATK, secondary stat and always-on passive are already in the Attributes Screenshot.
+
+**Compared Weapon**:
+A weapon being considered instead of the Equipped Weapon; the stat screen it would give is estimated from Base Stats.
+
+**Base Stats**:
+A character's level 90 HP, ATK and DEF before any % bonus, which ATK%/HP%/DEF% bonuses scale from.
+
+**Sonata Set**:
+An in-game Echo set bonus at 2, 3 or 5 pieces. 2-piece bonuses are always on and already on the stat screen; the 3/5-piece buffs are conditional and shown as a Set Buff what-if.
+_Avoid_: Echo set
 _Avoid_: Recommended stat, benchmark
 
 **Stat Verdict**:

@@ -165,5 +165,13 @@
         "Crit. DMG"
       ]
     }
+  },
+  "profile": {
+    "weaponType": "Rectifier",
+    "base": {
+      "HP": 10775,
+      "ATK": 438,
+      "DEF": 1137
+    }
   }
 }

@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { type Echo, type GuideSource, compareEchoes, mergeGuides, rateEcho, statVerdict } from "./rating";
+import { type Echo, type GuideSource, type Weapon, compareEchoes, flatAtk, mergeGuides, rateEcho, shiftStats, statVerdict, swapWeapon, weaponBonus } from "./rating";
 
 // Real Echoes from prototype/shots on the prototype/spikes branch
 const thousandPuppetPavilion: Echo = {
@@ -254,5 +254,47 @@ describe("open-ended ranges", () => {
 
   test("without a quote the ceiling stays", () => {
     expect(mergeGuides([prydwen([])]).statTargets.ATK).toEqual({ min: 2000, max: 2400 });
+  });
+});
+
+describe("weapons and Sonata Set buffs", () => {
+  const aemeath = { HP: 11025, ATK: 425, DEF: 1149 };
+  const atkSword: Weapon = { name: "ATK Sword", type: "Sword", rarity: 5, baseAtk: 500, secondary: { "ATK%": 30 }, passive: {} };
+  const critSword: Weapon = {
+    name: "Crit Sword", type: "Sword", rarity: 5, baseAtk: 587, secondary: { "Crit. Rate": 24.3 },
+    passive: { "ATK%": [12, 15, 18, 21, 24] },
+  };
+  const stats = { HP: 15000, ATK: 2000, "Crit. Rate": 60, "Energy Regen": 120 };
+
+  test("weaponBonus adds the passive at the chosen rank to the secondary stat", () => {
+    expect(weaponBonus(critSword, 3)).toEqual({ "Crit. Rate": 24.3, "ATK%": 18 });
+  });
+
+  test("a set buff adds Crit and Energy Regen straight on and scales ATK%/HP% from base stats", () => {
+    const after = shiftStats(stats, { ...aemeath, ATK: 925 }, { "Crit. Rate": 20, "ATK%": 10, "HP%": 10 });
+    expect(after["Crit. Rate"]).toBe(80);
+    expect(after.ATK).toBeCloseTo(2092.5, 5);
+    expect(after.HP).toBeCloseTo(16102.5, 5);
+    expect(after["Energy Regen"]).toBe(120);
+  });
+
+  test("without Base Stats only the stats that add straight on are shifted", () => {
+    const after = shiftStats(stats, undefined, { "Crit. Rate": 20, "ATK%": 10 });
+    expect(after["Crit. Rate"]).toBe(80);
+    expect(after.ATK).toBeUndefined();
+    expect(after.HP).toBeUndefined();
+  });
+
+  test("swapping weapons moves base ATK under the ATK% already on screen, flat ATK excluded", () => {
+    const after = swapWeapon(stats, aemeath, 300, { weapon: atkSword, rank: 1 }, { weapon: critSword, rank: 1 });
+    // (425+587) * (1 + 0.8378 - 0.30 + 0.12) + 300, where 1.8378 = (2000-300)/(425+500)
+    expect(after.ATK).toBeCloseTo(1012 * ((2000 - 300) / 925 - 0.3 + 0.12) + 300, 5);
+    expect(after["Crit. Rate"]).toBeCloseTo(84.3, 5);
+  });
+
+  test("flatAtk counts ATK substats and the Secondary Main Stat of 4- and 3-cost Echoes", () => {
+    const threeCost: Echo = { cost: 3, level: 25, mainStat: { name: "ATK%", value: 30 }, substats: [{ name: "ATK", value: 50 }] };
+    const oneCost: Echo = { cost: 1, level: 25, mainStat: { name: "ATK%", value: 18 }, substats: [{ name: "ATK", value: 40 }] };
+    expect(flatAtk([thousandPuppetPavilion, threeCost, oneCost])).toBe(150 + 100 + 50 + 40);
   });
 });

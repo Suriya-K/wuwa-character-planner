@@ -147,5 +147,13 @@
         "ATK%"
       ]
     }
+  },
+  "profile": {
+    "weaponType": "Rectifier",
+    "base": {
+      "HP": 14238,
+      "ATK": 338,
+      "DEF": 1100
+    }
   }
 }

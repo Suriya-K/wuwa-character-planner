@@ -1,0 +1,1650 @@
+[
+  {
+    "name": "Ages of Harvest",
+    "type": "Broadblade",
+    "rarity": 5,
+    "baseAtk": 587,
+    "secondary": {
+      "Crit. Rate": 24.3
+    },
+    "passive": {}
+  },
+  {
+    "name": "Kumokiri",
+    "type": "Broadblade",
+    "rarity": 5,
+    "baseAtk": 500,
+    "secondary": {
+      "Crit. Rate": 36
+    },
+    "passive": {
+      "ATK%": [
+        12,
+        15,
+        18,
+        21,
+        24
+      ]
+    }
+  },
+  {
+    "name": "Lustrous Razor",
+    "type": "Broadblade",
+    "rarity": 5,
+    "baseAtk": 587,
+    "secondary": {
+      "ATK%": 36.4
+    },
+    "passive": {
+      "Energy Regen": [
+        12.8,
+        16,
+        19.2,
+        22.4,
+        25.6
+      ]
+    }
+  },
+  {
+    "name": "Radiance Cleaver",
+    "type": "Broadblade",
+    "rarity": 5,
+    "baseAtk": 587,
+    "secondary": {
+      "Crit. DMG": 48.6
+    },
+    "passive": {
+      "ATK%": [
+        12,
+        15,
+        18,
+        21,
+        24
+      ]
+    }
+  },
+  {
+    "name": "Starfield Calibrator",
+    "type": "Broadblade",
+    "rarity": 5,
+    "baseAtk": 412,
+    "secondary": {
+      "Energy Regen": 77
+    },
+    "passive": {
+      "DEF%": [
+        16,
+        20,
+        24,
+        28,
+        32
+      ]
+    }
+  },
+  {
+    "name": "Thousandfold Deliverance",
+    "type": "Broadblade",
+    "rarity": 5,
+    "baseAtk": 412,
+    "secondary": {
+      "HP%": 72.2
+    },
+    "passive": {}
+  },
+  {
+    "name": "Thunderflare Dominion",
+    "type": "Broadblade",
+    "rarity": 5,
+    "baseAtk": 675,
+    "secondary": {
+      "Crit. Rate": 12.1
+    },
+    "passive": {
+      "ATK%": [
+        12,
+        15,
+        18,
+        21,
+        24
+      ]
+    }
+  },
+  {
+    "name": "Verdant Summit",
+    "type": "Broadblade",
+    "rarity": 5,
+    "baseAtk": 587,
+    "secondary": {
+      "Crit. DMG": 48.6
+    },
+    "passive": {}
+  },
+  {
+    "name": "Wildfire Mark",
+    "type": "Broadblade",
+    "rarity": 5,
+    "baseAtk": 587,
+    "secondary": {
+      "Crit. DMG": 48.6
+    },
+    "passive": {
+      "ATK%": [
+        12,
+        15,
+        18,
+        21,
+        24
+      ]
+    }
+  },
+  {
+    "name": "Aureate Zenith",
+    "type": "Broadblade",
+    "rarity": 4,
+    "baseAtk": 412,
+    "secondary": {
+      "Crit. DMG": 40.5
+    },
+    "passive": {}
+  },
+  {
+    "name": "Autumntrace",
+    "type": "Broadblade",
+    "rarity": 4,
+    "baseAtk": 412,
+    "secondary": {
+      "Crit. Rate": 20.2
+    },
+    "passive": {}
+  },
+  {
+    "name": "Broadblade#41",
+    "type": "Broadblade",
+    "rarity": 4,
+    "baseAtk": 412,
+    "secondary": {
+      "Energy Regen": 32.3
+    },
+    "passive": {}
+  },
+  {
+    "name": "Dauntless Evernight",
+    "type": "Broadblade",
+    "rarity": 4,
+    "baseAtk": 337,
+    "secondary": {
+      "DEF%": 61.5
+    },
+    "passive": {}
+  },
+  {
+    "name": "Discord",
+    "type": "Broadblade",
+    "rarity": 4,
+    "baseAtk": 337,
+    "secondary": {
+      "Energy Regen": 51.8
+    },
+    "passive": {}
+  },
+  {
+    "name": "Helios Cleaver",
+    "type": "Broadblade",
+    "rarity": 4,
+    "baseAtk": 412,
+    "secondary": {
+      "ATK%": 30.3
+    },
+    "passive": {}
+  },
+  {
+    "name": "Meditations on Mercy",
+    "type": "Broadblade",
+    "rarity": 4,
+    "baseAtk": 462,
+    "secondary": {
+      "ATK%": 18.2
+    },
+    "passive": {}
+  },
+  {
+    "name": "Waning Redshift",
+    "type": "Broadblade",
+    "rarity": 4,
+    "baseAtk": 462,
+    "secondary": {
+      "ATK%": 18.2
+    },
+    "passive": {}
+  },
+  {
+    "name": "Beguiling Melody",
+    "type": "Broadblade",
+    "rarity": 3,
+    "baseAtk": 300,
+    "secondary": {
+      "ATK%": 30.4
+    },
+    "passive": {}
+  },
+  {
+    "name": "Broadblade of Night",
+    "type": "Broadblade",
+    "rarity": 3,
+    "baseAtk": 325,
+    "secondary": {
+      "ATK%": 24.3
+    },
+    "passive": {}
+  },
+  {
+    "name": "Broadblade of Voyager",
+    "type": "Broadblade",
+    "rarity": 3,
+    "baseAtk": 300,
+    "secondary": {
+      "Energy Regen": 32.3
+    },
+    "passive": {}
+  },
+  {
+    "name": "Guardian Broadblade",
+    "type": "Broadblade",
+    "rarity": 3,
+    "baseAtk": 325,
+    "secondary": {
+      "ATK%": 24.3
+    },
+    "passive": {}
+  },
+  {
+    "name": "Originite: Type I",
+    "type": "Broadblade",
+    "rarity": 3,
+    "baseAtk": 300,
+    "secondary": {
+      "DEF%": 38.4
+    },
+    "passive": {}
+  },
+  {
+    "name": "Tyro Broadblade",
+    "type": "Broadblade",
+    "rarity": 2,
+    "baseAtk": 275,
+    "secondary": {
+      "ATK%": 14.8
+    },
+    "passive": {
+      "ATK%": [
+        5,
+        6.25,
+        7.5,
+        8.75,
+        10
+      ]
+    }
+  },
+  {
+    "name": "Training Broadblade",
+    "type": "Broadblade",
+    "rarity": 1,
+    "baseAtk": 250,
+    "secondary": {
+      "ATK%": 11.4
+    },
+    "passive": {
+      "ATK%": [
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    }
+  },
+  {
+    "name": "Abyss Surges",
+    "type": "Gauntlets",
+    "rarity": 5,
+    "baseAtk": 587,
+    "secondary": {
+      "ATK%": 36.4
+    },
+    "passive": {
+      "Energy Regen": [
+        12.8,
+        16,
+        19.2,
+        22.4,
+        25.6
+      ]
+    }
+  },
+  {
+    "name": "Blazing Justice",
+    "type": "Gauntlets",
+    "rarity": 5,
+    "baseAtk": 587,
+    "secondary": {
+      "Crit. DMG": 48.6
+    },
+    "passive": {
+      "ATK%": [
+        12,
+        15,
+        18,
+        21,
+        24
+      ]
+    }
+  },
+  {
+    "name": "Daybreaker's Spine",
+    "type": "Gauntlets",
+    "rarity": 5,
+    "baseAtk": 587,
+    "secondary": {
+      "Crit. Rate": 24.3
+    },
+    "passive": {
+      "ATK%": [
+        12,
+        15,
+        18,
+        21,
+        24
+      ]
+    }
+  },
+  {
+    "name": "Moongazer's Sigil",
+    "type": "Gauntlets",
+    "rarity": 5,
+    "baseAtk": 500,
+    "secondary": {
+      "Crit. Rate": 36
+    },
+    "passive": {
+      "ATK%": [
+        12,
+        15,
+        18,
+        21,
+        24
+      ]
+    }
+  },
+  {
+    "name": "Pulsation Bracer",
+    "type": "Gauntlets",
+    "rarity": 5,
+    "baseAtk": 587,
+    "secondary": {
+      "Crit. Rate": 24.3
+    },
+    "passive": {
+      "ATK%": [
+        12,
+        15,
+        18,
+        21,
+        24
+      ]
+    }
+  },
+  {
+    "name": "Solsworn Ciphers",
+    "type": "Gauntlets",
+    "rarity": 5,
+    "baseAtk": 587,
+    "secondary": {
+      "Crit. DMG": 48.6
+    },
+    "passive": {
+      "ATK%": [
+        12,
+        15,
+        18,
+        21,
+        24
+      ]
+    }
+  },
+  {
+    "name": "Tragicomedy",
+    "type": "Gauntlets",
+    "rarity": 5,
+    "baseAtk": 587,
+    "secondary": {
+      "Crit. Rate": 24.3
+    },
+    "passive": {
+      "ATK%": [
+        12,
+        15,
+        18,
+        21,
+        24
+      ]
+    }
+  },
+  {
+    "name": "Verity's Handle",
+    "type": "Gauntlets",
+    "rarity": 5,
+    "baseAtk": 587,
+    "secondary": {
+      "Crit. Rate": 24.3
+    },
+    "passive": {}
+  },
+  {
+    "name": "Aether Strike",
+    "type": "Gauntlets",
+    "rarity": 4,
+    "baseAtk": 412,
+    "secondary": {
+      "Crit. DMG": 40.5
+    },
+    "passive": {}
+  },
+  {
+    "name": "Amity Accord",
+    "type": "Gauntlets",
+    "rarity": 4,
+    "baseAtk": 337,
+    "secondary": {
+      "DEF%": 61.5
+    },
+    "passive": {}
+  },
+  {
+    "name": "Celestial Spiral",
+    "type": "Gauntlets",
+    "rarity": 4,
+    "baseAtk": 462,
+    "secondary": {
+      "ATK%": 18.2
+    },
+    "passive": {}
+  },
+  {
+    "name": "Gauntlets#21D",
+    "type": "Gauntlets",
+    "rarity": 4,
+    "baseAtk": 387,
+    "secondary": {
+      "Energy Regen": 38.8
+    },
+    "passive": {}
+  },
+  {
+    "name": "Hollow Mirage",
+    "type": "Gauntlets",
+    "rarity": 4,
+    "baseAtk": 412,
+    "secondary": {
+      "ATK%": 30.3
+    },
+    "passive": {}
+  },
+  {
+    "name": "Legend of Drunken Hero",
+    "type": "Gauntlets",
+    "rarity": 4,
+    "baseAtk": 462,
+    "secondary": {
+      "ATK%": 18.2
+    },
+    "passive": {}
+  },
+  {
+    "name": "Marcato",
+    "type": "Gauntlets",
+    "rarity": 4,
+    "baseAtk": 337,
+    "secondary": {
+      "Energy Regen": 51.8
+    },
+    "passive": {}
+  },
+  {
+    "name": "Stonard",
+    "type": "Gauntlets",
+    "rarity": 4,
+    "baseAtk": 412,
+    "secondary": {
+      "Crit. Rate": 20.2
+    },
+    "passive": {}
+  },
+  {
+    "name": "Gauntlets of Night",
+    "type": "Gauntlets",
+    "rarity": 3,
+    "baseAtk": 325,
+    "secondary": {
+      "ATK%": 24.3
+    },
+    "passive": {}
+  },
+  {
+    "name": "Gauntlets of Voyager",
+    "type": "Gauntlets",
+    "rarity": 3,
+    "baseAtk": 325,
+    "secondary": {
+      "DEF%": 30.7
+    },
+    "passive": {}
+  },
+  {
+    "name": "Guardian Gauntlets",
+    "type": "Gauntlets",
+    "rarity": 3,
+    "baseAtk": 300,
+    "secondary": {
+      "DEF%": 38.4
+    },
+    "passive": {}
+  },
+  {
+    "name": "Originite: Type IV",
+    "type": "Gauntlets",
+    "rarity": 3,
+    "baseAtk": 300,
+    "secondary": {
+      "Crit. DMG": 40.5
+    },
+    "passive": {}
+  },
+  {
+    "name": "Tyro Gauntlets",
+    "type": "Gauntlets",
+    "rarity": 2,
+    "baseAtk": 275,
+    "secondary": {
+      "ATK%": 14.8
+    },
+    "passive": {
+      "ATK%": [
+        5,
+        6.25,
+        7.5,
+        8.75,
+        10
+      ]
+    }
+  },
+  {
+    "name": "Training Gauntlets",
+    "type": "Gauntlets",
+    "rarity": 1,
+    "baseAtk": 250,
+    "secondary": {
+      "ATK%": 11.4
+    },
+    "passive": {
+      "ATK%": [
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    }
+  },
+  {
+    "name": "Lux & Umbra",
+    "type": "Pistols",
+    "rarity": 5,
+    "baseAtk": 587,
+    "secondary": {
+      "Crit. DMG": 48.6
+    },
+    "passive": {
+      "ATK%": [
+        12,
+        15,
+        18,
+        21,
+        24
+      ]
+    }
+  },
+  {
+    "name": "Phasic Homogenizer",
+    "type": "Pistols",
+    "rarity": 5,
+    "baseAtk": 587,
+    "secondary": {
+      "Crit. DMG": 48.6
+    },
+    "passive": {
+      "ATK%": [
+        12,
+        15,
+        18,
+        21,
+        24
+      ]
+    }
+  },
+  {
+    "name": "Skull Thrasher",
+    "type": "Pistols",
+    "rarity": 5,
+    "baseAtk": 500,
+    "secondary": {
+      "Crit. DMG": 72
+    },
+    "passive": {
+      "ATK%": [
+        12,
+        15,
+        18,
+        21,
+        24
+      ]
+    }
+  },
+  {
+    "name": "Spectral Trigger",
+    "type": "Pistols",
+    "rarity": 5,
+    "baseAtk": 587,
+    "secondary": {
+      "Crit. DMG": 48.6
+    },
+    "passive": {
+      "ATK%": [
+        12,
+        15,
+        18,
+        21,
+        24
+      ]
+    }
+  },
+  {
+    "name": "Spectrum Blaster",
+    "type": "Pistols",
+    "rarity": 5,
+    "baseAtk": 587,
+    "secondary": {
+      "Crit. Rate": 24.3
+    },
+    "passive": {
+      "ATK%": [
+        12,
+        15,
+        18,
+        21,
+        24
+      ]
+    }
+  },
+  {
+    "name": "Static Mist",
+    "type": "Pistols",
+    "rarity": 5,
+    "baseAtk": 587,
+    "secondary": {
+      "Crit. Rate": 24.3
+    },
+    "passive": {
+      "Energy Regen": [
+        12.8,
+        16,
+        19.2,
+        22.4,
+        25.6
+      ]
+    }
+  },
+  {
+    "name": "The Last Dance",
+    "type": "Pistols",
+    "rarity": 5,
+    "baseAtk": 500,
+    "secondary": {
+      "Crit. DMG": 72
+    },
+    "passive": {
+      "ATK%": [
+        12,
+        15,
+        18,
+        21,
+        24
+      ]
+    }
+  },
+  {
+    "name": "Woodland Aria",
+    "type": "Pistols",
+    "rarity": 5,
+    "baseAtk": 500,
+    "secondary": {
+      "Crit. Rate": 36
+    },
+    "passive": {
+      "ATK%": [
+        12,
+        15,
+        18,
+        21,
+        24
+      ]
+    }
+  },
+  {
+    "name": "Cadenza",
+    "type": "Pistols",
+    "rarity": 4,
+    "baseAtk": 337,
+    "secondary": {
+      "Energy Regen": 51.8
+    },
+    "passive": {}
+  },
+  {
+    "name": "Novaburst",
+    "type": "Pistols",
+    "rarity": 4,
+    "baseAtk": 412,
+    "secondary": {
+      "ATK%": 30.3
+    },
+    "passive": {}
+  },
+  {
+    "name": "Pistols#26",
+    "type": "Pistols",
+    "rarity": 4,
+    "baseAtk": 387,
+    "secondary": {
+      "ATK%": 36.4
+    },
+    "passive": {}
+  },
+  {
+    "name": "Relativistic Jet",
+    "type": "Pistols",
+    "rarity": 4,
+    "baseAtk": 462,
+    "secondary": {
+      "ATK%": 18.2
+    },
+    "passive": {}
+  },
+  {
+    "name": "Romance in Farewell",
+    "type": "Pistols",
+    "rarity": 4,
+    "baseAtk": 462,
+    "secondary": {
+      "ATK%": 18.2
+    },
+    "passive": {}
+  },
+  {
+    "name": "Solar Flame",
+    "type": "Pistols",
+    "rarity": 4,
+    "baseAtk": 412,
+    "secondary": {
+      "Crit. Rate": 20.3
+    },
+    "passive": {}
+  },
+  {
+    "name": "Thunderbolt",
+    "type": "Pistols",
+    "rarity": 4,
+    "baseAtk": 387,
+    "secondary": {
+      "ATK%": 36.4
+    },
+    "passive": {}
+  },
+  {
+    "name": "Undying Flame",
+    "type": "Pistols",
+    "rarity": 4,
+    "baseAtk": 412,
+    "secondary": {
+      "ATK%": 30.3
+    },
+    "passive": {}
+  },
+  {
+    "name": "Guardian Pistols",
+    "type": "Pistols",
+    "rarity": 3,
+    "baseAtk": 325,
+    "secondary": {
+      "ATK%": 24.3
+    },
+    "passive": {}
+  },
+  {
+    "name": "Originite: Type III",
+    "type": "Pistols",
+    "rarity": 3,
+    "baseAtk": 325,
+    "secondary": {
+      "ATK%": 24.3
+    },
+    "passive": {}
+  },
+  {
+    "name": "Pistols of Night",
+    "type": "Pistols",
+    "rarity": 3,
+    "baseAtk": 325,
+    "secondary": {
+      "ATK%": 24.3
+    },
+    "passive": {}
+  },
+  {
+    "name": "Pistols of Voyager",
+    "type": "Pistols",
+    "rarity": 3,
+    "baseAtk": 300,
+    "secondary": {
+      "HP%": 30.3
+    },
+    "passive": {}
+  },
+  {
+    "name": "Tyro Pistols",
+    "type": "Pistols",
+    "rarity": 2,
+    "baseAtk": 275,
+    "secondary": {
+      "ATK%": 14.8
+    },
+    "passive": {
+      "ATK%": [
+        5,
+        6.25,
+        7.5,
+        8.75,
+        10
+      ]
+    }
+  },
+  {
+    "name": "Training Pistols",
+    "type": "Pistols",
+    "rarity": 1,
+    "baseAtk": 250,
+    "secondary": {
+      "ATK%": 11.4
+    },
+    "passive": {
+      "ATK%": [
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    }
+  },
+  {
+    "name": "Blooming Jadehaven",
+    "type": "Rectifier",
+    "rarity": 5,
+    "baseAtk": 587,
+    "secondary": {
+      "Crit. Rate": 24.3
+    },
+    "passive": {}
+  },
+  {
+    "name": "Boson Astrolabe",
+    "type": "Rectifier",
+    "rarity": 5,
+    "baseAtk": 525,
+    "secondary": {
+      "Energy Regen": 38.8
+    },
+    "passive": {
+      "ATK%": [
+        12,
+        15,
+        18,
+        21,
+        24
+      ]
+    }
+  },
+  {
+    "name": "Cosmic Ripples",
+    "type": "Rectifier",
+    "rarity": 5,
+    "baseAtk": 500,
+    "secondary": {
+      "ATK%": 54
+    },
+    "passive": {
+      "Energy Regen": [
+        12.8,
+        16,
+        19.2,
+        22.4,
+        25.6
+      ]
+    }
+  },
+  {
+    "name": "Firstlight's Herald",
+    "type": "Rectifier",
+    "rarity": 5,
+    "baseAtk": 412,
+    "secondary": {
+      "Energy Regen": 77.04
+    },
+    "passive": {
+      "HP%": [
+        12,
+        15,
+        18,
+        21,
+        24
+      ]
+    }
+  },
+  {
+    "name": "Forged Dwarf Star",
+    "type": "Rectifier",
+    "rarity": 5,
+    "baseAtk": 500,
+    "secondary": {
+      "Crit. Rate": 36
+    },
+    "passive": {
+      "ATK%": [
+        12,
+        15,
+        18,
+        21,
+        24
+      ]
+    }
+  },
+  {
+    "name": "Freeze Frame",
+    "type": "Rectifier",
+    "rarity": 5,
+    "baseAtk": 587,
+    "secondary": {
+      "Crit. Rate": 24.2
+    },
+    "passive": {
+      "ATK%": [
+        12,
+        15,
+        18,
+        21,
+        24
+      ]
+    }
+  },
+  {
+    "name": "Lethean Elegy",
+    "type": "Rectifier",
+    "rarity": 5,
+    "baseAtk": 587,
+    "secondary": {
+      "Crit. Rate": 24.3
+    },
+    "passive": {
+      "ATK%": [
+        12,
+        15,
+        18,
+        21,
+        24
+      ]
+    }
+  },
+  {
+    "name": "Luminous Hymn",
+    "type": "Rectifier",
+    "rarity": 5,
+    "baseAtk": 500,
+    "secondary": {
+      "Crit. Rate": 36
+    },
+    "passive": {
+      "ATK%": [
+        12,
+        15,
+        18,
+        21,
+        24
+      ]
+    }
+  },
+  {
+    "name": "Rime-Draped Sprouts",
+    "type": "Rectifier",
+    "rarity": 5,
+    "baseAtk": 500,
+    "secondary": {
+      "Crit. DMG": 72
+    },
+    "passive": {
+      "ATK%": [
+        12,
+        15,
+        18,
+        21,
+        24
+      ]
+    }
+  },
+  {
+    "name": "Stellar Symphony",
+    "type": "Rectifier",
+    "rarity": 5,
+    "baseAtk": 412,
+    "secondary": {
+      "Energy Regen": 77
+    },
+    "passive": {
+      "HP%": [
+        12,
+        15,
+        18,
+        21,
+        24
+      ]
+    }
+  },
+  {
+    "name": "Stringmaster",
+    "type": "Rectifier",
+    "rarity": 5,
+    "baseAtk": 500,
+    "secondary": {
+      "Crit. Rate": 36
+    },
+    "passive": {}
+  },
+  {
+    "name": "Whispers of Sirens",
+    "type": "Rectifier",
+    "rarity": 5,
+    "baseAtk": 500,
+    "secondary": {
+      "Crit. DMG": 72
+    },
+    "passive": {
+      "ATK%": [
+        12,
+        15,
+        18,
+        21,
+        24
+      ]
+    }
+  },
+  {
+    "name": "Augment",
+    "type": "Rectifier",
+    "rarity": 4,
+    "baseAtk": 412,
+    "secondary": {
+      "Crit. Rate": 20.2
+    },
+    "passive": {}
+  },
+  {
+    "name": "Call of the Abyss",
+    "type": "Rectifier",
+    "rarity": 4,
+    "baseAtk": 338,
+    "secondary": {
+      "Energy Regen": 51.8
+    },
+    "passive": {}
+  },
+  {
+    "name": "Comet Flare",
+    "type": "Rectifier",
+    "rarity": 4,
+    "baseAtk": 412,
+    "secondary": {
+      "HP%": 30.3
+    },
+    "passive": {}
+  },
+  {
+    "name": "Fusion Accretion",
+    "type": "Rectifier",
+    "rarity": 4,
+    "baseAtk": 462,
+    "secondary": {
+      "ATK%": 18.2
+    },
+    "passive": {}
+  },
+  {
+    "name": "Jinzhou Keeper",
+    "type": "Rectifier",
+    "rarity": 4,
+    "baseAtk": 387,
+    "secondary": {
+      "ATK%": 36.4
+    },
+    "passive": {}
+  },
+  {
+    "name": "Ocean's Gift",
+    "type": "Rectifier",
+    "rarity": 4,
+    "baseAtk": 462,
+    "secondary": {
+      "ATK%": 18.2
+    },
+    "passive": {}
+  },
+  {
+    "name": "Radiant Dawn",
+    "type": "Rectifier",
+    "rarity": 4,
+    "baseAtk": 412,
+    "secondary": {
+      "Crit. DMG": 40.5
+    },
+    "passive": {}
+  },
+  {
+    "name": "Rectifier#25",
+    "type": "Rectifier",
+    "rarity": 4,
+    "baseAtk": 337,
+    "secondary": {
+      "Energy Regen": 51.8
+    },
+    "passive": {}
+  },
+  {
+    "name": "Variation",
+    "type": "Rectifier",
+    "rarity": 4,
+    "baseAtk": 337,
+    "secondary": {
+      "Energy Regen": 51.8
+    },
+    "passive": {}
+  },
+  {
+    "name": "Waltz in Masquerade",
+    "type": "Rectifier",
+    "rarity": 4,
+    "baseAtk": 462,
+    "secondary": {
+      "ATK%": 18.2
+    },
+    "passive": {}
+  },
+  {
+    "name": "Guardian Rectifier",
+    "type": "Rectifier",
+    "rarity": 3,
+    "baseAtk": 325,
+    "secondary": {
+      "ATK%": 24.3
+    },
+    "passive": {}
+  },
+  {
+    "name": "Originite: Type V",
+    "type": "Rectifier",
+    "rarity": 3,
+    "baseAtk": 300,
+    "secondary": {
+      "ATK%": 30.3
+    },
+    "passive": {}
+  },
+  {
+    "name": "Rectifier of Night",
+    "type": "Rectifier",
+    "rarity": 3,
+    "baseAtk": 325,
+    "secondary": {
+      "ATK%": 24.3
+    },
+    "passive": {}
+  },
+  {
+    "name": "Rectifier of Voyager",
+    "type": "Rectifier",
+    "rarity": 3,
+    "baseAtk": 300,
+    "secondary": {
+      "Energy Regen": 32.3
+    },
+    "passive": {}
+  },
+  {
+    "name": "Tyro Rectifier",
+    "type": "Rectifier",
+    "rarity": 2,
+    "baseAtk": 275,
+    "secondary": {
+      "ATK%": 14.8
+    },
+    "passive": {
+      "ATK%": [
+        5,
+        6.25,
+        7.5,
+        8.75,
+        10
+      ]
+    }
+  },
+  {
+    "name": "Training Rectifier",
+    "type": "Rectifier",
+    "rarity": 1,
+    "baseAtk": 250,
+    "secondary": {
+      "ATK%": 11.4
+    },
+    "passive": {
+      "ATK%": [
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    }
+  },
+  {
+    "name": "Azure Oath",
+    "type": "Sword",
+    "rarity": 5,
+    "baseAtk": 587,
+    "secondary": {
+      "Crit. Rate": 24.3
+    },
+    "passive": {}
+  },
+  {
+    "name": "Blazing Brilliance",
+    "type": "Sword",
+    "rarity": 5,
+    "baseAtk": 587,
+    "secondary": {
+      "Crit. DMG": 48.6
+    },
+    "passive": {
+      "ATK%": [
+        12,
+        15,
+        18,
+        21,
+        24
+      ]
+    }
+  },
+  {
+    "name": "Bloodpact's Pledge",
+    "type": "Sword",
+    "rarity": 5,
+    "baseAtk": 587,
+    "secondary": {
+      "Energy Regen": 38.9
+    },
+    "passive": {}
+  },
+  {
+    "name": "Defier's Thorn",
+    "type": "Sword",
+    "rarity": 5,
+    "baseAtk": 412,
+    "secondary": {
+      "HP%": 72.2
+    },
+    "passive": {
+      "HP%": [
+        12,
+        15,
+        18,
+        21,
+        24
+      ]
+    }
+  },
+  {
+    "name": "Emerald of Genesis",
+    "type": "Sword",
+    "rarity": 5,
+    "baseAtk": 587,
+    "secondary": {
+      "Crit. Rate": 24.3
+    },
+    "passive": {
+      "Energy Regen": [
+        12.8,
+        16,
+        19.2,
+        22.4,
+        25.6
+      ]
+    }
+  },
+  {
+    "name": "Emerald Sentence",
+    "type": "Sword",
+    "rarity": 5,
+    "baseAtk": 587,
+    "secondary": {
+      "Crit. Rate": 24.3
+    },
+    "passive": {
+      "ATK%": [
+        12,
+        15,
+        18,
+        21,
+        24
+      ]
+    }
+  },
+  {
+    "name": "Everbright Polestar",
+    "type": "Sword",
+    "rarity": 5,
+    "baseAtk": 587,
+    "secondary": {
+      "Crit. Rate": 24.3
+    },
+    "passive": {}
+  },
+  {
+    "name": "Frostburn",
+    "type": "Sword",
+    "rarity": 5,
+    "baseAtk": 587,
+    "secondary": {
+      "Crit. Rate": 24.3
+    },
+    "passive": {
+      "ATK%": [
+        12,
+        15,
+        18,
+        21,
+        24
+      ]
+    }
+  },
+  {
+    "name": "Glint of Clouds",
+    "type": "Sword",
+    "rarity": 5,
+    "baseAtk": 500,
+    "secondary": {
+      "Crit. Rate": 36
+    },
+    "passive": {
+      "ATK%": [
+        12,
+        15,
+        18,
+        21,
+        24
+      ]
+    }
+  },
+  {
+    "name": "Laser Shearer",
+    "type": "Sword",
+    "rarity": 5,
+    "baseAtk": 587,
+    "secondary": {
+      "Energy Regen": 38.8
+    },
+    "passive": {
+      "ATK%": [
+        12,
+        15,
+        18,
+        21,
+        24
+      ]
+    }
+  },
+  {
+    "name": "Red Spring",
+    "type": "Sword",
+    "rarity": 5,
+    "baseAtk": 587,
+    "secondary": {
+      "Crit. Rate": 24.3
+    },
+    "passive": {
+      "ATK%": [
+        12,
+        15,
+        18,
+        21,
+        24
+      ]
+    }
+  },
+  {
+    "name": "Unflickering Valor",
+    "type": "Sword",
+    "rarity": 5,
+    "baseAtk": 412,
+    "secondary": {
+      "Energy Regen": 77
+    },
+    "passive": {
+      "Crit. Rate": [
+        8,
+        10,
+        12,
+        14,
+        16
+      ]
+    }
+  },
+  {
+    "name": "Unspoken Rue",
+    "type": "Sword",
+    "rarity": 5,
+    "baseAtk": 588,
+    "secondary": {
+      "Crit. Rate": 24.3
+    },
+    "passive": {
+      "ATK%": [
+        12,
+        15,
+        18,
+        21,
+        24
+      ]
+    }
+  },
+  {
+    "name": "Commando of Conviction",
+    "type": "Sword",
+    "rarity": 4,
+    "baseAtk": 412,
+    "secondary": {
+      "ATK%": 30.3
+    },
+    "passive": {}
+  },
+  {
+    "name": "Endless Collapse",
+    "type": "Sword",
+    "rarity": 4,
+    "baseAtk": 462,
+    "secondary": {
+      "ATK%": 18.2
+    },
+    "passive": {}
+  },
+  {
+    "name": "Fables of Wisdom",
+    "type": "Sword",
+    "rarity": 4,
+    "baseAtk": 462,
+    "secondary": {
+      "ATK%": 18.2
+    },
+    "passive": {}
+  },
+  {
+    "name": "Feather Edge",
+    "type": "Sword",
+    "rarity": 4,
+    "baseAtk": 412,
+    "secondary": {
+      "Crit. Rate": 20.3
+    },
+    "passive": {}
+  },
+  {
+    "name": "Lumingloss",
+    "type": "Sword",
+    "rarity": 4,
+    "baseAtk": 387,
+    "secondary": {
+      "ATK%": 36.4
+    },
+    "passive": {}
+  },
+  {
+    "name": "Lunar Cutter",
+    "type": "Sword",
+    "rarity": 4,
+    "baseAtk": 412,
+    "secondary": {
+      "ATK%": 30.3
+    },
+    "passive": {}
+  },
+  {
+    "name": "Overture",
+    "type": "Sword",
+    "rarity": 4,
+    "baseAtk": 337,
+    "secondary": {
+      "Energy Regen": 51.8
+    },
+    "passive": {}
+  },
+  {
+    "name": "Somnoire Anchor",
+    "type": "Sword",
+    "rarity": 4,
+    "baseAtk": 462,
+    "secondary": {
+      "ATK%": 18.2
+    },
+    "passive": {}
+  },
+  {
+    "name": "Sword#18",
+    "type": "Sword",
+    "rarity": 4,
+    "baseAtk": 387,
+    "secondary": {
+      "ATK%": 36.4
+    },
+    "passive": {}
+  },
+  {
+    "name": "Guardian Sword",
+    "type": "Sword",
+    "rarity": 3,
+    "baseAtk": 300,
+    "secondary": {
+      "HP%": 30.3
+    },
+    "passive": {}
+  },
+  {
+    "name": "Originite: Type II",
+    "type": "Sword",
+    "rarity": 3,
+    "baseAtk": 325,
+    "secondary": {
+      "HP%": 24.3
+    },
+    "passive": {}
+  },
+  {
+    "name": "Sword of Night",
+    "type": "Sword",
+    "rarity": 3,
+    "baseAtk": 325,
+    "secondary": {
+      "ATK%": 24.3
+    },
+    "passive": {}
+  },
+  {
+    "name": "Sword of Voyager",
+    "type": "Sword",
+    "rarity": 3,
+    "baseAtk": 300,
+    "secondary": {
+      "Energy Regen": 32.3
+    },
+    "passive": {}
+  },
+  {
+    "name": "Tyro Sword",
+    "type": "Sword",
+    "rarity": 2,
+    "baseAtk": 275,
+    "secondary": {
+      "ATK%": 14.8
+    },
+    "passive": {
+      "ATK%": [
+        5,
+        6.25,
+        7.5,
+        8.75,
+        10
+      ]
+    }
+  },
+  {
+    "name": "Training Sword",
+    "type": "Sword",
+    "rarity": 1,
+    "baseAtk": 250,
+    "secondary": {
+      "ATK%": 11.4
+    },
+    "passive": {
+      "ATK%": [
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    }
+  }
+]

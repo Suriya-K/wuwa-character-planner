@@ -178,5 +178,8 @@
         "Crit. DMG"
       ]
     }
+  },
+  "profile": {
+    "weaponType": "Sword"
   }
 }

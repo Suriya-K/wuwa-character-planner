@@ -155,5 +155,13 @@
       ]
     }
   },
-  "prydwenSlug": "the-shorekeeper"
+  "prydwenSlug": "the-shorekeeper",
+  "profile": {
+    "weaponType": "Rectifier",
+    "base": {
+      "HP": 16713,
+      "ATK": 288,
+      "DEF": 1100
+    }
+  }
 }

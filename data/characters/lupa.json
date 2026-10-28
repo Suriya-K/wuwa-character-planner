@@ -176,5 +176,13 @@
         "Crit. DMG"
       ]
     }
+  },
+  "profile": {
+    "weaponType": "Broadblade",
+    "base": {
+      "HP": 11913,
+      "ATK": 388,
+      "DEF": 1186
+    }
   }
 }

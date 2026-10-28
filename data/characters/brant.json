@@ -174,5 +174,13 @@
         "Crit. DMG"
       ]
     }
+  },
+  "profile": {
+    "weaponType": "Sword",
+    "base": {
+      "HP": 11675,
+      "ATK": 375,
+      "DEF": 1308
+    }
   }
 }

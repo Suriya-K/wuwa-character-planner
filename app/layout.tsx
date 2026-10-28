@@ -20,6 +20,13 @@ fieldset.plain { border: 0; padding: 0; margin: 0; min-width: 0; }
 .loadout td { vertical-align: top; }
 .error { color: #c00; }
 .paste { border: 2px dashed #888; padding: 16px; text-align: center; }
+.picker { position: relative; display: inline-flex; align-items: center; gap: 6px; max-width: 100%; }
+.picker input { width: 16em; max-width: 100%; }
+.picker ul { position: absolute; top: 100%; left: 0; z-index: 10; margin: 0; padding: 0; list-style: none; background: #fff; border: 1px solid #888; max-height: 320px; overflow-y: auto; width: 20em; max-width: 90vw; }
+.picker li { display: flex; align-items: center; gap: 6px; padding: 2px 6px; cursor: pointer; }
+.picker li.active { background: #ddd; }
+.pieces { margin: 4px 0; padding-left: 20px; }
+select { max-width: 100%; }
 /* Wide screens: Stats left, Loadout + Candidate right; phones keep the single column */
 @media (min-width: 1100px) {
   body { max-width: 1500px; }

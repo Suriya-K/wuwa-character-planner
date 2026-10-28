@@ -167,5 +167,13 @@
         "Crit. Rate"
       ]
     }
+  },
+  "profile": {
+    "weaponType": "Sword",
+    "base": {
+      "HP": 11025,
+      "ATK": 425,
+      "DEF": 1149
+    }
   }
 }
