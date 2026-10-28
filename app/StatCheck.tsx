@@ -229,10 +229,9 @@ export default function StatCheck({
     if (!buffs.includes(piece.count)) continue;
     for (const [name, v] of Object.entries(piece.bonus) as [keyof Bonus, number][]) setBonus[name] = (setBonus[name] ?? 0) + v;
   }
-  const withSet =
-    profile && buffs.length > 0
-      ? shiftStats(stats, profile.base && { ...profile.base, ATK: profile.base.ATK + (equipped?.baseAtk ?? 0) }, setBonus)
-      : undefined;
+  // Base Stats behind the stat screen: the character's plus the Equipped Weapon's base ATK
+  const screenBase = profile?.base && { ...profile.base, ATK: profile.base.ATK + (equipped?.baseAtk ?? 0) };
+  const withSet = profile && buffs.length > 0 ? shiftStats(stats, screenBase, setBonus) : undefined;
   const targets = targetsWith(critWeapon);
   const comparedTargets = targetsWith(isCrit(compared));
   // Every rating uses the targets for the chosen weapon type, so scores and deltas agree
@@ -244,7 +243,7 @@ export default function StatCheck({
   const comparison = (() => {
     if (!candidate || !build || equippedIndex === undefined) return undefined;
     const equipped = loadout[equippedIndex];
-    const result = compareEchoes(candidate, equipped, stats, build);
+    const result = compareEchoes(candidate, equipped, stats, build, screenBase);
     const swapped = Object.fromEntries(Object.entries(result.whatIf).map(([n, w]) => [n, w.after]));
     return {
       ...result,
@@ -535,13 +534,24 @@ export default function StatCheck({
                       {Object.entries(comparison.whatIf).map(([name, w]) => (
                         <tr key={name}>
                           <td>{name}</td>
-                          <td>{w.before.toFixed(1)}%</td>
-                          <td>{w.after.toFixed(1)}%</td>
+                          <td>
+                            {w.before.toFixed(1)}
+                            {PERCENT.has(name as StatName) && "%"}
+                          </td>
+                          <td>
+                            {w.after.toFixed(1)}
+                            {PERCENT.has(name as StatName) && "%"}
+                          </td>
                           <td className={w.verdict}>{w.verdict}</td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
+                  {screenBase && !equipped && (
+                    <p>
+                      <small>Pick your Weapon above: until then ATK% is scaled from the character's base ATK only.</small>
+                    </p>
+                  )}
                   <p>
                     <button
                       type="button"

@@ -7,6 +7,7 @@ The Attributes Screenshot already holds every bonus from the Equipped Weapon, it
 - Only a weapon passive whose first sentence is unconditional ("Increases ATK by {0}.") counts; conditional passives aren't on the stat screen and aren't modelled.
 - Only 3/5-piece Sonata buffs are offered as checkboxes; 2-piece bonuses are already on the screen. The "With set buff" column has no Stat Verdict because Build Guides give targets before set bonuses (Prydwen says so). DMG Bonus parts are shown as text only, since the app reads no DMG Bonus stats.
 - The "With <weapon>" column is judged with the compared weapon's own Crit/non-Crit targets.
-- Without Base Stats, HP/ATK/DEF what-ifs show "—"; the additive stats still work.
+- Swapping a Candidate Echo in (`compareEchoes`) uses the same rule: flat HP/ATK/DEF substats add on, their % versions scale Base Stats. The Secondary Main Stat cancels out because both Echoes have the same cost.
+- Without Base Stats, HP/ATK/DEF what-ifs show "—" (or are left out); the additive stats still work.
 
 Considered: OCR the stat breakdown or ask for Base Stats by hand. Rejected: Prydwen has them for nearly every character, and the estimate is good enough for "is this weapon better?".

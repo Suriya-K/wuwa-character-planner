@@ -48,7 +48,7 @@ export type CharacterBuild = {
 };
 
 // How much of one stat an Echo adds to the stat-screen total
-const contribution = (echo: Echo, name: StatName) =>
+const contribution = (echo: Echo, name: string) =>
   [echo.mainStat, ...echo.substats].filter((s) => s.name === name).reduce((sum, s) => sum + s.value, 0);
 
 export function rateEcho(
@@ -174,15 +174,21 @@ export function compareEchoes(
   equipped: Echo,
   stats: Partial<Record<StatName, number>>,
   character: CharacterBuild & { statTargets: Partial<Record<StatName, StatTarget>> },
+  // Character + Equipped Weapon base; without it only the stats that add straight on can be worked out
+  base?: BaseStats,
 ) {
-  // ponytail: only stats that add straight onto the screen total; ATK%/HP%/DEF% need base stats
-  const additive = ["Energy Regen", "Crit. Rate", "Crit. DMG"] as const;
+  const names = base ? STAT_NAMES : (["Energy Regen", "Crit. Rate", "Crit. DMG"] as const);
+  const PERCENT_OF = { HP: "HP%", ATK: "ATK%", DEF: "DEF%" } as const;
+  // What an Echo adds to one screen total; flat HP/ATK/DEF substats add on, their % versions scale the base
+  const amount = (echo: Echo, name: StatName) =>
+    contribution(echo, name) +
+    (base && name in PERCENT_OF ? (base[name as keyof BaseStats] * contribution(echo, PERCENT_OF[name as keyof BaseStats])) / 100 : 0);
   const whatIf: Partial<Record<StatName, { before: number; after: number; verdict: StatVerdict }>> = {};
   const swapped: Partial<Record<StatName, number>> = {};
-  for (const name of additive) {
+  for (const name of names) {
     const before = stats[name];
     if (before === undefined) continue;
-    const after = before - contribution(equipped, name) + contribution(candidate, name);
+    const after = before - amount(equipped, name) + amount(candidate, name);
     swapped[name] = after;
     whatIf[name] = { before, after, verdict: statVerdict(after, character.statTargets[name] ?? {}) };
   }

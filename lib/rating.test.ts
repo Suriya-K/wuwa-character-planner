@@ -204,6 +204,26 @@ describe("compareEchoes", () => {
     expect(whatIf["Crit. DMG"]?.after).toBeCloseTo(244.7, 5);
     expect(whatIf["Crit. DMG"]?.verdict).toBe("OK");
   });
+
+  test("with Base Stats, ATK%/HP%/DEF% scale the base and flat substats add straight on", () => {
+    const flatEquipped: Echo = {
+      ...thousandPuppetPavilion,
+      substats: [
+        { name: "Crit. Rate", value: 10.5 },
+        { name: "ATK", value: 50 },
+        { name: "HP%", value: 10 },
+        { name: "DEF", value: 60 },
+        { name: "Heavy Attack DMG Bonus", value: 10.1 },
+      ],
+    };
+    const screen = { ...stats, ATK: 2000, HP: 15000, DEF: 1100 };
+    const base = { HP: 10000, ATK: 1000, DEF: 1000 };
+    const { whatIf } = compareEchoes(thousandPuppetPavilion, flatEquipped, screen, yangyang, base);
+    expect(whatIf.ATK?.after).toBeCloseTo(2000 - 50 + 116, 5);
+    expect(whatIf.HP?.after).toBeCloseTo(15000 - 1000 + 470, 5);
+    expect(whatIf.DEF?.after).toBeCloseTo(1100 - 60 + 81, 5);
+    expect(compareEchoes(thousandPuppetPavilion, flatEquipped, screen, yangyang).whatIf.ATK).toBeUndefined();
+  });
 });
 
 describe("rateEcho Energy Regen", () => {
