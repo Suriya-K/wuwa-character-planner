@@ -343,6 +343,11 @@ describe("flagSubstat", () => {
     expect(flagSubstat({ name: "DEF", value: 50 }, { DEF: 1 })).toBe("Low");
   });
 
+  test("a DMG Bonus the guides rank last is still useful, but a near-zero one is Dead", () => {
+    expect(flagSubstat({ name: "Heavy Attack DMG Bonus", value: 11.6 }, { "Heavy Attack DMG Bonus": 0.22 })).toBeUndefined();
+    expect(flagSubstat({ name: "Heavy Attack DMG Bonus", value: 11.6 }, { "Heavy Attack DMG Bonus": 0.04 })).toBe("Dead");
+  });
+
   test("with no Substat Weights at all, nothing is flagged rather than everything Dead", () => {
     expect(flagSubstat({ name: "Crit. Rate", value: 6.3 }, {})).toBeUndefined();
   });

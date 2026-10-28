@@ -294,7 +294,10 @@ export function flagSubstat(
 ): SubstatFlag | undefined {
   // No weights at all means no guide data, not that every Substat is useless
   if (Object.keys(weights).length === 0) return;
-  if ((weights[substat.name] ?? 0) < 0.25) return "Dead";
+  // A typed DMG Bonus only gets a weight when the kit uses that attack type, so guides ranking it last still mean "useful"
+  // (Galbrena's Heavy Attack ~0.22); 0.1 keeps a stray optimizer-only vote (Ciaccona's Heavy, 0.04) Dead
+  const cutoff = substat.name.endsWith("DMG Bonus") ? 0.1 : 0.25;
+  if ((weights[substat.name] ?? 0) < cutoff) return "Dead";
   // Below the third-lowest roll rather than equal to one of two values, so a slightly misread number still counts
   if (substat.value < ROLLS[substat.name][2]) return "Low";
 }

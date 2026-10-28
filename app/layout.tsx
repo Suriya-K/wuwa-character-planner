@@ -28,6 +28,9 @@ fieldset.plain { border: 0; padding: 0; margin: 0; min-width: 0; }
 .picker li.active { background: #ddd; }
 .pieces { margin: 4px 0; padding-left: 20px; }
 select { max-width: 100%; }
+.tabs button[aria-pressed=true] { font-weight: bold; }
+.saved { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 8px; }
+.saved button { width: 100%; padding: 6px; text-align: center; cursor: pointer; }
 /* Wide screens: Stats left, Loadout + Candidate right; phones keep the single column */
 @media (min-width: 1100px) {
   body { max-width: 1500px; }

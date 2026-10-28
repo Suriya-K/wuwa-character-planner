@@ -18,7 +18,7 @@ import {
   swapWeapon,
   weaponBonus,
 } from "@/lib/rating";
-import CharacterPicker from "./CharacterPicker";
+import CharacterPicker, { Icon } from "./CharacterPicker";
 import EchoRow, { formatScore } from "./EchoRow";
 
 type Targets = Partial<Record<StatName, StatTarget>>;
@@ -60,6 +60,9 @@ export default function StatCheck({
   sonataSets: SonataSet[];
 }) {
   const [characterId, setCharacterId] = useState(characters[0]?.id ?? "");
+  const [tab, setTab] = useState<"check" | "saved">("check");
+  // Characters with a saved Build Snapshot; null until the list loads
+  const [savedIds, setSavedIds] = useState<string[] | null>(null);
   const [weapon, setWeapon] = useState({ name: "", rank: 1 });
   // What-if only, never saved
   const [compare, setCompare] = useState({ name: "", rank: 1 });
@@ -94,6 +97,12 @@ export default function StatCheck({
   const loadoutSize = useRef(0);
 
   const addError = (message: string) => setErrors((list) => [...list, message]);
+
+  useEffect(() => {
+    fetch("/api/snapshot")
+      .then((res) => (res.ok ? res.json() : Promise.reject(new Error(`Loading saved builds: ${res.status}`))))
+      .then(setSavedIds, (e: Error) => addError(e.message));
+  }, []);
 
   // Load the character's Build Snapshot so any device picks up where the last one left off
   useEffect(() => {
@@ -149,6 +158,7 @@ export default function StatCheck({
     if (res instanceof Error) return addError(res.message);
     if (!res.ok || typeof body?.savedAt !== "string") return addError(body?.error ?? `Save failed: ${res.status}`);
     setSavedAt(body.savedAt);
+    setSavedIds((ids) => (ids && !ids.includes(characterId) ? [...ids, characterId] : ids));
   }
 
   // One screenshot: an Attributes Screenshot fills the stats, an Echo Screenshot joins the Loadout
@@ -251,8 +261,42 @@ export default function StatCheck({
     };
   })();
 
+  const saved = characters.filter((c) => savedIds?.includes(c.id));
   return (
     <>
+      <p className="tabs">
+        <button aria-pressed={tab === "check"} onClick={() => setTab("check")}>Stat Check</button>{" "}
+        <button aria-pressed={tab === "saved"} onClick={() => setTab("saved")}>
+          Saved Builds{savedIds && ` (${saved.length})`}
+        </button>
+      </p>
+
+      <div hidden={tab !== "saved"}>
+        {!savedIds ? (
+          <p>Loading…</p>
+        ) : saved.length === 0 ? (
+          <p>No saved builds yet.</p>
+        ) : (
+          <ul className="saved">
+            {saved.map((c) => (
+              <li key={c.id}>
+                <button
+                  onClick={() => {
+                    setCharacterId(c.id);
+                    setTab("check");
+                  }}
+                >
+                  <Icon id={c.id} size={64} />
+                  <br />
+                  {c.name}
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      <div hidden={tab !== "check"}>
       <fieldset>
         <legend>Character</legend>
         <CharacterPicker characters={characters} value={characterId} onChange={setCharacterId} />
@@ -570,6 +614,7 @@ export default function StatCheck({
         </button>{" "}
         {savedAt ? `Last saved ${new Date(savedAt).toLocaleString()}` : "Not saved yet"}
       </p>
+      </div>
     </>
   );
 }

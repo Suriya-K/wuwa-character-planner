@@ -75,6 +75,11 @@ export function parseSnapshot(input: unknown): BuildSnapshot | null {
   };
 }
 
+// ponytail: KEYS scans everything, fine for one user's ~60 characters; SCAN if the store ever grows
+export async function listSnapshotIds(): Promise<string[]> {
+  return ((await redis(["KEYS", "snapshot:*"])) as string[]).map((k) => k.slice("snapshot:".length));
+}
+
 export async function saveSnapshot(id: string, snapshot: BuildSnapshot) {
   await redis(["SET", `snapshot:${id}`, JSON.stringify(snapshot)]);
 }

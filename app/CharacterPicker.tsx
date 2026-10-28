@@ -7,7 +7,7 @@ type Option = { id: string; name: string; element: string };
 const label = (c: Option) => `${c.name} (${c.element})`;
 
 // A missing icon shouldn't leave a broken-image box
-const Icon = ({ id, size }: { id: string; size: number }) => (
+export const Icon = ({ id, size }: { id: string; size: number }) => (
   <img
     src={`/icons/${id}.webp`}
     alt=""
