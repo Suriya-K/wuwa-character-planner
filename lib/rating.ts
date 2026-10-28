@@ -7,24 +7,30 @@ export function statVerdict(value: number, target: StatTarget): StatVerdict {
   return "OK";
 }
 
-// Highest single roll per Substat, from the community build sheet's "Echo Substat Ranges" tab (July 2026)
-export const MAX_ROLL = {
-  "Crit. Rate": 10.5,
-  "Crit. DMG": 21,
-  "ATK%": 11.6,
-  "HP%": 11.6,
-  "DEF%": 14.7,
-  "Energy Regen": 12.4,
-  ATK: 60,
-  HP: 580,
-  DEF: 70,
-  "Basic Attack DMG Bonus": 11.6,
-  "Heavy Attack DMG Bonus": 11.6,
-  "Resonance Skill DMG Bonus": 11.6,
-  "Resonance Liberation DMG Bonus": 11.6,
+// Every value a Substat can roll, lowest first, from the community build sheet's "Echo Substat Ranges" tab (July 2026)
+const DMG_ROLLS = [6.4, 7.1, 7.9, 8.6, 9.4, 10.1, 10.9, 11.6];
+export const ROLLS = {
+  "Crit. Rate": [6.3, 6.9, 7.5, 8.1, 8.7, 9.3, 9.9, 10.5],
+  "Crit. DMG": [12.6, 13.8, 15.0, 16.2, 17.4, 18.6, 19.8, 21.0],
+  "ATK%": DMG_ROLLS,
+  "HP%": DMG_ROLLS,
+  "DEF%": [8.1, 9.0, 10.0, 10.9, 11.8, 12.8, 13.8, 14.7],
+  "Energy Regen": [6.8, 7.6, 8.4, 9.2, 10.0, 10.8, 11.6, 12.4],
+  ATK: [30, 40, 50, 60],
+  HP: [320, 360, 390, 430, 470, 510, 540, 580],
+  DEF: [40, 50, 60, 70],
+  "Basic Attack DMG Bonus": DMG_ROLLS,
+  "Heavy Attack DMG Bonus": DMG_ROLLS,
+  "Resonance Skill DMG Bonus": DMG_ROLLS,
+  "Resonance Liberation DMG Bonus": DMG_ROLLS,
 } as const;
 
-export type SubstatName = keyof typeof MAX_ROLL;
+// Highest single roll per Substat
+export const MAX_ROLL = Object.fromEntries(Object.entries(ROLLS).map(([name, rolls]) => [name, rolls.at(-1)!])) as {
+  [K in keyof typeof ROLLS]: number;
+};
+
+export type SubstatName = keyof typeof ROLLS;
 export const SUBSTAT_NAMES = Object.keys(MAX_ROLL) as SubstatName[];
 export const ECHO_COSTS = [4, 3, 1] as const;
 export type EchoCost = (typeof ECHO_COSTS)[number];
@@ -55,7 +61,7 @@ export function rateEcho(
   echo: Echo,
   character: CharacterBuild,
   stats: Partial<Record<StatName, number>> = {},
-): { score: number; verdict: EchoVerdict } {
+): { score: number; verdict: EchoVerdict; weights: Partial<Record<SubstatName, number>> } {
   if (echo.level !== 25) throw new Error(`Only Maxed Echoes (+25) can be rated, got +${echo.level}`);
   const weights = { ...character.substatWeights };
   // Guides value Energy Regen only "until" its target: if the target holds without this Echo, its ER is wasted
@@ -72,8 +78,9 @@ export function rateEcho(
     .slice(0, 5)
     .reduce((a, b) => a + b, 0);
   const score = (earned / best) * 100;
-  if (!character.recommendedMainStats[echo.cost].includes(echo.mainStat.name)) return { score, verdict: "Replace" };
-  return { score, verdict: score < 40 ? "Replace" : score <= 60 ? "Usable" : "Keep" };
+  // `weights` as scored, Energy Regen zeroed or not, so Dead Substat flags agree with the score
+  if (!character.recommendedMainStats[echo.cost].includes(echo.mainStat.name)) return { score, verdict: "Replace", weights };
+  return { score, verdict: score < 40 ? "Replace" : score <= 60 ? "Usable" : "Keep", weights };
 }
 
 // Stats shown on the first page of the Attributes Screenshot
@@ -277,3 +284,17 @@ export const flatAtk = (loadout: Echo[]) =>
       e.substats.filter((s) => s.name === "ATK").reduce((n, s) => n + s.value, 0),
     0,
   );
+
+export type SubstatFlag = "Dead" | "Low";
+
+// Dead Substat or Low Roll, judged one Substat at a time; nothing for a good one
+export function flagSubstat(
+  substat: { name: SubstatName; value: number },
+  weights: Partial<Record<SubstatName, number>>,
+): SubstatFlag | undefined {
+  // No weights at all means no guide data, not that every Substat is useless
+  if (Object.keys(weights).length === 0) return;
+  if ((weights[substat.name] ?? 0) < 0.25) return "Dead";
+  // Below the third-lowest roll rather than equal to one of two values, so a slightly misread number still counts
+  if (substat.value < ROLLS[substat.name][2]) return "Low";
+}

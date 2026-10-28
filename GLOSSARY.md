@@ -70,6 +70,13 @@ An Echo at level +25 with all five substats revealed; the only kind this tool ra
 A secondary stat rolled on an Echo, each with a known maximum roll value.
 _Avoid_: Sub, secondary
 
+**Low Roll**:
+A Substat whose value is one of the two lowest values that Substat can roll.
+
+**Dead Substat**:
+A Substat worth little or nothing to a specific character (Substat Weight under 0.25), however high it rolled.
+_Avoid_: Bad substat (ambiguous between Low Roll and Dead Substat)
+
 **Substat Weight**:
 How valuable a Substat type is to a specific character, from 0 (useless) to 1 (ideal).
 

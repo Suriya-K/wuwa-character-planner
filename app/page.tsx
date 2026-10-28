@@ -7,7 +7,7 @@ async function loadCharacters(): Promise<CharacterOption[]> {
     (await readdir(dir)).map(async (f) => JSON.parse(await readFile(`${dir}/${f}`, "utf8"))),
   );
   return files
-    .map(({ id, name, element, build, sources, profile }) => ({
+    .map(({ id, name, element, build, profile }) => ({
       id,
       name,
       element,
@@ -16,10 +16,6 @@ async function loadCharacters(): Promise<CharacterOption[]> {
       nonCritWeaponTargets: build.nonCritWeaponTargets,
       substatWeights: build.substatWeights,
       recommendedMainStats: build.recommendedMainStats,
-      // Raw per-source targets so the page can show where Build Guides disagree
-      sources: Object.values(sources)
-        .filter((s: any) => !s.error)
-        .map((s: any) => ({ source: s.source, statTargets: s.statTargets, nonCritWeaponTargets: s.nonCritWeaponTargets ?? {} })),
     }))
     .sort((a, b) => a.name.localeCompare(b.name));
 }

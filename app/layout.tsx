@@ -13,6 +13,7 @@ input[type=number] { width: 5.5em; }
 td:nth-child(2) { white-space: nowrap; }
 fieldset { margin: 8px 0; }
 .Low { background: #f99; } .OK { background: #9e9; } .High { background: #9cf; }
+.Dead { color: #888; text-decoration: line-through; }
 .Replace { background: #f99; } .Usable { background: #fe8; } .Keep { background: #9e9; }
 h2 { font-size: 16px; margin: 16px 0 4px; }
 .scroll { overflow-x: auto; }

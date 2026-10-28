@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { type Echo, type GuideSource, type Weapon, compareEchoes, flatAtk, mergeGuides, rateEcho, shiftStats, statVerdict, swapWeapon, weaponBonus } from "./rating";
+import { type Echo, type GuideSource, type Weapon, compareEchoes, flagSubstat, flatAtk, mergeGuides, rateEcho, shiftStats, statVerdict, swapWeapon, weaponBonus } from "./rating";
 
 // Real Echoes from prototype/shots on the prototype/spikes branch
 const thousandPuppetPavilion: Echo = {
@@ -52,7 +52,7 @@ describe("statVerdict", () => {
 describe("rateEcho", () => {
   test("max rolls on the only weighted substats score 100% and Keep", () => {
     const character = { substatWeights: { "Crit. Rate": 1, "ATK%": 0.5 }, recommendedMainStats: critMains };
-    expect(rateEcho(thousandPuppetPavilion, character)).toEqual({ score: 100, verdict: "Keep" });
+    expect(rateEcho(thousandPuppetPavilion, character)).toMatchObject({ score: 100, verdict: "Keep" });
   });
 
   test("a Main Stat outside Recommended Main Stats is Replace even with perfect substats", () => {
@@ -60,7 +60,7 @@ describe("rateEcho", () => {
       substatWeights: { "Crit. Rate": 1, "ATK%": 0.5 },
       recommendedMainStats: { ...critMains, 4: ["Crit. Rate"] },
     };
-    expect(rateEcho(thousandPuppetPavilion, character)).toEqual({ score: 100, verdict: "Replace" });
+    expect(rateEcho(thousandPuppetPavilion, character)).toMatchObject({ score: 100, verdict: "Replace" });
   });
 
   test("an Echo below +25 is rejected", () => {
@@ -70,7 +70,7 @@ describe("rateEcho", () => {
 
   test("no weighted substats scores 0% and Replace", () => {
     const character = { substatWeights: { "Energy Regen": 1 }, recommendedMainStats: critMains };
-    expect(rateEcho(thousandPuppetPavilion, character)).toEqual({ score: 0, verdict: "Replace" });
+    expect(rateEcho(thousandPuppetPavilion, character)).toMatchObject({ score: 0, verdict: "Replace" });
   });
 
   test("a score between 40% and 60% is Usable", () => {
@@ -316,5 +316,46 @@ describe("weapons and Sonata Set buffs", () => {
     const threeCost: Echo = { cost: 3, level: 25, mainStat: { name: "ATK%", value: 30 }, substats: [{ name: "ATK", value: 50 }] };
     const oneCost: Echo = { cost: 1, level: 25, mainStat: { name: "ATK%", value: 18 }, substats: [{ name: "ATK", value: 40 }] };
     expect(flatAtk([thousandPuppetPavilion, threeCost, oneCost])).toBe(150 + 100 + 50 + 40);
+  });
+});
+
+describe("flagSubstat", () => {
+  // Aemeath's merged weights
+  const weights = { "Crit. Rate": 0.93, "Crit. DMG": 0.93, "Energy Regen": 0.68, "ATK%": 0.57, ATK: 0.22 };
+
+  test("a Substat the character barely uses is a Dead Substat however high it rolled", () => {
+    expect(flagSubstat({ name: "DEF%", value: 14.7 }, weights)).toBe("Dead");
+    expect(flagSubstat({ name: "ATK", value: 60 }, weights)).toBe("Dead");
+    expect(flagSubstat({ name: "Crit. Rate", value: 10.5 }, weights)).toBeUndefined();
+  });
+
+  test("a value among the two lowest a Substat can roll is a Low Roll", () => {
+    expect(flagSubstat({ name: "Crit. Rate", value: 6.3 }, weights)).toBe("Low");
+    expect(flagSubstat({ name: "Crit. Rate", value: 6.9 }, weights)).toBe("Low");
+    expect(flagSubstat({ name: "Crit. Rate", value: 7.5 }, weights)).toBeUndefined();
+    expect(flagSubstat({ name: "Crit. DMG", value: 13.8 }, weights)).toBe("Low");
+    expect(flagSubstat({ name: "Energy Regen", value: 8.4 }, weights)).toBeUndefined();
+  });
+
+  test("flat stats roll only four values, so their two lowest are Low Rolls too", () => {
+    expect(flagSubstat({ name: "ATK", value: 40 }, { ATK: 1 })).toBe("Low");
+    expect(flagSubstat({ name: "ATK", value: 50 }, { ATK: 1 })).toBeUndefined();
+    expect(flagSubstat({ name: "DEF", value: 50 }, { DEF: 1 })).toBe("Low");
+  });
+
+  test("with no Substat Weights at all, nothing is flagged rather than everything Dead", () => {
+    expect(flagSubstat({ name: "Crit. Rate", value: 6.3 }, {})).toBeUndefined();
+  });
+
+  test("rateEcho hands back the weights it scored with, so Energy Regen past its target flags as Dead", () => {
+    const erEcho: Echo = { cost: 1, level: 25, mainStat: { name: "ATK%", value: 18 }, substats: [{ name: "Energy Regen", value: 12.4 }] };
+    const character = { substatWeights: weights, recommendedMainStats: critMains, statTargets: { "Energy Regen": { min: 120 } } };
+    const { weights: used } = rateEcho(erEcho, character, { "Energy Regen": 140 });
+    expect(flagSubstat(erEcho.substats[0], used)).toBe("Dead");
+    expect(flagSubstat(erEcho.substats[0], rateEcho(erEcho, character, { "Energy Regen": 125 }).weights)).toBeUndefined();
+  });
+
+  test("a Dead Substat stays Dead even when it also rolled low", () => {
+    expect(flagSubstat({ name: "DEF%", value: 8.1 }, weights)).toBe("Dead");
   });
 });

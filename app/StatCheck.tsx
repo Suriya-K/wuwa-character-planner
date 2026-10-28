@@ -29,14 +29,12 @@ export type CharacterOption = CharacterBuild & {
   element: string;
   statTargets: Targets;
   nonCritWeaponTargets: Targets;
-  sources: { source: string; statTargets: Targets; nonCritWeaponTargets: Targets }[];
   profile?: { weaponType: string; base?: BaseStats };
 };
 
 export type SonataSet = { name: string; pieces: { count: number; text: string; bonus: Bonus }[] };
 
 const PERCENT = new Set<StatName>(["Energy Regen", "Crit. Rate", "Crit. DMG"]);
-const CRIT = new Set<StatName>(["Crit. Rate", "Crit. DMG"]);
 const LOADOUT_SIZE = 5;
 
 const describe = (t: StatTarget | undefined) =>
@@ -392,21 +390,7 @@ export default function StatCheck({
                   />
                   {PERCENT.has(name) && "%"}
                 </td>
-                <td>
-                  {describe(target)}
-                  <br />
-                  <small>
-                    {character?.sources
-                      .map((src) => {
-                        // Same fallback as `targets`: non-Crit values only when some source gave them
-                        const nonCrit = !critWeapon && CRIT.has(name) && character.nonCritWeaponTargets[name];
-                        const t = nonCrit ? src.nonCritWeaponTargets[name] : src.statTargets[name];
-                        return t && `${src.source}: ${describe(t)}`;
-                      })
-                      .filter(Boolean)
-                      .join(" · ")}
-                  </small>
-                </td>
+                <td>{describe(target)}</td>
                 <td className={verdict}>{verdict ?? "—"}</td>
                 {withWeapon && <WhatIf value={withWeapon[name]} before={value} target={comparedTargets[name]} />}
                 {/* No verdict: Build Guides give targets before set bonuses */}
@@ -455,7 +439,6 @@ export default function StatCheck({
                 key={i}
                 echo={echo}
                 rating={build && rateEcho(echo, build, stats)}
-                onChange={(next) => setLoadout((list) => list.map((e, j) => (j === i ? next : e)))}
                 actions={
                   <button type="button" onClick={() => setLoadout((list) => list.filter((_, j) => j !== i))}>
                     Remove
@@ -466,6 +449,14 @@ export default function StatCheck({
           </tbody>
         </table>
       </div>
+      {loadout.length > 0 && (
+      <p>
+        <small>
+          Substats: <span className="Low">Low Roll</span> (one of its two lowest values) ·{" "}
+          <span className="Dead">Dead Substat</span> (little use to this character)
+        </small>
+      </p>
+      )}
 
       <h2>Candidate Echo</h2>
       <p>
@@ -488,7 +479,6 @@ export default function StatCheck({
                 <EchoRow
                   echo={candidate}
                   rating={comparison && build && rateEcho(candidate, build, comparison.swapped)}
-                  onChange={setCandidate}
                   actions={
                     <button type="button" onClick={() => setCandidate(null)}>
                       Discard
